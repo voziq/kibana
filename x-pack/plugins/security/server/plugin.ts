@@ -31,6 +31,7 @@ import { defineRoutes } from './routes';
 import { SecurityLicenseService, SecurityLicense } from '../common/licensing';
 import { setupSavedObjects } from './saved_objects';
 import { AuditService, SecurityAuditLogger, AuditServiceSetup } from './audit';
+import { AuditTrailService } from './audit_trail';
 import { SecurityFeatureUsageService, SecurityFeatureUsageServiceStart } from './feature_usage';
 import { securityFeatures } from './features';
 import { ElasticsearchService } from './elasticsearch';
@@ -110,6 +111,9 @@ export class Plugin {
   };
 
   private readonly auditService = new AuditService(this.initializerContext.logger.get('audit'));
+  private readonly auditTrailService = new AuditTrailService(
+    this.initializerContext.logger.get('audit_trail')
+  );
   private readonly authorizationService = new AuthorizationService();
   private readonly elasticsearchService = new ElasticsearchService(
     this.initializerContext.logger.get('elasticsearch')
@@ -178,6 +182,11 @@ export class Plugin {
       taskManager,
     });
 
+    const getAuditorFactory = async () => {
+      const [{ auditTrail }] = await core.getStartServices();
+      return auditTrail;
+    };
+
     const authc = await setupAuthentication({
       auditLogger,
       getFeatureUsageService: this.getFeatureUsageService,
@@ -187,6 +196,7 @@ export class Plugin {
       license,
       loggers: this.initializerContext.logger,
       session,
+      getAuditorFactory,
     });
 
     const authz = this.authorizationService.setup({
@@ -202,11 +212,22 @@ export class Plugin {
       getCurrentUser: authc.getCurrentUser,
     });
 
+    this.auditTrailService.setup({
+      license,
+      config: config.audit,
+      logging: core.logging,
+      auditTrail: core.auditTrail,
+      http: core.http,
+      getCurrentUser: authc.getCurrentUser,
+      getSpacesService: this.getSpacesService,
+    });
+
     setupSavedObjects({
       auditLogger,
       authz,
       savedObjects: core.savedObjects,
       getSpacesService: this.getSpacesService,
+      getAuditorFactory,
     });
 
     defineRoutes({
