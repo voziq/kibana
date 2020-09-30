@@ -13,6 +13,9 @@ object PullRequestCi : BuildType({
   type = Type.COMPOSITE
   paused = true
 
+  // TODO add fork user and maybe branch name to build number
+  // buildNumberPattern = "%build.counter%-"
+
   vcs {
     root(Kibana)
     checkoutDir = "kibana"
