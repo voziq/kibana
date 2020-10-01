@@ -23,6 +23,28 @@ object PullRequestCi : BuildType({
     branchFilter = "+:pull/*"
   }
 
+  params {
+    param("env.GITHUB_PR_TARGET_BRANCH", "%teamcity.pullRequest.target.branch%")
+    param("env.GITHUB_PR_NUMBER", "%teamcity.pullRequest.number%")
+
+    // These params should get filled in by the app that triggers builds
+    param("env.GITHUB_PR_OWNER", "")
+    param("env.GITHUB_PR_REPO", "")
+    param("env.GITHUB_PR_BRANCH", "")
+    param("env.GITHUB_PR_TRIGGERED_SHA", "")
+    param("env.GITHUB_PR_LABELS", "")
+
+    param("reverse.dep.*.env.GITHUB_PR_TARGET_BRANCH", "%teamcity.pullRequest.target.branch%")
+    param("reverse.dep.*.env.GITHUB_PR_NUMBER", "%teamcity.pullRequest.number%")
+
+    // These params should get filled in by the app that triggers builds
+    param("reverse.dep.*.env.GITHUB_PR_OWNER", "")
+    param("reverse.dep.*.env.GITHUB_PR_REPO", "")
+    param("reverse.dep.*.env.GITHUB_PR_BRANCH", "")
+    param("reverse.dep.*.env.GITHUB_PR_TRIGGERED_SHA", "")
+    param("reverse.dep.*.env.GITHUB_PR_LABELS", "")
+  }
+
   features {
     pullRequests {
       vcsRootExtId = "${Kibana.id}"
