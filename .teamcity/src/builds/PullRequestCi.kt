@@ -33,6 +33,7 @@ object PullRequestCi : BuildType({
     param("env.GITHUB_PR_BRANCH", "")
     param("env.GITHUB_PR_TRIGGERED_SHA", "")
     param("env.GITHUB_PR_LABELS", "")
+    param("env.GITHUB_PR_TRIGGER_COMMENT", "")
 
     param("reverse.dep.*.env.GITHUB_PR_TARGET_BRANCH", "%teamcity.pullRequest.target.branch%")
     param("reverse.dep.*.env.GITHUB_PR_NUMBER", "%teamcity.pullRequest.number%")
@@ -43,6 +44,7 @@ object PullRequestCi : BuildType({
     param("reverse.dep.*.env.GITHUB_PR_BRANCH", "")
     param("reverse.dep.*.env.GITHUB_PR_TRIGGERED_SHA", "")
     param("reverse.dep.*.env.GITHUB_PR_LABELS", "")
+    param("reverse.dep.*.env.GITHUB_PR_TRIGGER_COMMENT", "")
   }
 
   features {
