@@ -40,6 +40,16 @@ fun Kibana(config: KibanaConfiguration = KibanaConfiguration()) : Project {
       param("env.GITHUB_PR_TRIGGERED_SHA", "")
       param("env.GITHUB_PR_LABELS", "")
 
+      param("reverse.dep.*.env.GITHUB_PR_TARGET_BRANCH", "%teamcity.pullRequest.target.branch%")
+      param("reverse.dep.*.env.GITHUB_PR_NUMBER", "%teamcity.pullRequest.number%")
+
+      // These params should get filled in by the app that triggers builds
+      param("reverse.dep.*.env.GITHUB_PR_OWNER", "")
+      param("reverse.dep.*.env.GITHUB_PR_REPO", "")
+      param("reverse.dep.*.env.GITHUB_PR_BRANCH", "")
+      param("reverse.dep.*.env.GITHUB_PR_TRIGGERED_SHA", "")
+      param("reverse.dep.*.env.GITHUB_PR_LABELS", "")
+
       // https://github.com/JetBrains/teamcity-webhooks
       param("teamcity.internal.webhooks.enable", "true")
       param("teamcity.internal.webhooks.events", "BUILD_STARTED;BUILD_FINISHED;BUILD_INTERRUPTED;CHANGES_LOADED;BUILD_TYPE_ADDED_TO_QUEUE;BUILD_PROBLEMS_CHANGED")
