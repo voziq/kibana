@@ -21,7 +21,6 @@ object Checks : BuildType({
     "Check File Casing" to ".ci/teamcity/checks/file_casing.sh",
     "Check Lockfile Symlinks" to ".ci/teamcity/checks/lock_file_symlinks.sh",
     "Check Licenses" to ".ci/teamcity/checks/licenses.sh",
-    "Verify Dependency Versions" to ".ci/teamcity/checks/verify_dependency_versions.sh",
     "Verify NOTICE" to ".ci/teamcity/checks/verify_notice.sh",
     "Test Hardening" to ".ci/teamcity/checks/test_hardening.sh",
     "Check Types" to ".ci/teamcity/checks/type_check.sh",
