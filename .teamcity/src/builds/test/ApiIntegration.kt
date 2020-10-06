@@ -30,5 +30,4 @@ object ApiIntegration : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

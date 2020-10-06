@@ -34,8 +34,6 @@ object DefaultBuild : BuildType({
         """.trimIndent()
     }
   }
-
-  addSlackNotifications()
 })
 
 fun Dependencies.defaultBuild(rules: String = "+:kibana-default.tar.gz!** => build/kibana-build-default") {

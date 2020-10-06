@@ -54,5 +54,4 @@ object DefaultFirefox : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

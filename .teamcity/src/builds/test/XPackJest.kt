@@ -34,5 +34,4 @@ object XPackJest : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

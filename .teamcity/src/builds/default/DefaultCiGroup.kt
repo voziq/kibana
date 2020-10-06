@@ -39,7 +39,6 @@ class DefaultCiGroup(val ciGroup: Int = 0, init: BuildType.() -> Unit = {}) : Bu
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 
   init()
 })

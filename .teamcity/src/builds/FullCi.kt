@@ -1,5 +1,6 @@
 package builds
 
+import addSlackNotifications
 import builds.default.*
 import builds.oss.*
 import builds.test.AllTests
@@ -40,4 +41,6 @@ object FullCi : BuildType({
     DefaultAccessibility,
     DefaultSecuritySolution
   )
+
+  addSlackNotifications()
 })

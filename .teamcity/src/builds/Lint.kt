@@ -31,6 +31,4 @@ object Lint : BuildType({
         """.trimIndent()
     }
   }
-
-  addSlackNotifications()
 })

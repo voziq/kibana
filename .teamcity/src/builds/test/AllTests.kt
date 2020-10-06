@@ -11,6 +11,4 @@ object AllTests : BuildType({
   type = Type.COMPOSITE
 
   dependsOn(QuickTests, Jest, XPackJest, JestIntegration, ApiIntegration)
-
-  addSlackNotifications()
 })

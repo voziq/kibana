@@ -38,5 +38,4 @@ object OssFirefox : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

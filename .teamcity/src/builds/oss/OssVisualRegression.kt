@@ -39,5 +39,4 @@ object OssVisualRegression : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

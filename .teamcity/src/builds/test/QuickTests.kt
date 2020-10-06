@@ -42,5 +42,4 @@ object QuickTests : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

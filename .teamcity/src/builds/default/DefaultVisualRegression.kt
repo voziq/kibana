@@ -49,5 +49,4 @@ object DefaultVisualRegression : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

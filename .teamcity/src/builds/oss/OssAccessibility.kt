@@ -38,5 +38,4 @@ object OssAccessibility : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

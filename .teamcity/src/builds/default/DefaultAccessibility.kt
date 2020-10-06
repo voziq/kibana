@@ -54,5 +54,4 @@ object DefaultAccessibility : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

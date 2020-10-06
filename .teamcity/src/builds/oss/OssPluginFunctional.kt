@@ -47,5 +47,4 @@ object OssPluginFunctional : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

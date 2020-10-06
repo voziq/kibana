@@ -46,5 +46,4 @@ object Checks : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

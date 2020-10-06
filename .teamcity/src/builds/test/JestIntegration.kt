@@ -30,5 +30,4 @@ object JestIntegration : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })

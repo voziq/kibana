@@ -27,8 +27,6 @@ object OssBuild : BuildType({
   }
 
   artifactRules = "+:build/oss/kibana-build-oss/**/* => kibana-oss.tar.gz"
-
-  addSlackNotifications()
 })
 
 fun Dependencies.ossBuild(rules: String = "+:kibana-oss.tar.gz!** => build/kibana-build-oss") {

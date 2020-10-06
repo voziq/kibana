@@ -38,7 +38,6 @@ class OssCiGroup(val ciGroup: Int, init: BuildType.() -> Unit = {}) : BuildType(
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 
   init()
 })

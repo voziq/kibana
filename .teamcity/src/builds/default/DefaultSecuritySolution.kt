@@ -54,5 +54,4 @@ object DefaultSecuritySolution : BuildType({
   }
 
   addTestArtifacts()
-  addSlackNotifications()
 })
