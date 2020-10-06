@@ -39,7 +39,7 @@ fi
 # TODO vault keys
 
 # TODO
-if [[ -d "/home/agent/.kibana/node_modules" ]]; then
-  echo 'Using node_modules cache'
-  mv /home/agent/.kibana/node_modules .
-fi
+# if [[ -d "/home/agent/.kibana/node_modules" ]]; then
+#   echo 'Using node_modules cache'
+#   mv /home/agent/.kibana/node_modules .
+# fi
