@@ -23,10 +23,9 @@ object PullRequestCi : BuildType({
   }
 
   params {
-    param("env.GITHUB_PR_TARGET_BRANCH", "%teamcity.pullRequest.target.branch%")
-    param("env.GITHUB_PR_NUMBER", "%teamcity.pullRequest.number%")
-
     // These params should get filled in by the app that triggers builds
+    param("env.GITHUB_PR_TARGET_BRANCH", "")
+    param("env.GITHUB_PR_NUMBER", "")
     param("env.GITHUB_PR_OWNER", "")
     param("env.GITHUB_PR_REPO", "")
     param("env.GITHUB_PR_BRANCH", "")
@@ -34,10 +33,8 @@ object PullRequestCi : BuildType({
     param("env.GITHUB_PR_LABELS", "")
     param("env.GITHUB_PR_TRIGGER_COMMENT", "")
 
-    param("reverse.dep.*.env.GITHUB_PR_TARGET_BRANCH", "%teamcity.pullRequest.target.branch%")
-    param("reverse.dep.*.env.GITHUB_PR_NUMBER", "%teamcity.pullRequest.number%")
-
-    // These params should get filled in by the app that triggers builds
+    param("reverse.dep.*.env.GITHUB_PR_TARGET_BRANCH", "")
+    param("reverse.dep.*.env.GITHUB_PR_NUMBER", "")
     param("reverse.dep.*.env.GITHUB_PR_OWNER", "")
     param("reverse.dep.*.env.GITHUB_PR_REPO", "")
     param("reverse.dep.*.env.GITHUB_PR_BRANCH", "")
