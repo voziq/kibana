@@ -1,5 +1,6 @@
 package builds
 
+import dependsOn
 import jetbrains.buildServer.configs.kotlin.v2019_2.AbsoluteId
 import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.PullRequests
@@ -11,10 +12,8 @@ object PullRequestCi : BuildType({
   id = AbsoluteId("Kibana_PullRequest_CI")
   name = "Pull Request CI"
   type = Type.COMPOSITE
-  paused = true
 
-  // TODO add fork user and maybe branch name to build number
-  // buildNumberPattern = "%build.counter%-"
+   buildNumberPattern = "%build.counter%-%env.GITHUB_PR_OWNER%-%env.GITHUB_PR_BRANCH%"
 
   vcs {
     root(Kibana)
@@ -68,4 +67,6 @@ object PullRequestCi : BuildType({
       }
     }
   }
+
+  dependsOn(FullCi)
 })
