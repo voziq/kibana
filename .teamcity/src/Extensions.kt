@@ -30,7 +30,7 @@ fun ProjectFeatures.kibanaAgent(init: ProjectFeature.() -> Unit) {
     param("machineCustom", "false")
     param("maxInstances", "200")
     param("imageType", "ImageFamily")
-    param("diskSizeGb", "")
+    param("diskSizeGb", "75") // TODO
     init()
   }
 }
