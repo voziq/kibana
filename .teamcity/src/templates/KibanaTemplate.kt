@@ -54,6 +54,7 @@ object KibanaTemplate : Template({
   params {
     param("env.CI", "true")
     param("env.TEAMCITY_CI", "true")
+    param("env.HOME", "/var/lib/jenkins") // TODO
 
     // TODO remove these
     param("env.GCS_UPLOAD_PREFIX", "INVALID_PREFIX")

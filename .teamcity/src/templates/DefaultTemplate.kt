@@ -30,6 +30,10 @@ object DefaultTemplate : Template({
     startsWith("teamcity.agent.name", "kibana-standard-2-", "RQ_AGENT_NAME")
   }
 
+  params {
+    param("env.HOME", "/var/lib/jenkins") // TODO
+  }
+
   features {
     perfmon {  }
   }
