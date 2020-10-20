@@ -112,7 +112,37 @@ const handleCourierRequest = async ({
     return aggs.toDsl(metricsAtAllLevels);
   });
 
+/** Advaced DataTable**/////////////////
 
+            if (visParams.typeName == 'table_doc') {
+            	  requestSearchSource.setField('size', visParams.numRows);
+            	  var hlt = {
+            	  "pre_tags" : [
+            	  "@kibana-highlighted-field@"
+            	  ],
+            	  	 "post_tags" : [
+            	  "@/kibana-highlighted-field@"
+            	  ],
+            	           "fields" : {
+            	  "*" : {}
+            	  }
+            	  };
+            	  requestSearchSource.setField('highlight', hlt);
+            	  var ordervis=visParams.sort.direction;
+            	  if(ordervis=='asc')
+            	  {
+            	  ordervis="asc";
+            	  }else{
+            	  	ordervis="desc";
+            	  }
+            	      	 	var order = [];
+            	      	  	order.push({
+            	      	  [aggs.indexPattern.timeFieldName] : {
+            	      	  "order" : ordervis
+            	      	  }
+            	      	  });
+            	  	requestSearchSource.setField('sort', order);
+            	  		}
 /**********************************ADDED***************************************************/
 
 					var mis = "__missing__";
@@ -824,7 +854,7 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
 	    visParams : JSON.parse(args.visParams),
                   vis_type: args.type,
     });
-
+console.dir(response);
     const table: KibanaDatatable = {
       type: 'kibana_datatable',
       rows: response.rows,

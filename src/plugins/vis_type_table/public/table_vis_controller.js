@@ -37,6 +37,8 @@ export function TableVisController($scope) {
     let hasSomeRows = ($scope.hasSomeRows = null);
 
     if ($scope.esResponse) {
+		console.dir("esResponse");
+		console.dir($scope.esResponse);
       tableGroups = $scope.esResponse;
 
       hasSomeRows = tableGroups.tables.some(function haveRows(table) {

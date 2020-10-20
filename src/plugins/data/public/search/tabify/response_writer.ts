@@ -76,10 +76,11 @@ export class TabbedAggResponseWriter {
     }
   }
 
-  response(): TabbedTable {
+  response(data): TabbedTable {
     return {
       columns: this.columns,
       rows: this.rows,
+	  raw: data,
     };
   }
 }

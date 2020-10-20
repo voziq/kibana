@@ -161,6 +161,7 @@ export function tabifyAggResponse(
   }
   try{
 
+
 		if(aggConfigs.length !=0 && (vis.typeName == 'table_doc' || vis.type == 'tagcloud' || vis.type == 'network')){
 			var tb=write.response(rawData);			
 			tb.raw=esResponse;	

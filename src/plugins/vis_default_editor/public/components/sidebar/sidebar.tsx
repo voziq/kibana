@@ -62,6 +62,7 @@ function DefaultEditorSideBar({
   savedSearch,
   timeRange,
 }: DefaultEditorSideBarProps) {
+
   const [selectedTab, setSelectedTab] = useState(optionTabs[0].name);
   const [isDirty, setDirty] = useState(false);
   const [state, dispatch] = useEditorReducer(vis, eventEmitter);
@@ -175,7 +176,11 @@ function DefaultEditorSideBar({
     setValidity: setStateValidity,
     setTouched,
   };
-
+console.dir("sidebar");
+console.dir(SidebarTitle);
+console.dir(optionTabs);
+console.dir(selectedTab);
+console.dir("optionTabs");
   return (
     <>
       <EuiFlexGroup

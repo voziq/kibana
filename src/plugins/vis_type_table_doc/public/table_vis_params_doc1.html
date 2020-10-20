@@ -1,0 +1,156 @@
+
+<div class="kuiSideBarSection">
+	<div class="form-group">
+
+			<a ng-click='jsonEnable()'>
+    <i aria-hidden="true" class="fa fa-caret-down fa-caret-left" ng-class="{'fa-caret-down': advancedToggled, 'fa-caret-left': !advancedToggled}"></i>
+    <span i18n-id="common.ui.vis.editors.advancedToggle.advancedLinkLabel" i18n-default-message="Computed Fields">Computed Fields</span>
+  </a>
+</div>
+
+				<label id="jsonLabel" class="kuiSideBarFormRow__label ng-hide" for="MaxNodeSize">
+			JSON Input</label>
+		<div class="kuiSideBarFormRow ng-hide" id="jsonText">
+
+			<div class="kuiSideBarFormRow__control">
+				<textarea type="text" id="visEditorRawJson2" class="form-control ng-pristine ng-valid ng-empty ng-valid-json-input ng-touched"  validate-json="" aria-invalid="false"  ng-model="editorState.params.jsonInput"></textarea>
+			</div>
+		</div>
+<div class="kuiSideBarFormRow ng-hide" id="jsonButton">
+			<div class="col-md-12">
+				<input type="button" id="btnAvenger11" ng-click='addToFields()'
+					value="Add to Fields" class="btn btn-default" /> 
+			</div>
+		</div>
+		<label class="kuiSideBarFormRow__label" for="MaxNodeSize">
+			Available Fields </label>
+		<div class="kuiSideBarFormRow">
+
+			<div class="kuiSideBarFormRow__control">
+				<select multiple class="form-control" id="fieldsList">
+					<option
+						ng-repeat="x in fieldsList | filter : {'name' : '!_source'}:true | filter :{'name' : '!_id'}:true | filter :{'name' : '!_index'}:true | filter :{'name' : '!_score'}:true | filter :{'name' : '!_type'} :true"
+						value="{{x.name}}">{{x.xname}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="kuiSideBarFormRow">
+			<div class="col-md-12">
+				<input type="button" id="btnAvenger1" ng-click='addToView()'
+					value="Add to View" class="btn btn-default" /> <input
+					type="button" id="btnShield1" ng-click='addToExport()'
+					value="Add to Export" class="btn btn-default" />
+			</div>
+		</div>
+
+
+		<label class="kuiSideBarFormRow__label" for="MaxNodeSize">
+			View Fields </label>
+		<div class="kuiSideBarFormRow">
+			<table>
+				<tr>
+					<td width="90%">
+						<div class="selected-left">
+							<select multiple class="form-control" ng-model="editorState.params.selectedColumns"
+								id="viewList">
+							</select>
+						</div>
+					</td>
+					<td with="10%">
+						<div class="selected-right" style="height: 110px">
+							<button type="button" class="btn btn-default btn-sm"
+								ng-click='moveUpView()' id="btnViewUp1">
+								<span class="fa fa-chevron-up"></span>
+							</button>
+							<button type="button" class="btn btn-default btn-sm"
+								ng-click='moveDownView()' id="btnViewDown1">
+								<span class="fa fa-chevron-down"></span>
+							</button>
+							<button type="button" class="btn btn-default btn-sm"
+								ng-click='removeView()' id="btnRemoveView1">
+								<span class="fa fa-remove"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+
+		<label class="kuiSideBarFormRow__label" for="MaxNodeSize">
+			Export Fields </label>
+		<div class="kuiSideBarFormRow">
+			<table>
+				<tr>
+					<td width="90%">
+						<div class="selected-left">
+							<select multiple class="form-control" ng-model="editorState.params.selectedColumnsExp"
+								id="exportList">
+							</select>
+						</div>
+					</td>
+					<td width="10%">
+						<div class="selected-right" style="height: 110px">
+							<button type="button" class="btn btn-default btn-sm"
+								ng-click='moveUpExport()' id="btnExportUp1">
+								<span class="fa fa-chevron-up"></span>
+							</button>
+							<button type="button" class="btn btn-default btn-sm"
+								ng-click='moveDownExport()' id="btnExportDown1">
+								<span class="fa fa-chevron-down"></span>
+							</button>
+							<button type="button" class="btn btn-default btn-sm"
+								ng-click='removeExport()' id="btnRemoveExport1">
+								<span class="fa fa-remove"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+</div>
+<script>
+	$('#btnAvenger').click(function(e) {
+		moveToList('#fieldsList', '#viewList');
+		e.preventDefault();
+	});
+
+	$('#btnRemoveView').click(function(e) {
+		$('select').removeSelected('#viewList');
+		e.preventDefault();
+	});
+
+	$('#btnViewUp').click(function(e) {
+		$('select').moveUpDown('#viewList', true, false);
+		e.preventDefault();
+	});
+
+	$('#btnViewrDown').click(function(e) {
+		$('select').moveUpDown('#viewList', false, true);
+		e.preventDefault();
+	});
+
+	$('#btnShield').click(function(e) {
+		$('select').moveToList('#fieldsList', '#exportList');
+		e.preventDefault();
+	});
+
+	$('#btnRemoveExport').click(function(e) {
+		$('select').removeSelected('#exportList');
+		e.preventDefault();
+	});
+
+	$('#btnExportUp').click(function(e) {
+		$('select').moveUpDown('#exportList', true, false);
+		e.preventDefault();
+	});
+
+	$('#btnExportDown').click(function(e) {
+		moveUpDown('#exportList', false, true);
+		e.preventDefault();
+	});
+</script>
