@@ -69,6 +69,8 @@ export interface RequestHandlerParams {
 const name = 'esaggs';
 
 const handleCourierRequest = async ({
+	visParams,
+	vis_type,
   searchSource,
   aggs,
   timeRange,
@@ -81,7 +83,7 @@ const handleCourierRequest = async ({
   metricsAtAllLevels,
   inspectorAdapters,
   filterManager,
-  abortSignal,
+  abortSignal
 }: RequestHandlerParams) => {
   // Create a new search source that inherits the original search source
   // but has the appropriate timeRange applied via a filter.
@@ -109,6 +111,510 @@ const handleCourierRequest = async ({
   requestSearchSource.setField('aggs', function () {
     return aggs.toDsl(metricsAtAllLevels);
   });
+
+
+/**********************************ADDED***************************************************/
+
+					var mis = "__missing__";
+
+        	if (visParams.type == 'tagcloud' && visParams.sentiment == true && aggs.indexPattern.timeFieldName != undefined) {
+    			
+    			var aggs1 = requestSearchSource.getField('aggs')();
+    			if (aggs1.sentiment_agg) {
+    				delete aggs1.sentiment_agg;
+    			}
+	
+    			if (aggs1["2"]!=undefined) {			
+			
+    				if (aggs.bySchemaName('segment')[0].params.exclude) {						
+						if (!aggs1["2"].significant_terms) {
+    					aggs1["2"].terms.exclude = aggs.bySchemaName('segment')[0].params.exclude;
+						}else{
+							aggs1["2"].significant_terms.exclude = aggs.bySchemaName('segment')[0].params.exclude;
+						}
+    				} else {						
+						if (!aggs1["2"].significant_terms) {    					
+    						delete aggs1["2"].terms.exclude;
+    					}else{
+							delete aggs1["2"].significant_terms.exclude;
+						}
+    				}
+
+    				if (aggs.bySchemaName('segment')[0].params.include) {
+						if (!aggs1["2"].significant_terms) {
+    					aggs1["2"].terms.include = aggs.bySchemaName('segment')[0].params.include;
+						}else{
+							aggs1["2"].significant_terms.include = aggs.bySchemaName('segment')[0].params.include;
+						}
+    				} else {
+						if (!aggs1["2"].significant_terms) {    					
+    						delete aggs1["2"].terms.include;
+    					}else{							
+    						delete aggs1["2"].significant_terms.include;    					
+						}
+    				}
+					if (!aggs1["2"].significant_terms) { 
+    				if (aggs.bySchemaName('segment')[0].params.missingBucket) {
+
+    					aggs1["2"].terms.missing = mis;
+    				} else {
+    					delete aggs1["2"].terms.missing;
+    				}
+				}
+					if (!aggs1["2"].significant_terms) {					
+    				aggs1["2"].terms.field = aggs.bySchemaName('segment')[0].params.field.name;
+    				aggs1["2"].terms.size = aggs.bySchemaName('segment')[0].params.size;
+					}else{
+						aggs1["2"].significant_terms.field = aggs.bySchemaName('segment')[0].params.field.name;
+    				aggs1["2"].significant_terms.size = aggs.bySchemaName('segment')[0].params.size;
+					}
+    			}
+    			if (visParams.sentiment == true && aggs.indexPattern.timeFieldName != undefined) {
+    				var fld = "";
+    				var sz = 0;
+    				var prd = "";
+    				var exld = "";
+    				var inld = "";
+    				if (aggs.bySchemaName('segment')[0].params.exclude) {
+    					exld = aggs.bySchemaName('segment')[0].params.exclude;
+    				}
+    				if (aggs.bySchemaName('segment')[0].params.include) {
+    					inld = aggs.bySchemaName('segment')[0].params.include;
+    				}
+    				fld = aggs.bySchemaName('segment')[0].params.field.name;
+    				sz = aggs.bySchemaName('segment')[0].params.size;
+    				prd = visParams.period;
+    				var timename = aggs.indexPattern.timeFieldName;
+
+    				if (aggs.bySchemaName('segment')[0].params.exclude && !aggs.bySchemaName('segment')[0].params.include) {
+					
+						if (!aggs1["2"].significant_terms) {							
+						
+    					aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"exclude" : exld,
+    									"field" : fld,
+    									"size" : sz,
+    									"order" : {
+    										"_count" : "desc"
+    									}
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}else{
+								aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"exclude" : exld,
+    									"field" : fld,
+    									"size" : sz
+    									
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}
+    				} else if (aggs.bySchemaName('segment')[0].params.include && !aggs.bySchemaName('segment')[0].params.exclude) {
+    							
+						if (!aggs1["2"].significant_terms) {
+						aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"include" : inld,
+    									"field" : fld,
+    									"size" : sz,
+    									"order" : {
+    										"_count" : "desc"
+    									}
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}else{
+							aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"include" : inld,
+    									"field" : fld,
+    									"size" : sz
+    									
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}
+    				} else if (aggs.bySchemaName('segment')[0].params.exclude && aggs.bySchemaName('segment')[0].params.include) {
+								
+						if (!aggs1["2"].significant_terms) {
+    					aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"exclude" : exld,
+    									"include" : inld,
+    									"field" : fld,
+    									"size" : sz,
+    									"order" : {
+    										"_count" : "desc"
+    									}
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}else{
+							aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"exclude" : exld,
+    									"include" : inld,
+    									"field" : fld,
+    									"size" : sz
+    									
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}
+    				} else if (!aggs.bySchemaName('segment')[0].params.exclude && !aggs.bySchemaName('segment')[0].params.include) {
+						if (aggs1["2"]==undefined) {
+						aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"field" : fld,
+    									"size" : sz,
+    									"order" : {
+    										"_count" : "desc"
+    									}
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}else{
+							aggs1.sentiment_agg = {
+    						"aggs" : {
+    							"senti" : {
+    								"terms" : {
+    									"field" : fld,
+    									"size" : sz    									
+    								}
+    							}
+    						},
+    						"filter" : {
+    							"range" : {
+    								[timename] : {
+    									"from" : prd,
+    									"to" : "now"
+    								}
+    							}
+    						}
+    					};
+						}
+    				}
+
+    			}
+    			requestSearchSource.setField('aggs', function() {
+    				return aggs1
+    			});
+    		} else if (visParams.type == 'tagcloud' && !visParams.sentiment == true) {
+    			
+    			var aggs1 = requestSearchSource.getField('aggs')();
+    			if (aggs1.sentiment_agg) {
+    				delete aggs1.sentiment_agg;
+    				requestSearchSource.setField('aggs', function() {
+    				return aggs1
+    			});
+    			}
+			
+		
+    			if (aggs1["2"] != undefined) {					
+					if(aggs.bySchemaName('segment').length>0)
+					{
+    				if (aggs.bySchemaName('segment')[0].params.exclude) {						
+						if (!aggs1["2"].significant_terms) {
+    					aggs1["2"].terms.exclude = aggs.bySchemaName('segment')[0].params.exclude;
+						}else{
+							aggs1["2"].significant_terms.exclude = aggs.bySchemaName('segment')[0].params.exclude;
+						}
+    				} 
+					else {						
+						if (!aggs1["2"].significant_terms) {							
+    						delete aggs1["2"].terms.exclude;    					
+						}else{							
+    						delete aggs1["2"].significant_terms.exclude;    				
+						}
+    				}
+					}
+if(aggs.bySchemaName('segment').length>0)
+					{
+    				if (aggs.bySchemaName('segment')[0].params.include) {
+						if (!aggs1["2"].significant_terms) {
+    					aggs1["2"].terms.include = aggs.bySchemaName('segment')[0].params.include;
+						}else{
+							aggs1["2"].significant_terms.include = aggs.bySchemaName('segment')[0].params.include;
+						}
+    				} 
+					else {
+						if (!aggs1["2"].significant_terms) {						
+    						delete aggs1["2"].terms.include;    					
+						}else{							
+    						delete aggs1["2"].significant_terms.include;    					
+						}
+    				}
+					}
+	
+                  if (!aggs1["2"].significant_terms) { 
+				  if(aggs.bySchemaName('segment').length>0)
+					{
+    				if (aggs.bySchemaName('segment')[0].params.missingBucket) {
+
+    					aggs1["2"].terms.missing = mis;
+    				} else {					
+							
+    					delete aggs1["2"].terms.missing;
+						
+    				}
+					}
+				}
+					if(aggs.bySchemaName('segment').length>0)
+					{
+					if (!aggs1["2"].significant_terms) {
+    				aggs1["2"].terms.field = aggs.bySchemaName('segment')[0].params.field.name;
+    				aggs1["2"].terms.size = aggs.bySchemaName('segment')[0].params.size;
+					}else{
+						aggs1["2"].significant_terms.field = aggs.bySchemaName('segment')[0].params.field.name;
+    				aggs1["2"].significant_terms.size = aggs.bySchemaName('segment')[0].params.size;
+					}
+					}
+    				requestSearchSource.setField('aggs', function() {
+    				return aggs1
+    			});
+    			}
+    			
+    		
+    			if (aggs.bySchemaName('metric1') !== undefined && aggs.bySchemaName('metric1')[0] != undefined && aggs.bySchemaName('metric1')[0].enabled == true) {   
+
+
+
+    			
+    aggs1 = requestSearchSource.getField("aggs")();
+                    if (visParams.setColorRange && visParams.colorsRange.length !=0) {
+                        if (aggs.bySchemaName('metric1')[0].__type.name == "count") {
+                            Object.keys(aggs1).forEach(function (prop) {
+                                if ("aggs" in aggs1[prop]) {
+                                    var final_filter = {};
+                                    final_filter.bucket_selector = {};
+                                    final_filter.bucket_selector.buckets_path = {};
+                                    final_filter.bucket_selector.script = "";
+                                    final_filter.bucket_selector.buckets_path[prop] = "_count";
+                                    final_filter.bucket_selector.script = "params." + prop + ">= " + Math.min.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.from
+                                            })) + "&& " + "params." + prop + "<= " + Math.max.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.to
+                                            }));
+                                    aggs1[prop].aggs.final_filter = final_filter
+                                }else{
+    								aggs1[prop].aggs={};
+    								var final_filter = {};
+                                    final_filter.bucket_selector = {};
+                                    final_filter.bucket_selector.buckets_path = {};
+                                    final_filter.bucket_selector.script = {};
+                                    final_filter.bucket_selector.buckets_path["count"] = "_count";
+                                    final_filter.bucket_selector.script.lang="expression";
+    								final_filter.bucket_selector.script.inline = "count >= " + Math.min.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.from
+                                            })) + "&& " + "count <= " + Math.max.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.to
+                                            }));
+    aggs1[prop].aggs.final_filter = final_filter;
+    }
+                            })
+                        } else if (aggs.bySchemaName('metric1')[0].__type.name == "avg" || aggs.bySchemaName('metric1')[0].__type.name == "sum") {
+                            Object.keys(aggs1).forEach(function (prop) {
+                                if (aggs.bySchemaName('metric')[0].__type.name == "count" && "aggs" in aggs1[prop]) {
+                                    var final_filter = {};
+                                    final_filter.bucket_selector = {};
+                                    final_filter.bucket_selector.buckets_path = {};
+                                    final_filter.bucket_selector.script = "";
+                                    final_filter.bucket_selector.buckets_path[Object.keys(aggs1[prop].aggs)[0]] = Object.keys(aggs1[prop].aggs)[0];
+                                    final_filter.bucket_selector.script = "params."+Object.keys(aggs1[prop].aggs)[0]+" >= " + Math.min.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.from
+                                            })) + " && " + "params."+Object.keys(aggs1[prop].aggs)[0]+" <= " + Math.max.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.to
+                                            }));
+                                    aggs1[prop].aggs.final_filter = final_filter
+                                }else if (aggs.bySchemaName('metric1')[0].__type.name != "count" && "aggs" in aggs1[prop]) {
+                                    var final_filter = {};
+                                    final_filter.bucket_selector = {};
+                                    final_filter.bucket_selector.buckets_path = {};
+                                    final_filter.bucket_selector.script = "";
+                                    final_filter.bucket_selector.buckets_path[Object.keys(aggs1[prop].aggs)[1]] = Object.keys(aggs1[prop].aggs)[1];
+                                    final_filter.bucket_selector.script = "params."+Object.keys(aggs1[prop].aggs)[1]+" >= " + Math.min.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.from
+                                            })) + " && " + "params."+Object.keys(aggs1[prop].aggs)[1]+" <= " + Math.max.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.to
+                                            }));
+                                    aggs1[prop].aggs.final_filter = final_filter
+                                }else{
+    								aggs1[prop].aggs={};
+    								var final_filter = {};
+                                    final_filter.bucket_selector = {};
+                                    final_filter.bucket_selector.buckets_path = {};
+                                    final_filter.bucket_selector.script = {};
+                                    final_filter.bucket_selector.buckets_path["count"] = "_count";
+                                    final_filter.bucket_selector.script.lang="expression";
+    								final_filter.bucket_selector.script.inline = "count >= " + Math.min.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.from
+                                            })) + "&& " + "count <= " + Math.max.apply(Math, visParams.colorsRange.map(function (o) {
+                                                return o.to
+                                            }));
+    aggs1[prop].aggs.final_filter = final_filter;
+    }
+                            })
+                        }
+                    }
+    requestSearchSource.setField("aggs", function () {
+                        return aggs1
+                    });
+                
+    		}
+    			
+    			
+    			
+    			
+    		//searchSource.set('aggs',function(){ return aggs1});
+    		} else if (visParams.type == 'tagcloud' && visParams.sentiment == true && aggs.indexPattern.savedObjectsClient.timeFieldName == undefined) {
+    			
+    			var aggs1 =requestSearchSource.getField('aggs')();
+    			if (aggs1.sentiment_agg) {
+    				delete aggs1.sentiment_agg;
+    				requestSearchSource.setField('aggs', function() {
+    				return aggs1
+    			});
+    			}
+    			if (aggs1["2"] != undefined) {
+
+    				if (aggs.bySchemaName('segment')[0].params.exclude) {
+						if (!aggs1["2"].significant_terms) {
+    					aggs1["2"].terms.exclude = aggs.bySchemaName('segment')[0].params.exclude;
+						}else{
+							aggs1["2"].significant_terms.exclude = aggs.bySchemaName('segment')[0].params.exclude;
+						}
+    				} else {
+						if (!aggs1["2"].significant_terms) {    					
+    						delete aggs1["2"].terms.exclude;    					
+						}else{							
+    						delete aggs1["2"].significant_terms.exclude;    					
+						}
+    				}
+
+    				if (aggs.bySchemaName('segment')[0].params.include){
+						if (!aggs1["2"].significant_terms) {
+    					aggs1["2"].terms.include = aggs.bySchemaName('segment')[0].params.include;
+						}else{
+							aggs1["2"].significant_terms.include = aggs.bySchemaName('segment')[0].params.include;
+						}
+    				} else {
+						if (!aggs1["2"].significant_terms) {    					
+    						delete aggs1["2"].terms.include;
+						}else{							
+    						delete aggs1["2"].significant_terms.include;    					
+						}
+    				}
+                   if (!aggs1["2"].significant_terms) { 
+    				if (aggs.bySchemaName('segment')[0].params.missingBucket) {
+
+    					aggs1["2"].terms.missing = mis;
+    				} else {
+    					delete aggs1["2"].terms.missing;
+    				}
+				   }
+                        if (!aggs1["2"].significant_terms) {
+    				aggs1["2"].terms.field = aggs.bySchemaName('segment')[0].params.field.name;
+    				aggs1["2"].terms.size = aggs.bySchemaName('segment')[0].params.size;
+						}else{
+							aggs1["2"].significant_terms.field = aggs.bySchemaName('segment')[0].params.field.name;
+    				aggs1["2"].significant_terms.size = aggs.bySchemaName('segment')[0].params.size;
+						}
+    				requestSearchSource.setField('aggs', function() {
+    				return aggs1
+    			});
+    			}
+    		//searchSource.set('aggs',function(){ return aggs1});
+    		}
+			
+			
+			
+			
+			
+			/****************************************************Code Ended**********************************************************/
+
+
+
+
 
   requestSearchSource.onRequestStart((paramSearchSource, options) => {
     return aggs.onSearchRequestStart(paramSearchSource, options);
@@ -149,7 +655,7 @@ const handleCourierRequest = async ({
       {
         description: i18n.translate('data.functions.esaggs.inspector.dataRequest.description', {
           defaultMessage:
-            'This request queries Elasticsearch to fetch the data for the visualization.',
+            'This request queries VOZIQ BI to fetch the data for the visualization.',
         }),
       }
     );
@@ -158,11 +664,11 @@ const handleCourierRequest = async ({
     try {
       const response = await requestSearchSource.fetch({ abortSignal });
 
-      (searchSource as any).lastQuery = queryHash;
+      searchSource.lastQuery = queryHash;
 
       request.stats(getResponseInspectorStats(searchSource, response)).ok({ json: response });
 
-      (searchSource as any).rawResponse = response;
+      searchSource.rawResponse = response;
     } catch (e) {
       // Log any error during request to the inspector
       request.error({ json: e });
@@ -178,7 +684,7 @@ const handleCourierRequest = async ({
   // Note that rawResponse is not deeply cloned here, so downstream applications using courier
   // must take care not to mutate it, or it could have unintended side effects, e.g. displaying
   // response data incorrectly in the inspector.
-  let resp = (searchSource as any).rawResponse;
+  let resp = searchSource.rawResponse;
   for (const agg of aggs.aggs) {
     if (hasIn(agg, 'type.postFlightRequest')) {
       resp = await agg.type.postFlightRequest(
@@ -192,12 +698,13 @@ const handleCourierRequest = async ({
     }
   }
 
-  (searchSource as any).finalResponse = resp;
+  searchSource.finalResponse = resp;
 
   const parsedTimeRange = timeRange ? calculateBounds(timeRange) : null;
   const tabifyParams = {
     metricsAtAllLevels,
     partialRows,
+	 reqBody:reqBody,
     timeRange: parsedTimeRange
       ? { from: parsedTimeRange.min, to: parsedTimeRange.max, timeFields: allTimeFields }
       : undefined,
@@ -206,9 +713,17 @@ const handleCourierRequest = async ({
   const tabifyCacheHash = calculateObjectHash({ tabifyAggs: aggs, ...tabifyParams });
   // We only need to reexecute tabify, if either we did a new request or some input params to tabify changed
   const shouldCalculateNewTabify =
-    shouldQuery || (searchSource as any).lastTabifyHash !== tabifyCacheHash;
+    shouldQuery || searchSource.lastTabifyHash !== tabifyCacheHash;
 
-  if (shouldCalculateNewTabify) {
+           if (visParams.type =='tagcloud') {
+            	searchSource.lastTabifyHash = tabifyCacheHash;
+                          searchSource.tabifiedResponse = tabifyAggResponse(aggs, searchSource.finalResponse, tabifyParams, visParams);
+            }else if (shouldCalculateNewTabify) {
+                          searchSource.lastTabifyHash = tabifyCacheHash;
+                          searchSource.tabifiedResponse = tabifyAggResponse(aggs, searchSource.finalResponse, tabifyParams, visParams);
+                        }
+
+  /*if (shouldCalculateNewTabify) {
     (searchSource as any).lastTabifyHash = tabifyCacheHash;
     (searchSource as any).tabifiedResponse = tabifyAggResponse(
       aggs,
@@ -216,17 +731,17 @@ const handleCourierRequest = async ({
       tabifyParams
     );
   }
-
+*/
   inspectorAdapters.data.setTabularLoader(
     () =>
-      buildTabularInspectorData((searchSource as any).tabifiedResponse, {
+      buildTabularInspectorData(searchSource.tabifiedResponse, {
         queryFilter: filterManager,
         deserializeFieldFormat: getFieldFormats().deserialize,
       }),
     { returnsFormattedValues: true }
   );
 
-  return (searchSource as any).tabifiedResponse;
+  return searchSource.tabifiedResponse;
 };
 
 export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
@@ -246,26 +761,36 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
       default: false,
       help: '',
     },
+	   type: {
+          types: ['string', 'null'],
+           default: null,
+           help: ''
+         },
     partialRows: {
       types: ['boolean'],
       default: false,
       help: '',
     },
-    includeFormatHints: {
+  /*  includeFormatHints: {
       types: ['boolean'],
       default: false,
       help: '',
-    },
+    },*/
     aggConfigs: {
       types: ['string'],
       default: '""',
       help: '',
-    },
-    timeFields: {
+    }
+	,visParams: {
+          types: ["string"],
+       default: '"{}"',
+          help: ""
+      },
+  /*  timeFields: {
       types: ['string'],
       help: '',
       multi: true,
-    },
+    },*/
   },
   async fn(input, args, { inspectorAdapters, abortSignal }) {
     const indexPatterns = getIndexPatterns();
@@ -296,11 +821,15 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
       inspectorAdapters: inspectorAdapters as Adapters,
       filterManager,
       abortSignal: (abortSignal as unknown) as AbortSignal,
+	    visParams : JSON.parse(args.visParams),
+                  vis_type: args.type,
     });
 
     const table: KibanaDatatable = {
       type: 'kibana_datatable',
       rows: response.rows,
+	     resp: response,
+		    queryFilter: filterManager,
       columns: response.columns.map((column: any) => {
         const cleanedColumn: KibanaDatatableColumn = {
           id: column.id,

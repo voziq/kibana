@@ -18,6 +18,8 @@
  */
 
 import _ from 'lodash';
+import d3 from 'd3';
+import $ from 'jquery';
 import moment from 'moment';
 
 import { isColorDark } from '@elastic/eui';
@@ -46,7 +48,9 @@ export class HeatmapChart extends PointSeries {
     this.seriesConfig = _.defaults(seriesConfigArgs || {}, defaults);
 
     this.handler.visConfig.set('legend', {
-      labels: this.getHeatmapLabels(this.handler.visConfig),
+				 labels: [],
+      labels1: this.getHeatmapLabels(this.handler.visConfig),
+   //   labels: this.getHeatmapLabels(this.handler.visConfig),
       colors: this.getHeatmapColors(this.handler.visConfig),
     });
 
@@ -134,12 +138,17 @@ export class HeatmapChart extends PointSeries {
     const setColorRange = this.handler.visConfig.get('setColorRange');
     const colorsRange = this.handler.visConfig.get('colorsRange');
     const color = this.handler.data.getColorFunc();
-    const labels = this.handler.visConfig.get('legend.labels');
+	    const labels = this.handler.visConfig.get('legend.labels1');
+    if(!this.handler.visConfig.get('rowColors')){
+        this.handler.visConfig.set('legend.labels',labels);
+       }
+   // const labels = this.handler.visConfig.get('legend.labels');
     const zAxisConfig = this.getValueAxis().axisConfig;
     const zAxisFormatter = zAxisConfig.get('labels.axisFormatter');
     const showLabels = zAxisConfig.get('labels.show');
     const overwriteLabelColor = zAxisConfig.get('labels.overwriteColor', false);
-
+  const showDecimals = zAxisConfig.get('labels.showDecimals');
+	  const decimalNumber = zAxisConfig.get('labels.decimalNumber');
     const layer = svg.append('g').attr('class', 'series');
 
     const squares = layer.selectAll('g.square').data(data.values);
@@ -156,7 +165,7 @@ export class HeatmapChart extends PointSeries {
       if (!isHorizontal) barWidth *= -1;
     }
 
-    function x(d) {
+ /*   function x(d) {
       return xScale(d.x);
     }
 
@@ -164,7 +173,19 @@ export class HeatmapChart extends PointSeries {
       return yScale(d.series);
     }
 
-    const [min, max] = zScale.domain();
+    const [min, max] = zScale.domain();*/
+	     var min=0,max=0;
+    if(this.handler.visConfig.get('rowColors')){
+    data.values.sort(function (a, b) {
+  	    return a.y - b.y;
+  	});
+  	 min = data.values[0].y;
+  	    max = data.values[data.values.length - 1].y;
+    	if(max == min){
+    		min=min-1;
+    	}}else{
+    		[min, max] = zScale.domain();
+    	}
     function getColorBucket(d) {
       let val = 0;
       if (setColorRange && colorsRange.length) {
@@ -202,7 +223,19 @@ export class HeatmapChart extends PointSeries {
 
     const squareWidth = barWidth || xScale.rangeBand();
     const squareHeight = yScale.rangeBand();
-
+    let isDotsize = false;
+	  function x(d) {
+		  //console.log("d...",d);
+			if(d.z!=undefined){
+				isDotsize = true;
+			}
+		  //console.log("isDotsize...",isDotsize);
+		return xScale(d.x);
+	  }
+	  function y(d) {
+		  //	console.log("d.series...",d.series);
+		return yScale(d.series);
+	  }
     squares.enter().append('g').attr('class', 'square');
 
     squares
@@ -221,6 +254,36 @@ export class HeatmapChart extends PointSeries {
     // todo: verify that longest label is not longer than the barwidth
     // or barwidth is not smaller than textheight (and vice versa)
     //
+	 if(isDotsize){
+		var radius = Math.min(squareWidth,squareHeight)/2;
+		 const radii =  this.baseChart.radii;
+		 //console.log("radii....",radii);
+		 const radiusRatio = this.seriesConfig.radiusRatio;
+		 //console.log("radiusRatio....",radiusRatio);
+		 const cr = (radiusRatio /100)*radius;
+		 //const radiusStep = ((radii.max - radii.min) || (radii.max * 100)) / cr;//Math.pow(radiusRatio, 2);
+		//console.log("radius....",radius);
+		//console.log("radiusStep....",radiusStep);
+		
+		squares.append('circle')
+		.attr('cx', function (d) {
+			//console.dir("d..."+d);
+			return xScale(d.x) + (squareWidth/2);
+		  })
+		.attr('r', function (d) {
+			var rd = d.z/radii.max * 100;
+			var crd = (rd /100)*cr;
+			return crd;
+		})
+		.attr('cy', function (d) {
+			//console.log("series2...",d.series);
+		return yScale(d.series) + (squareHeight/2);
+		})
+		.attr('fill', '#F65314')
+		.style('cursor', 'pointer')
+		.style('opacity', '1');
+		 
+	};
     if (showLabels) {
       const rotate = zAxisConfig.get('labels.rotate');
       const rotateRad = (rotate * Math.PI) / 180;
@@ -252,9 +315,48 @@ export class HeatmapChart extends PointSeries {
       }
 
       let hiddenLabels = false;
-      squares
+     /* squares
         .append('text')
-        .text((d) => zAxisFormatter(d.y))
+        .text((d) => zAxisFormatter(d.y))*/
+		  let c=1;
+     	if(showDecimals && (decimalNumber<4 && decimalNumber>0)){
+				for(var i=1;i<=decimalNumber;i++){
+					  c=c*10;
+				  }
+			}
+    squares.append('text').style('cursor', 'pointer')
+		//the below line returns filtered values to chart
+		//s => s.length 
+		.text(function(d){ 
+		
+			var zAf=null;
+		//console.log(" zAf",zAf);
+		//console.log("type zAf",typeof zAf);
+			
+			if(d.d != undefined){		
+				zAf = zAxisFormatter(d.d);			 
+		}else if(d.d == null && d.m != null){
+			zAf = "-"
+		}else if(d.m == null){            
+          zAf = zAxisFormatter(d.y)
+      }
+			var pzAf = null;
+          if( zAf != "-"){
+						pzAf=parseFloat(zAf.replace(/,/g, ""));
+					}else{
+						pzAf="-";
+					}
+		//console.log(" pzAf",pzAf);
+		//console.log("Math.round(zAf * c) / c",Math.round(pzAf * c) / c);
+		if(c!=1){
+			return Math.round(pzAf * c) / c;
+		}
+		if( pzAf != "-"){
+			return Math.round(pzAf)
+		}else{
+			return pzAf
+		}
+		})
         .style('display', function (d) {
           const textLength = this.getBBox().width;
           const textHeight = this.getBBox().height;

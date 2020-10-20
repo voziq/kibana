@@ -27,10 +27,12 @@ import { AggGroupNames, IAggConfigs } from '../aggs';
 /**
  * Sets up the ResponseWriter and kicks off bucket collection.
  */
+  let rawData=null;
 export function tabifyAggResponse(
   aggConfigs: IAggConfigs,
   esResponse: Record<string, any>,
-  respOpts?: Partial<TabbedResponseWriterOptions>
+  respOpts?: Partial<TabbedResponseWriterOptions>,
+  vis
 ) {
   /**
    * read an aggregation from a bucket, which *might* be found at key (if
@@ -65,6 +67,7 @@ export function tabifyAggResponse(
 
               if (hasBucketValue) {
                 write.bucketBuffer.push({ id: column.id, value: bucketValue });
+				rawData.push(subBucket);
               }
 
               collectBucket(
@@ -152,8 +155,19 @@ export function tabifyAggResponse(
     ...esResponse.aggregations,
     doc_count: esResponse.hits.total,
   };
+ rawData=[];
+   if(aggConfigs.length !=0){
+   collectBucket(aggConfigs, write, topLevelBucket, '', 1);
+  }
+  try{
 
-  collectBucket(aggConfigs, write, topLevelBucket, '', 1);
-
+		if(aggConfigs.length !=0 && (vis.typeName == 'table_doc' || vis.type == 'tagcloud' || vis.type == 'network')){
+			var tb=write.response(rawData);			
+			tb.raw=esResponse;	
+			tb.qry=respOpts.reqBody;
+			return tb;
+		}else if(aggConfigs.length !=0 && (vis.type.name == 'bubble' || vis.type.name == 'co_occurrence')){		
+			return write.response2(rawData);
+		}}catch(e){}
   return write.response();
 }

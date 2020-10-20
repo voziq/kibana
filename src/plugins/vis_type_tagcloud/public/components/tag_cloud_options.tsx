@@ -22,10 +22,10 @@ import { EuiPanel } from '@elastic/eui';
 import { i18n } from '@kbn/i18n';
 import { VisOptionsProps } from '../../../vis_default_editor/public';
 import { ValidatedDualRange } from '../../../kibana_react/public';
-import { SelectOption, SwitchOption } from '../../../charts/public';
+import { SelectOption, SwitchOption,ColorRanges } from '../../../charts/public';
 import { TagCloudVisParams } from '../types';
 
-function TagCloudOptions({ stateParams, setValue, vis }: VisOptionsProps<TagCloudVisParams>) {
+function TagCloudOptions({ stateParams, setValue, vis ,setTouched}: VisOptionsProps<TagCloudVisParams>) {
   const handleFontSizeChange = ([minFontSize, maxFontSize]: [string | number, string | number]) => {
     setValue('minFontSize', Number(minFontSize));
     setValue('maxFontSize', Number(maxFontSize));
@@ -76,6 +76,54 @@ function TagCloudOptions({ stateParams, setValue, vis }: VisOptionsProps<TagClou
         paramName="showLabel"
         value={stateParams.showLabel}
         setValue={setValue}
+      />
+	    <SwitchOption
+        label={i18n.translate('visTypeTagCloud.visParams.timePeriodComparisonLabel', {
+          defaultMessage: 'Time Period Comparison',
+        })}
+        paramName="sentiment"
+        value={stateParams.sentiment}
+        setValue={setValue}
+      />
+  <SelectOption
+        label={i18n.translate('visTypeTagCloud.visParams.PeriodLabel', {
+          defaultMessage: 'Period',
+        })}
+        options={vis.type.editorConfig.collections.periods}
+        paramName="period"
+        value={stateParams.period}
+        setValue={setValue}
+      />
+	    <SelectOption
+        label={i18n.translate('visTypeTagCloud.visParams.colorSchemaLabel', {
+          defaultMessage: 'Color schema',
+        })}
+        options={vis.type.editorConfig.collections.colorSchemas}
+        paramName="colorSchema"
+        value={stateParams.colorSchema}
+        setValue={setValue}
+      />
+	      <SwitchOption
+        label={i18n.translate('visTypeTagCloud.visParams.reverseColorSchemaLabel', {
+          defaultMessage: 'Reverse Color Schema',
+        })}
+        paramName="invertColors"
+        value={stateParams.invertColors}
+        setValue={setValue}
+      />
+	        <SwitchOption
+        label={i18n.translate('visTypeTagCloud.visParams.useCustomRangesLabel', {
+          defaultMessage: 'Use custom ranges',
+        })}
+        paramName="setColorRange"
+        value={stateParams.setColorRange}
+        setValue={setValue}
+      />
+	       <ColorRanges
+    data-test-subj= "visTypeTagCloudColorRange"
+    colorsRange= {stateParams.colorsRange}
+    setValue= {setValue}
+    setTouched= {setTouched}
       />
     </EuiPanel>
   );

@@ -19,6 +19,7 @@
 
 import d3 from 'd3';
 import d3TagCloud from 'd3-cloud';
+import { seedColors } from './seed_colors';
 import { EventEmitter } from 'events';
 
 const ORIENTATIONS = {
@@ -90,9 +91,9 @@ export class TagCloud extends EventEmitter {
     const newWidth = this._element.offsetWidth;
     const newHeight = this._element.offsetHeight;
 
-    if (newWidth === this._size[0] && newHeight === this._size[1]) {
+  /*  if (newWidth === this._size[0] && newHeight === this._size[1]) {
       return;
-    }
+    }*/
 
     const wasInside = this._size[0] >= this._cloudWidth && this._size[1] >= this._cloudHeight;
     const willBeInside = this._cloudWidth <= newWidth && this._cloudHeight <= newHeight;
@@ -215,7 +216,7 @@ export class TagCloud extends EventEmitter {
       enteringTags.text(getDisplayText);
 
       const self = this;
-      enteringTags.on({
+    /*  enteringTags.on({
         click: function (event) {
           self.emit('select', event);
         },
@@ -223,6 +224,39 @@ export class TagCloud extends EventEmitter {
           d3.select(this).style('cursor', 'pointer');
         },
         mouseout: function () {
+          d3.select(this).style('cursor', 'default');
+        },
+      });*/
+	      enteringTags.on({
+        click: function (event) {
+          self.emit('select', event);
+        },
+        mouseover: function () {
+        //  d3.select(this).style('cursor', 'pointer');
+					if(this.__data__.sentiment == undefined){
+if(this.__data__.meta.data.columns.length == 2){
+				var inPopup ='<div style="padding:5px;"><span style="margin:5px;"><b>'+this.__data__.meta.data.columns[1].name +'</b></span><span style="padding:5px;"><b>' + Math.round(this.__data__.value * 100) / 100 +'</b></span></div>';
+				}else if(this.__data__.meta.data.columns.length == 3){
+	
+				var inPopup ='<div style="padding:5px;"><span style="margin:5px;"><b>'+this.__data__.meta.data.columns[1].name +'</b></span><span style="padding:5px;"><b>' + Math.round(this.__data__.colorSchemaValue * 100) / 100 +'</b></span></div>';
+				inPopup=inPopup + '<br/><div style="padding:5px;"><span style="margin:5px;"><b>' + this.__data__.meta.data.columns[2].name + '</b></span><span style="padding:5px;"><b>' + Math.round(this.__data__.value * 100) / 100 + "</b></span></div>";
+				}				
+			}else{	
+				var inPopup ='<div style="padding:5px;"><span style="margin:5px;"><b>Count</b></span><span style="padding:5px;"><b>' + Math.round(this.__data__.value * 100) / 100 +'</b></span></div>';
+				}
+				
+        	var translate = d3.transform(d3.select(this).attr("transform")).translate;
+        	d3.select(this.parentNode.parentNode.parentNode).append('div').remove();
+			d3.select(this.parentNode.parentNode.parentNode).append('div').html(inPopup).attr('class','vis-network-tooltip').style('visibility','visible').style('left', translate[0]+'px').style('top', translate[1]+'px');
+          d3.select(this).style('cursor', 'pointer');
+        },
+		  mousemove : function(){
+	 
+        	d3.select(this.parentNode.parentNode.parentNode).selectAll("div").style("left", d3.mouse(this.parentNode.parentNode)[0]+10 + "px").style("top", d3.mouse(this.parentNode.parentNode)[1]+10 + "px")
+        },
+        mouseout: function () {
+         // d3.select(this).style('cursor', 'default');
+		 d3.select(this.parentNode.parentNode.parentNode).selectAll('div').remove();
           d3.select(this).style('cursor', 'default');
         },
       });
@@ -370,9 +404,26 @@ export class TagCloud extends EventEmitter {
     return debug;
   }
 
-  getFill(tag) {
+  /*getFill(tag) {
     return this._colorScale(tag.text);
-  }
+  }*/
+    getFill(tag) {	
+
+
+	if(tag.text == 'POSITIVE' || tag.text == 'positive' || tag.text == 'Positive'  ){		
+		return "#008000";
+	}else if(tag.text == 'NEGATIVE' || tag.text == 'negative' || tag.text == 'Negative' ){
+		return "#FF0000";
+	}else if(tag.text == 'NEUTRAL' || tag.text == 'neutral' || tag.text == 'Neutral' ){
+		return "#808080";
+	}
+	if(tag.tagColor != undefined)
+	{
+  return tag.tagColor;
+	}else{		
+		return this._colorScale(tag.text)
+	}
+}
 }
 
 TagCloud.STATUS = { COMPLETE: 0, INCOMPLETE: 1 };
@@ -405,7 +456,7 @@ function getValue(tag) {
 function getSizeInPixels(tag) {
   return `${tag.size}px`;
 }
-
+const colorScale = d3.scale.ordinal().range(seedColors);
 function hashWithinRange(str, max) {
   str = JSON.stringify(str);
   let hash = 0;

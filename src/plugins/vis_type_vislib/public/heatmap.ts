@@ -67,6 +67,8 @@ export const createHeatmapVisTypeDefinition = (deps: VisTypeVislibDependencies) 
       colorsRange: [],
       invertColors: false,
       percentageMode: false,
+	   rowColors : false,
+        radiusRatio: 50,
       valueAxes: [
         {
           show: false,
@@ -78,6 +80,8 @@ export const createHeatmapVisTypeDefinition = (deps: VisTypeVislibDependencies) 
           },
           labels: {
             show: false,
+			 showDecimals: false,
+			decimalNumber: 3,
             rotate: 0,
             overwriteColor: false,
             color: 'black',
@@ -112,6 +116,22 @@ export const createHeatmapVisTypeDefinition = (deps: VisTypeVislibDependencies) 
         ],
         defaults: [{ schema: 'metric', type: 'count' }],
       },
+	    {
+          group: AggGroupNames.Metrics,
+          name: 'radius',
+          title: i18n.translate('visTypeVislib.heatmap.radiusTitle', { defaultMessage: 'Dot Size' }),
+          min: 0,
+          max: 1,
+          aggFilter: ['count', 'avg', 'sum', 'min', 'max', 'cardinality']
+},
+{
+	group: AggGroupNames.Metrics,
+	name: 'labelmetric',
+	title: i18n.translate('visTypeVislib.heatmap.metricTitle', { defaultMessage: 'Label' }),
+	min: 0,
+	max: 1,
+	aggFilter: ['count', 'avg', 'sum', 'min', 'max', 'cardinality']
+},
       {
         group: AggGroupNames.Buckets,
         name: 'segment',

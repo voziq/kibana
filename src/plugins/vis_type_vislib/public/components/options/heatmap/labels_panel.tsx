@@ -26,7 +26,7 @@ import { FormattedMessage } from '@kbn/i18n/react';
 import { VisOptionsProps } from 'src/plugins/vis_default_editor/public';
 import { ValueAxis } from '../../../types';
 import { HeatmapVisParams } from '../../../heatmap';
-import { SwitchOption } from '../../../../../charts/public';
+import { SwitchOption,TextInputOption } from '../../../../../charts/public';
 
 const VERTICAL_ROTATION = 270;
 
@@ -119,6 +119,30 @@ function LabelsPanel({ valueAxis, setValue }: LabelsPanelProps) {
           onChange={setColor}
         />
       </EuiFormRow>
+	    <SwitchOption
+        disabled={!valueAxis.labels.show}
+        label={i18n.translate(
+          'visTypeVislib.controls.heatmapOptions.showDecimals',
+          {
+            defaultMessage: 'Show Decimals',
+          }
+        )}
+        paramName="showDecimals"
+        value={valueAxis.labels.showDecimals}
+        setValue={setValueAxisLabels}
+      />
+	       <TextInputOption
+        disabled={!valueAxis.labels.show}
+        label={i18n.translate(
+          'visTypeVislib.controls.heatmapOptions.decimalNumber',
+          {
+            defaultMessage: 'Number of Decimals',
+          }
+        )}
+        paramName="decimalNumber"
+        value={valueAxis.labels.decimalNumber}
+        setValue={setValueAxisLabels}
+      />
     </EuiPanel>
   );
 }

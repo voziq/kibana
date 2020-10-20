@@ -331,7 +331,7 @@ export const buildPipelineVisFunction: BuildPipelineVisFunction = {
 
     return expr;
   },
-  tagcloud: (params, schemas) => {
+ /* tagcloud: (params, schemas) => {
     const { scale, orientation, minFontSize, maxFontSize, showLabel } = params;
     const { metric, bucket } = buildVisConfig.tagcloud(schemas);
     let expr = `tagcloud metric={visdimension ${metric.accessor}} `;
@@ -340,6 +340,30 @@ export const buildPipelineVisFunction: BuildPipelineVisFunction = {
     expr += prepareValue('minFontSize', minFontSize);
     expr += prepareValue('maxFontSize', maxFontSize);
     expr += prepareValue('showLabel', showLabel);
+    expr += prepareDimension('bucket', bucket);
+
+    return expr;
+  },*/
+    tagcloud: (params, schemas) => {
+    const { scale, orientation, minFontSize, maxFontSize, showLabel,sentiment,invertColors,colorSchema,setColorRange,colorsRange,colorsNumber,period } = params;
+    const { metric, bucket } = buildVisConfig.tagcloud(schemas);
+    let expr = `tagcloud metric={visdimension ${metric.accessor}} `;
+    expr += prepareValue('scale', scale);
+    expr += prepareValue('orientation', orientation);
+    expr += prepareValue('minFontSize', minFontSize);
+    expr += prepareValue('maxFontSize', maxFontSize);
+    expr += prepareValue('showLabel', showLabel);
+	   expr += prepareValue('sentiment', sentiment);
+	expr += prepareValue('invertColors', invertColors);
+	expr += prepareValue('colorSchema', colorSchema);
+	expr += prepareValue('setColorRange', setColorRange);
+	expr += prepareValue('colorsNumber', colorsNumber);
+	 if (colorsRange) {
+      colorsRange.forEach(function (range) {
+        expr += prepareValue('colorRange', "{range from=".concat(range.from, " to=").concat(range.to, "}"), true);
+      });
+    }
+	expr += prepareValue('period', period);
     expr += prepareDimension('bucket', bucket);
 
     return expr;
@@ -510,8 +534,10 @@ export const buildPipeline = async (
     pipeline += `esaggs
     ${prepareString('index', indexPattern!.id)}
     metricsAtAllLevels=${vis.isHierarchical()}
+	type=${vis.type.name}
     partialRows=${vis.type.requiresPartialRows || vis.params.showPartialRows || false}
-    ${prepareJson('aggConfigs', vis.data.aggs!.aggs)} | `;
+    ${prepareJson('aggConfigs', vis.data.aggs!.aggs)}
+${prepareString('visParams', JSON.stringify(vis.params))}| `;
   }
 
   const schemas = getSchemas(vis, {

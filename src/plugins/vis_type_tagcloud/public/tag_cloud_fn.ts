@@ -57,6 +57,22 @@ export const createTagCloudFn = (): ExpressionFunctionDefinition<
         defaultMessage: 'Scale to determine font size of a word',
       }),
     },
+	  period: {
+        types: ['string'],
+        default: 'now-1y',
+        options: ['now-7d', 'now-30d', 'now-90d', 'now-6M', 'now-1y'],
+        help: i18n.translate('visTypeTagCloud.function.period.help', {
+          defaultMessage: 'Period of words inside tagcloud'
+        })
+      },
+	  colorSchema: {
+        types: ['string'],
+        default: 'Reds',
+        options: ['Blues', 'Greens', 'Greys', 'Reds', 'Yellow to Red', 'Green to Red'],
+        help: i18n.translate('visTypeTagCloud.function.period.help', {
+          defaultMessage: 'Period of words inside tagcloud'
+        })
+      },
     orientation: {
       types: ['string'],
       default: 'single',
@@ -75,11 +91,41 @@ export const createTagCloudFn = (): ExpressionFunctionDefinition<
       default: 72,
       help: '',
     },
+	 colorsNumber: {
+        types: ['number'],
+        default: 4,
+        help: ''
+      },
     showLabel: {
       types: ['boolean'],
       default: true,
       help: '',
     },
+		      sentiment: {
+        types: ['boolean'],
+        default: false,
+        help: ''
+      },
+      invertColors: {
+        types: ['boolean'],
+        default: false,
+        help: ''
+      },
+	  
+	  
+	  colorRange: {
+        types: ['range'],
+        multi: true,
+        help: i18n.translate('visTypeMetric.function.colorRange.help', {
+          defaultMessage: 'A range object specifying groups of values to which different colors should be applied.'
+        })
+      },
+	 
+      setColorRange: {
+        types: ['boolean'],
+        default: false,
+        help: ''
+      },
     metric: {
       types: ['vis_dimension'],
       help: i18n.translate('visTypeTagCloud.function.metric.help', {
@@ -101,6 +147,13 @@ export const createTagCloudFn = (): ExpressionFunctionDefinition<
       minFontSize: args.minFontSize,
       maxFontSize: args.maxFontSize,
       showLabel: args.showLabel,
+	         sentiment: args.sentiment,
+        period: args.period,
+        invertColors: args.invertColors,
+		colorSchema: args.colorSchema,
+		setColorRange: args.setColorRange,
+		colorsRange: args.colorRange,
+         colorsNumber: args.colorsNumber,
       metric: args.metric,
     } as Arguments;
 

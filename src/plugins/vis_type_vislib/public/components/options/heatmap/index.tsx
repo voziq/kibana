@@ -111,6 +111,16 @@ function HeatmapOptions(props: VisOptionsProps<HeatmapVisParams>) {
           uiState={uiState}
           setValue={setValue as SetColorSchemaOptionsValue}
         />
+			<EuiSpacer size="s" />
+		
+        <SwitchOption
+          label={i18n.translate('visTypeVislib.controls.heatmapOptions.scaleToDataBoundsLabel', {
+            defaultMessage: 'Row Colors',
+          })}
+          paramName="rowColors"
+          value={stateParams.rowColors}
+          setValue={setValue}
+        />
         <EuiSpacer size="s" />
 
         <SelectOption
