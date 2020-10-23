@@ -28,4 +28,5 @@ export const layoutTypes = {
   metric: gaugeLayout,
   point_series: columnLayout,
   treemap: customLayout,
+  bubble: customLayout,
 };

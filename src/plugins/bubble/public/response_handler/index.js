@@ -17,21 +17,4 @@
  * under the License.
  */
 
-import { vislibPointSeriesTypes as pointSeries } from './point_series';
-import { vislibPieConfig } from './pie';
-import { vislibGaugeConfig } from './gauge';
-import { vislibCustomConfig } from './customconf';
-export const vislibTypesConfig = {
-  histogram: pointSeries.column,
-  horizontal_bar: pointSeries.column,
-  line: pointSeries.line,
-  pie: vislibPieConfig,
-  area: pointSeries.area,
-  point_series: pointSeries.line,
-  heatmap: pointSeries.heatmap,
-  gauge: vislibGaugeConfig,
-  goal: vislibGaugeConfig,
-  metric: vislibGaugeConfig,
-  treemap: vislibCustomConfig,
-  bubble: vislibCustomConfig,
-};
+export { AggResponseBubbleProvider } from './bubble_viz';

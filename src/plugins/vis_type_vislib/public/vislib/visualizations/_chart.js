@@ -28,6 +28,7 @@ import {
   hierarchicalTooltipFormatter,
   pointSeriesTooltipFormatter,
   treemapTooltipFormatter,
+  bubbleTooltipFormatter,
 } from '../components/tooltip';
 
 /**
@@ -61,7 +62,9 @@ export class Chart {
 			
     	tooltipFormatterProvider = treemapTooltipFormatter;
 		
-    	}
+    	}else if(this.handler.visConfig.get('type') === 'bubble'){
+			tooltipFormatterProvider = bubbleTooltipFormatter;
+		}
 		
     const tooltipFormatter = tooltipFormatterProvider(fieldFormatter);
 

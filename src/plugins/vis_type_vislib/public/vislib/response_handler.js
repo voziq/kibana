@@ -20,6 +20,7 @@
 import { getFormatService } from '../services';
 import { buildHierarchicalData, buildPointSeriesData } from './helpers';
 import { buildTreemapData } from '../../../treemap/public/response_handler/treemap_viz';
+import { bubbleDataFromTable } from '../../../bubble/public/response_handler/bubble_viz';
 import AggConfigResult from './agg_config_result';
 
 function tableResponseHandler(table, dimensions) {
@@ -165,3 +166,5 @@ export const vislibSeriesResponseHandler = handlerFunction(buildPointSeriesData)
 export const vislibSlicesResponseHandler = handlerFunction(buildHierarchicalData);
 
 export const vislibTreemapResponseHandler = handlerFunction(buildTreemapData);
+
+export const vislibBubbleResponseHandler = handlerFunction(bubbleDataFromTable);

@@ -23,4 +23,4 @@ export { PointSeriesOptions } from './point_series';
 export { HeatmapOptions } from './heatmap';
 export { MetricsAxisOptions } from './metrics_axes';
 export { TreemapOptions } from './treemap';
-
+export { BubbleOptions } from './bubble';

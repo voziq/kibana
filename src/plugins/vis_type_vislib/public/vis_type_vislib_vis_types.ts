@@ -26,3 +26,4 @@ export { createHorizontalBarVisTypeDefinition } from './horizontal_bar';
 export { createGaugeVisTypeDefinition } from './gauge';
 export { createGoalVisTypeDefinition } from './goal';
 export { createTreemapVisTypeDefinition } from '../../treemap/public/treemap';
+export { createBubbleVisTypeDefinition } from '../../bubble/public/bubble';

@@ -20,7 +20,7 @@
 import { i18n } from '@kbn/i18n';
 import { ExpressionFunctionDefinition, KibanaDatatable, Render } from '../../expressions/public';
 // @ts-ignore
-import { vislibSeriesResponseHandler, vislibTreemapResponseHandler } from './vislib/response_handler';
+import { vislibSeriesResponseHandler, vislibTreemapResponseHandler, vislibBubbleResponseHandler } from './vislib/response_handler';
 
 interface Arguments {
   type: string;
@@ -65,6 +65,9 @@ export const createVisTypeVislibVisFn = (): ExpressionFunctionDefinition<
 	if(args.type == 'treemap')
     	{
     convertedData = vislibTreemapResponseHandler(context, visConfigParams.dimensions);
+		}else if(args.type == 'bubble')
+    	{
+    convertedData = vislibBubbleResponseHandler(context, visConfigParams.dimensions);
 		}else{
 			 convertedData = vislibSeriesResponseHandler(context, visConfigParams.dimensions);
 		}

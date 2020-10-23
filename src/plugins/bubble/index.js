@@ -1,3 +1,20 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (kibana) {
+
+  return new kibana.Plugin({
+    uiExports: {
+      visTypes: ['plugins/bubble/bubble']
+    }
+  });
+};
+
+var _path = require('path');
+
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -17,21 +34,4 @@
  * under the License.
  */
 
-import { vislibPointSeriesTypes as pointSeries } from './point_series';
-import { vislibPieConfig } from './pie';
-import { vislibGaugeConfig } from './gauge';
-import { vislibCustomConfig } from './customconf';
-export const vislibTypesConfig = {
-  histogram: pointSeries.column,
-  horizontal_bar: pointSeries.column,
-  line: pointSeries.line,
-  pie: vislibPieConfig,
-  area: pointSeries.area,
-  point_series: pointSeries.line,
-  heatmap: pointSeries.heatmap,
-  gauge: vislibGaugeConfig,
-  goal: vislibGaugeConfig,
-  metric: vislibGaugeConfig,
-  treemap: vislibCustomConfig,
-  bubble: vislibCustomConfig,
-};
+module.exports = exports['default'];
