@@ -17,12 +17,17 @@
  * under the License.
  */
 
-export { createHistogramVisTypeDefinition } from './histogram';
-export { createLineVisTypeDefinition } from './line';
-export { createPieVisTypeDefinition } from './pie';
-export { createAreaVisTypeDefinition } from './area';
-export { createHeatmapVisTypeDefinition } from './heatmap';
-export { createHorizontalBarVisTypeDefinition } from './horizontal_bar';
-export { createGaugeVisTypeDefinition } from './gauge';
-export { createGoalVisTypeDefinition } from './goal';
-export { createTreemapVisTypeDefinition } from '../../treemap/public/treemap';
+import _ from 'lodash';
+
+export function vislibCustomConfig(config) {
+  if (!config.chart) {
+    config.chart = _.defaults({}, config, {
+      type: 'pie',
+      labels: {
+        show: false,
+        truncate: 100
+      }
+    });
+  }
+  return config;
+}

@@ -19,6 +19,8 @@
 
 import { getFormatService } from '../services';
 import { buildHierarchicalData, buildPointSeriesData } from './helpers';
+import { buildTreemapData } from '../../../treemap/public/response_handler/treemap_viz';
+import AggConfigResult from './agg_config_result';
 
 function tableResponseHandler(table, dimensions) {
   const converted = { tables: [] };
@@ -60,10 +62,48 @@ function tableResponseHandler(table, dimensions) {
       converted.tables[tableIndex].tables[0].rows.push(row);
     });
   } else {
-    converted.tables.push({
+    /*converted.tables.push({
       columns: table.columns,
       rows: table.rows,
-    });
+    });*/
+	
+	
+	 	if(table.resp !== undefined)
+			{
+          converted.tables.push({
+        	   raw:table.resp,
+        	   custom_columns: table.resp.columns.map(column => ({ title: column.name, ...column })),
+        	   custom_rows: table.resp.rows.map((row, rowIndex) => {
+     let previousSplitAgg;
+     return table.resp.columns.map((column, columnIndex) => {
+       const value = row[column.id];
+       const aggConfigResult = new AggConfigResult(column.aggConfig, previousSplitAgg, value, value);
+       aggConfigResult.rawData = {
+         table: table.resp,
+         column: columnIndex,
+         row: rowIndex,
+       };
+       /*if (column.aggConfig.type.type === 'buckets') {
+         previousSplitAgg = aggConfigResult;
+       }*/
+       return aggConfigResult;
+     });
+   }),
+			vis:table.resp.vis,
+	  		aggConfig: (column) => column.aggConfig,        	  
+            columns: table.columns,
+            rows: table.rows,
+            filterManager : table.filterManager
+          });
+			}else{
+				converted.tables.push({		        	   		        	  
+					aggConfig: (column) => column.aggConfig,		        	  
+		            columns: table.columns,
+		            rows: table.rows,
+		            filterManager : table.filterManager
+		          });
+			}
+	
   }
 
   return converted;
@@ -123,3 +163,5 @@ function handlerFunction(convertTable) {
 export const vislibSeriesResponseHandler = handlerFunction(buildPointSeriesData);
 
 export const vislibSlicesResponseHandler = handlerFunction(buildHierarchicalData);
+
+export const vislibTreemapResponseHandler = handlerFunction(buildTreemapData);

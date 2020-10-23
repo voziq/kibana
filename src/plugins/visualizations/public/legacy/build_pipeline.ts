@@ -76,6 +76,7 @@ const vislibCharts: string[] = [
   'histogram',
   'horizontal_bar',
   'line',
+  'treemap',
 ];
 
 const getSchemas = (

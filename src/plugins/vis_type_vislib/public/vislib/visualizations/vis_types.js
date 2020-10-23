@@ -20,6 +20,7 @@
 import { PointSeries } from './point_series';
 import { PieChart } from './pie_chart';
 import { GaugeChart } from './gauge_chart';
+import { TreemapChart } from '../../../../treemap/public/treemap_chart';
 
 export const visTypes = {
   pie: PieChart,
@@ -27,4 +28,5 @@ export const visTypes = {
   gauge: GaugeChart,
   goal: GaugeChart,
   metric: GaugeChart,
+  treemap: TreemapChart,
 };

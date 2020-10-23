@@ -47,12 +47,14 @@ export class TabbedAggResponseWriter {
    */
   constructor(
     aggs: IAggConfigs,
-    { metricsAtAllLevels = false, partialRows = false }: Partial<TabbedResponseWriterOptions>
+    { metricsAtAllLevels = false, partialRows = false }: Partial<TabbedResponseWriterOptions>,
+	vis
   ) {
     this.partialRows = partialRows;
 
     this.columns = tabifyGetColumns(aggs.getResponseAggs(), !metricsAtAllLevels);
     this.rows = [];
+	this.vis=vis;
   }
 
   /**
@@ -81,6 +83,7 @@ export class TabbedAggResponseWriter {
       columns: this.columns,
       rows: this.rows,
 	  raw: data,
+	  vis: this.vis
     };
   }
 }

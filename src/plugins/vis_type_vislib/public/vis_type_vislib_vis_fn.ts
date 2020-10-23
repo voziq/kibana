@@ -20,7 +20,7 @@
 import { i18n } from '@kbn/i18n';
 import { ExpressionFunctionDefinition, KibanaDatatable, Render } from '../../expressions/public';
 // @ts-ignore
-import { vislibSeriesResponseHandler } from './vislib/response_handler';
+import { vislibSeriesResponseHandler, vislibTreemapResponseHandler } from './vislib/response_handler';
 
 interface Arguments {
   type: string;
@@ -60,7 +60,14 @@ export const createVisTypeVislibVisFn = (): ExpressionFunctionDefinition<
   },
   fn(context, args) {
     const visConfigParams = JSON.parse(args.visConfig);
-    const convertedData = vislibSeriesResponseHandler(context, visConfigParams.dimensions);
+  var convertedData = '';
+	
+	if(args.type == 'treemap')
+    	{
+    convertedData = vislibTreemapResponseHandler(context, visConfigParams.dimensions);
+		}else{
+			 convertedData = vislibSeriesResponseHandler(context, visConfigParams.dimensions);
+		}
 
     return {
       type: 'render',

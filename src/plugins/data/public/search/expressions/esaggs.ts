@@ -114,6 +114,27 @@ const handleCourierRequest = async ({
 
 /** Advaced DataTable**/////////////////
 
+
+
+  if (visParams.type == "treemap" && visParams.setDocCount == true) {
+                var agg = requestSearchSource.getField("aggs")();				
+                 Object.keys(agg).forEach((function (prop) {
+                        if ("terms" in agg[prop]) {
+                            agg[prop].terms.min_doc_count = visParams.docMinCount
+                        }
+                        if (agg[prop].aggs != undefined) {
+                            Object.keys(agg[prop].aggs).forEach((function (keyProp) {
+                                    if ("terms" in agg[prop].aggs[keyProp]) {
+                                        agg[prop].aggs[keyProp].terms.min_doc_count = visParams.docMinCount
+                                    }
+                                }))
+                        }
+                    }));
+                requestSearchSource.setField("aggs", (function () {
+                        return agg
+                    }))
+            }
+
             if (visParams.typeName == 'table_doc') {
             	  requestSearchSource.setField('size', visParams.numRows);
             	  var hlt = {
@@ -858,8 +879,8 @@ console.dir(response);
     const table: KibanaDatatable = {
       type: 'kibana_datatable',
       rows: response.rows,
-	     resp: response,
-		    queryFilter: filterManager,
+	  resp: response,
+	  filterManager:filterManager,
       columns: response.columns.map((column: any) => {
         const cleanedColumn: KibanaDatatableColumn = {
           id: column.id,

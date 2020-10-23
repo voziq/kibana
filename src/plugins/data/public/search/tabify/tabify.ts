@@ -51,6 +51,7 @@ export function tabifyAggResponse(
     if (column) {
       const agg = column.aggConfig;
       const aggInfo = agg.write(aggs);
+	  agg.doc_count=[];
       aggScale *= aggInfo.metricScale || 1;
 
       switch (agg.type.type) {
@@ -149,7 +150,7 @@ export function tabifyAggResponse(
       write.columns.unshift(column);
     }
   }
-
+let rawData=null;
   const write = new TabbedAggResponseWriter(aggConfigs, respOpts || {});
   const topLevelBucket: AggResponseBucket = {
     ...esResponse.aggregations,
@@ -163,6 +164,7 @@ export function tabifyAggResponse(
 
 
 		if(aggConfigs.length !=0 && (vis.typeName == 'table_doc' || vis.type == 'tagcloud' || vis.type == 'network')){
+			
 			var tb=write.response(rawData);			
 			tb.raw=esResponse;	
 			tb.qry=respOpts.reqBody;
@@ -170,5 +172,5 @@ export function tabifyAggResponse(
 		}else if(aggConfigs.length !=0 && (vis.type.name == 'bubble' || vis.type.name == 'co_occurrence')){		
 			return write.response2(rawData);
 		}}catch(e){}
-  return write.response();
+  return write.response(rawData);
 }

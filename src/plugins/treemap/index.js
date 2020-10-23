@@ -1,3 +1,10 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -17,12 +24,13 @@
  * under the License.
  */
 
-export { createHistogramVisTypeDefinition } from './histogram';
-export { createLineVisTypeDefinition } from './line';
-export { createPieVisTypeDefinition } from './pie';
-export { createAreaVisTypeDefinition } from './area';
-export { createHeatmapVisTypeDefinition } from './heatmap';
-export { createHorizontalBarVisTypeDefinition } from './horizontal_bar';
-export { createGaugeVisTypeDefinition } from './gauge';
-export { createGoalVisTypeDefinition } from './goal';
-export { createTreemapVisTypeDefinition } from '../../treemap/public/treemap';
+function _default(kibana) {
+	  return new kibana.Plugin({
+	    uiExports: {
+	      visTypes: ['plugins/treemap/treemap'],
+	      interpreter: ['plugins/kbn_vislib_vis_types/pie_fn', 'plugins/kbn_vislib_vis_types/vislib_fn']
+	    }
+	  });
+	}
+
+	module.exports = exports.default;

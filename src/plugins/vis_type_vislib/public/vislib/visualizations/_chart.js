@@ -27,6 +27,7 @@ import {
   Tooltip,
   hierarchicalTooltipFormatter,
   pointSeriesTooltipFormatter,
+  treemapTooltipFormatter,
 } from '../components/tooltip';
 
 /**
@@ -50,10 +51,18 @@ export class Chart {
     const fieldFormatter = getFormatService().deserialize(
       this.handler.data.get('tooltipFormatter')
     );
-    const tooltipFormatterProvider =
+    var tooltipFormatterProvider =
       this.handler.visConfig.get('type') === 'pie'
         ? hierarchicalTooltipFormatter
         : pointSeriesTooltipFormatter;
+		
+		 if(this.handler.visConfig.get('type') === 'treemap')
+    	{
+			
+    	tooltipFormatterProvider = treemapTooltipFormatter;
+		
+    	}
+		
     const tooltipFormatter = tooltipFormatterProvider(fieldFormatter);
 
     if (this.handler.visConfig && this.handler.visConfig.get('addTooltip', false)) {

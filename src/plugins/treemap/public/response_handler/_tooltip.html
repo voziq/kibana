@@ -1,0 +1,32 @@
+
+<table border="1">
+    <tbody ng-if="details.length>0" ng-repeat="detail in details">
+        <tr ng-if="detail.svalue!=detail.gvalue">
+            <td><b>{{detail.group}}</b></td>
+            <td>
+                {{detail.gvalue}}
+            </td>
+        </tr>
+		<tr>
+            <td><b>{{detail.subgroup}}</b></td>
+            <td>
+                {{detail.svalue}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>
+					<label>{{detail.metric}}</label><!-- Count -->
+				</b> 
+			 </td><td>{{detail.size}}</td>
+        </tr>
+        <tr ng-if="detail.colorValue !== undefined">
+            <td>
+                <b>
+					<label>{{detail.colorLabel}}</label><!-- Count -->
+				</b> 
+			 </td><td>{{detail.colorValue}}</td>
+        </tr>
+    </tbody>
+ </table>
+ 
