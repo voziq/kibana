@@ -24,3 +24,7 @@ export { HeatmapOptions } from './heatmap';
 export { MetricsAxisOptions } from './metrics_axes';
 export { TreemapOptions } from './treemap';
 export { BubbleOptions } from './bubble';
+export { SankeyOptions } from './sankey';
+export { RadarOptions } from './radar';
+export { HeatMap_dnOptions } from './heatmap_dn';
+export { ScatterBubbleOptions } from './scatterbubble';

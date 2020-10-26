@@ -43,6 +43,10 @@ import {
   createGoalVisTypeDefinition,
   createTreemapVisTypeDefinition,
   createBubbleVisTypeDefinition,
+  createSankeyVisTypeDefinition,
+  createRadarVisTypeDefinition,
+  createHeatmapDnVisTypeDefinition,
+  createScatterBubbleVisTypeDefinition,
 } from './vis_type_vislib_vis_types';
 import { ChartsPluginSetup } from '../../charts/public';
 import { DataPublicPluginStart } from '../../data/public';
@@ -93,6 +97,10 @@ export class VisTypeVislibPlugin implements Plugin<void, void> {
       createGoalVisTypeDefinition,
 	  createTreemapVisTypeDefinition,
 	  createBubbleVisTypeDefinition,
+	  createSankeyVisTypeDefinition,
+      createRadarVisTypeDefinition,
+      createHeatmapDnVisTypeDefinition,
+      createScatterBubbleVisTypeDefinition,
     ];
     const vislibFns = [createVisTypeVislibVisFn(), createPieVisFn()];
 

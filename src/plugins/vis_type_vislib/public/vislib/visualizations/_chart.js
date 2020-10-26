@@ -29,6 +29,10 @@ import {
   pointSeriesTooltipFormatter,
   treemapTooltipFormatter,
   bubbleTooltipFormatter,
+  heatmapDnTooltipFormatter,
+  radarTooltipFormatter,
+  scatterbubbleTooltipFormatter,
+  sankeyTooltipFormatter,
 } from '../components/tooltip';
 
 /**
@@ -64,6 +68,14 @@ export class Chart {
 		
     	}else if(this.handler.visConfig.get('type') === 'bubble'){
 			tooltipFormatterProvider = bubbleTooltipFormatter;
+		}else if(this.handler.visConfig.get('type') === 'heatmap_dn'){
+			tooltipFormatterProvider = heatmapDnTooltipFormatter;
+		}else if(this.handler.visConfig.get('type') === 'radar'){			
+			tooltipFormatterProvider = radarTooltipFormatter;
+		}else if(this.handler.visConfig.get('type') === 'scatterbubble'){		
+			tooltipFormatterProvider = scatterbubbleTooltipFormatter;
+		}else if(this.handler.visConfig.get('type') === 'sankey'){			
+			tooltipFormatterProvider = sankeyTooltipFormatter;
 		}
 		
     const tooltipFormatter = tooltipFormatterProvider(fieldFormatter);

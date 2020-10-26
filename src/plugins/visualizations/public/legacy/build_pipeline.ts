@@ -78,6 +78,10 @@ const vislibCharts: string[] = [
   'line',
   'treemap',
   'bubble',
+  'sankey',
+  'radar',
+  'heatmap_dn',
+  'scatterbubble',
 ];
 
 const getSchemas = (

@@ -151,7 +151,7 @@ export function tabifyAggResponse(
     }
   }
 let rawData=null;
-  const write = new TabbedAggResponseWriter(aggConfigs, respOpts || {});
+  const write = new TabbedAggResponseWriter(aggConfigs, respOpts || {}, vis);
   const topLevelBucket: AggResponseBucket = {
     ...esResponse.aggregations,
     doc_count: esResponse.hits.total,

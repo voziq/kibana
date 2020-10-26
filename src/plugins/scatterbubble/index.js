@@ -1,3 +1,30 @@
+/*'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (kibana) {
+
+  return new kibana.Plugin({
+    uiExports: {
+      visTypes: ['plugins/scatterbubble/scatterbubble'],
+      styleSheetPaths: (0, _path.resolve)(__dirname, 'public/scatterbubble.css')
+    }
+  });
+};
+*/
+
+
+
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -16,21 +43,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+function _default(kibana) {
+  return new kibana.Plugin({
+    uiExports: {
+      visTypes: ['plugins/scatterbubble/scatterbubble'],
+      interpreter: ['plugins/kbn_vislib_vis_types/pie_fn', 'plugins/kbn_vislib_vis_types/vislib_fn']
+  	  //styleSheetPaths: (0, _path.resolve)(__dirname, 'public/scatterbubble.css')
+    }
+  });
+}
 
-import { columnLayout } from './types/column_layout';
-import { pieLayout } from './types/pie_layout';
-import { gaugeLayout } from './types/gauge_layout';
-import { customLayout } from './types/custom_layout';
-export const layoutTypes = {
-  pie: pieLayout,
-  gauge: gaugeLayout,
-  goal: gaugeLayout,
-  metric: gaugeLayout,
-  point_series: columnLayout,
-  treemap: customLayout,
-  bubble: customLayout,
-  sankey: customLayout,
-  radar: customLayout,
-  heatmap_dn: customLayout,
-  scatterbubble: customLayout,
-};
+module.exports = exports.default;

@@ -1,3 +1,10 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -17,20 +24,13 @@
  * under the License.
  */
 
-import { columnLayout } from './types/column_layout';
-import { pieLayout } from './types/pie_layout';
-import { gaugeLayout } from './types/gauge_layout';
-import { customLayout } from './types/custom_layout';
-export const layoutTypes = {
-  pie: pieLayout,
-  gauge: gaugeLayout,
-  goal: gaugeLayout,
-  metric: gaugeLayout,
-  point_series: columnLayout,
-  treemap: customLayout,
-  bubble: customLayout,
-  sankey: customLayout,
-  radar: customLayout,
-  heatmap_dn: customLayout,
-  scatterbubble: customLayout,
-};
+function _default(kibana) {
+	  return new kibana.Plugin({
+	    uiExports: {
+	      visTypes: ['plugins/sankey/sankey'],
+	      interpreter: ['plugins/kbn_vislib_vis_types/pie_fn', 'plugins/kbn_vislib_vis_types/vislib_fn']
+	    }
+	  });
+	}
+
+	module.exports = exports.default;

@@ -22,6 +22,10 @@ import { PieChart } from './pie_chart';
 import { GaugeChart } from './gauge_chart';
 import { TreemapChart } from '../../../../treemap/public/treemap_chart';
 import { BubbleChart } from '../../../../bubble/public/bubble_chart';
+import { SankeyChart } from '../../../../sankey/public/sankey_chart';
+import { RadarChart } from '../../../../radar/public/radar_chart';
+import { HeatMap_dnChart } from '../../../../heatmap_dn/public/heatmap_dn_chart';
+import { ScatterBubbleChart } from '../../../../scatterbubble/public/scatterbubble_chart';
 
 export const visTypes = {
   pie: PieChart,
@@ -31,4 +35,8 @@ export const visTypes = {
   metric: GaugeChart,
   treemap: TreemapChart,
   bubble: BubbleChart,
+  sankey: SankeyChart,
+  radar: RadarChart,
+  heatmap_dn: HeatMap_dnChart,
+  scatterbubble: ScatterBubbleChart,
 };

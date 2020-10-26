@@ -34,4 +34,8 @@ export const vislibTypesConfig = {
   metric: vislibGaugeConfig,
   treemap: vislibCustomConfig,
   bubble: vislibCustomConfig,
+  sankey: vislibCustomConfig,
+  radar: vislibCustomConfig,
+  heatmap_dn: vislibCustomConfig,
+  scatterbubble: vislibCustomConfig,
 };

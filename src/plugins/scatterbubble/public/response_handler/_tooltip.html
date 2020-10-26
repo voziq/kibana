@@ -1,0 +1,40 @@
+<table border="1">
+  <tbody  ng-repeat="detail in details"><!-- ng-if="details.length > 0" -->
+  <tr ng-if="detail.detailLength == 5">
+	<td><b>{{detail.group}}</b></td>
+	<td>
+          {{detail.groupValue}}
+      </td>
+    </tr>
+  
+  <tr>
+	<td><b>{{detail.subgroup}}</b></td>
+	<td>
+          {{detail.subgroupValue}}
+      </td>
+    </tr>
+	
+  <tr>
+	<td><b>{{detail.xaxis}}</b></td>
+	<td>
+          {{detail.xvalue}}
+      </td>
+    </tr>
+	<tr>
+	<td><b>{{detail.yaxis}}</b></td>
+	<td>
+          {{detail.yvalue}}
+      </td>
+    </tr>
+    
+	<tr><td><b><label>{{detail.type}}</label></b>
+        
+      </td><td>{{detail.size}}</td></tr>
+  </tbody>
+  <!-- <tbody ng-if="details.length == 0" >
+    <tr>
+      <td><b>{{name}}</b></td>
+    </tr>
+	
+  </tbody> -->
+</table>

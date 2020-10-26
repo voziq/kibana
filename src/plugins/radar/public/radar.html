@@ -1,0 +1,170 @@
+<!-- vis type specific options -->
+<!-- <div>
+  <label>
+    <input type="checkbox" value="{{showLegend}}" ng-model="vis.params.showLegend" name="showLegend" ng-checked="vis.params.showLegend">
+   showLegend
+  </label>
+</div> -->
+<div class="kuiSideBarSection">
+<div class="form-group">
+<div class="kuiSideBarFormRow">
+   <label class="kuiSideBarFormRow__label" for="ShowAxisLabels">    
+   Show Axis Labels
+   </label>
+    <div class="kuiSideBarFormRow__control"> 
+   <input class="kuiCheckBox" type="checkbox" value="{{showLabels}}" ng-model="editorState.params.showLabels" name="showLabels" ng-checked="editorState.params.showLabels">
+   </div>
+</div>
+<vislib-basic-options></vislib-basic-options>
+
+<!-- <div class="vis-option-item"> -->
+<div class="kuiSideBarFormRow">
+  <label class="kuiSideBarFormRow__label" for="SetY-AxisExtents">       
+      Set Y-Axis Extents
+    </label>
+	<div class="kuiSideBarFormRow__control"> 
+	<input class="kuiCheckBox" type="checkbox" ng-model="editorState.params.setRadialMin" ng-disabled="editorState.params.defaultYExtents">
+	</div></div>
+	
+    <div ng-if="editorState.params.setRadialMin">
+	<div class="kuiSideBarFormRow">
+     <label class="kuiSideBarFormRow__label" for="y-max">  
+        y-max
+		  </label>
+		  <div class="kuiSideBarFormRow__control"> 
+        <input name="yMax"
+               class="form-control"
+               type="number"
+               step="0.1"
+               greater-than="{{editorState.params.radial.min}}"
+               ng-model="editorState.params.radial.max"
+               ng-required="editorState.params.setRadialMin">
+    </div>
+	</div>
+      <div ng-show="editorState.params.radial.min >= editorState.params.radial.max">
+        <span class="text-danger">Max must be greater than min</span>
+      </div>
+	  <div class="kuiSideBarFormRow">
+      <label class="kuiSideBarFormRow__label" for="y-min">  
+        y-min
+		</label>
+		<div class="kuiSideBarFormRow__control"> 
+        <input name="yMin"
+               class="form-control"
+               type="number"
+               step="0.1"
+               less-than="{{editorState.params.radial.max}}"
+               ng-model="editorState.params.radial.min"
+               ng-required="editorState.params.setRadialMin">
+      </div>
+	  </div>
+    </div>
+    
+	<div class="kuiSideBarFormRow">
+   <!--  <div class="vis-option-item"> -->
+      <label class="kuiSideBarFormRow__label" for=" ScaleY-AxisToDataBounds">         
+        Scale Y-Axis to Data Bounds
+      </label>
+	  <div class="kuiSideBarFormRow__control"> 
+	   <input class="kuiCheckBox" type="checkbox" ng-model="editorState.params.defaultYExtents" ng-disabled="editorState.params.setRadialMin">
+	   </div>
+    <!-- </div> --></div>
+ <!--  </div> -->
+<!-- <div class="vis-option-item form-group"> -->
+<div class="kuiSideBarFormRow">
+    <label class="kuiSideBarFormRow__label" for="SetMinimumCount">     
+      Set Minimum Count
+    </label>
+	<div class="kuiSideBarFormRow__control"> 
+	 <input class="kuiCheckBox" type="checkbox" ng-model="editorState.params.setDocCount">
+	 </div>
+	 </div>
+	
+	<div ng-if="editorState.params.setDocCount">
+	<div class="kuiSideBarFormRow">
+       <label class="kuiSideBarFormRow__label" for="CountValue">     
+        Count Value
+		</label> 
+		<div class="kuiSideBarFormRow__control"> 
+        <input class="form-control"
+               ng-model="editorState.params.docMinCount"
+               ng-required="editorState.params.setDocCount">
+       </div>
+	   </div>
+    </div>
+    <div ng-show="editorState.params.setDocCount && editorState.params.docMinCount <= 0">
+      <span class="text-danger">Count Value must exceed 0</span>
+    </div>
+    
+    <div class="kuiSideBarFormRow">
+   <label class="kuiSideBarFormRow__label" for=" SetBucketsRange">
+    Custom Ranges
+    </label>
+	 <div class="kuiSideBarFormRow__control"> 
+	<input class="kuiCheckBox" type="checkbox" ng-change="editorState.params.docMarkerCount = editorState.params.setMaxMin ? null : null;editorState.params.setMarkerValue= editorState.params.setMaxMin ? null : null;" ng-model="editorState.params.setMaxMin">
+	</div>
+	</div>
+	
+    <div ng-if="editorState.params.setMaxMin">
+	<div class="kuiSideBarFormRow">
+       <label class="kuiSideBarFormRow__label" for=" SetBucketsRange">
+        Min
+		 </label>
+		  <div class="kuiSideBarFormRow__control"> 
+        <input name="minValue"
+               class="form-control"
+               type="number"
+               step="0.1"
+               ng-model="editorState.params.minVal"
+			   less-than="{{editorState.params.maxVal}}"
+               ng-required="editorState.params.setMaxMin">
+     </div>
+	 </div>
+	  <div ng-show="editorState.params.minVal >= editorState.params.maxVal">
+        <span class="text-danger">Max must be greater than Min</span>
+      </div>
+	 <div class="kuiSideBarFormRow">
+       <label class="kuiSideBarFormRow__label" for=" SetBucketsRange">
+        Max
+		</label>
+		 <div class="kuiSideBarFormRow__control"> 
+        <input name="maxValue"
+               class="form-control"
+               type="number"
+               step="0.1"
+               ng-model="editorState.params.maxVal"
+			   greater-than="{{editorState.params.minVal}}"
+               ng-required="editorState.params.setMaxMin">
+      
+    </div>
+	</div>
+    </div>
+<!-- set marker value -->
+
+<div class="kuiSideBarFormRow">
+    <label class="kuiSideBarFormRow__label" for="SetMarkerCount">     
+      Set marker Value
+    </label>
+	<div class="kuiSideBarFormRow__control"> 
+	 <input class="kuiCheckBox" ng-disabled="!editorState.params.setMaxMin" ng-change="editorState.params.docMarkerCount = editorState.params.setMarkerValue ? null : editorState.params.docMarkerCount" type="checkbox" ng-model="editorState.params.setMarkerValue">
+	 </div>
+	 </div>
+	
+	<div ng-if="editorState.params.setMaxMin && editorState.params.setMarkerValue" ng-checked="editorState.params.setMaxMin">
+	<div class="kuiSideBarFormRow">
+       <label class="kuiSideBarFormRow__label" for="markerValue">     
+        Marker Value
+		</label> 
+		<div class="kuiSideBarFormRow__control"> 
+        <input class="form-control" type="number"
+               ng-model="editorState.params.docMarkerCount"
+               ng-required="editorState.params.setMarkerValue" min="{{editorState.params.minVal}}" max="{{editorState.params.maxVal}}">
+       </div>
+	   </div>
+	   <div ng-show="editorState.params.setMarkerValue">
+      <span class="text-danger">Marker value range should be min - max </span>
+    </div>
+    </div> 
+     
+<!--  </div> -->	
+ </div>	 </div>	

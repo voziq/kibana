@@ -1,0 +1,20 @@
+<table border="1">
+  <tbody ng-repeat="detail in details">
+	<tr ng-if="detail.type=='link'" >
+		<td><b>{{detail.label1}}</b></td>
+		<td>{{detail.source}}</td>
+	   </tr>
+	<tr ng-if="detail.type=='link'">
+		<td><b>{{detail.label2}}</b></td>
+		<td>{{detail.target}}</td>
+    </tr>
+	<tr ng-if="detail.type=='node'" >
+		<td><b>{{detail.nodelabel}}</b></td>
+		<td>{{detail.node}}</td>
+    </tr>
+   	<tr>
+		<td><b><label>{{detail.metric}}</label></b></td>
+		<td>{{detail.value}}</td>
+	</tr>
+  </tbody>
+</table>

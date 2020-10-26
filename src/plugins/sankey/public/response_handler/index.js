@@ -17,20 +17,4 @@
  * under the License.
  */
 
-import { columnLayout } from './types/column_layout';
-import { pieLayout } from './types/pie_layout';
-import { gaugeLayout } from './types/gauge_layout';
-import { customLayout } from './types/custom_layout';
-export const layoutTypes = {
-  pie: pieLayout,
-  gauge: gaugeLayout,
-  goal: gaugeLayout,
-  metric: gaugeLayout,
-  point_series: columnLayout,
-  treemap: customLayout,
-  bubble: customLayout,
-  sankey: customLayout,
-  radar: customLayout,
-  heatmap_dn: customLayout,
-  scatterbubble: customLayout,
-};
+export { AggResponseSankeyProvider } from './sankey_viz';
