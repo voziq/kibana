@@ -135,7 +135,6 @@ function DefaultEditorAggSelect({
   return (
     <EuiFormRow
       label={label}
-      labelAppend={helpLink}
       error={errors}
       isInvalid={showValidation ? !isValid : false}
       fullWidth={true}

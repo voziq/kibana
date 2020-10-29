@@ -202,27 +202,7 @@ export function InnerWorkspacePanel({
             url={core.http.basePath.prepend(emptyStateGraphicURL)}
             alt=""
           />
-          <p>
-            <FormattedMessage
-              id="xpack.lens.editorFrame.emptyWorkspaceHeading"
-              defaultMessage="Lens is a new tool for creating visualizations"
-            />{' '}
-            <EuiBetaBadge label="Beta" tooltipContent={tooltipContent} />
-          </p>
-          <p>
-            <small>
-              <EuiLink
-                href="https://www.elastic.co/products/kibana/feedback"
-                target="_blank"
-                external
-              >
-                <FormattedMessage
-                  id="xpack.lens.editorFrame.goToForums"
-                  defaultMessage="Make requests and give feedback"
-                />
-              </EuiLink>
-            </small>
-          </p>
+        
         </EuiText>
       </div>
     );
