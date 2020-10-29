@@ -33,6 +33,7 @@ import {
   radarTooltipFormatter,
   scatterbubbleTooltipFormatter,
   sankeyTooltipFormatter,
+  networkTooltipFormatter,
 } from '../components/tooltip';
 
 /**

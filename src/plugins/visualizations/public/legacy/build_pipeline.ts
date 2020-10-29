@@ -82,6 +82,7 @@ const vislibCharts: string[] = [
   'radar',
   'heatmap_dn',
   'scatterbubble',
+  'network',
 ];
 
 const getSchemas = (

@@ -23,11 +23,12 @@
  * The order allows us to guarantee that 1st, 2nd, 3rd, etc values always get the same color.
  */
 export const seedColors: string[] = [
-  '#00a69b',
-  '#57c17b',
-  '#6f87d8',
-  '#663db8',
-  '#bc52bc',
-  '#9e3533',
-  '#daa05d',
+  '#12ADC8',
+'#E3B124',
+'#586167',
+'#B4B1AA',
+'#EC6923',
+'#044F8D',
+'#FEC044',
+'#289999'
 ];

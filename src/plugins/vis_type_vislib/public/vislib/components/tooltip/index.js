@@ -26,3 +26,4 @@ export { heatmapDnTooltipFormatter } from './_heatmap_dn_tooltip_formatter';
 export { radarTooltipFormatter } from './_radar_tooltip_formatter';
 export { scatterbubbleTooltipFormatter } from './_scatterbubble_tooltip_formatter';
 export { sankeyTooltipFormatter } from './_sankey_tooltip_formatter';
+export { networkTooltipFormatter } from '../../../../../network/public/response_handler/_network_tooltip_formatter';

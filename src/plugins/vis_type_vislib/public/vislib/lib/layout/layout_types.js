@@ -33,4 +33,5 @@ export const layoutTypes = {
   radar: customLayout,
   heatmap_dn: customLayout,
   scatterbubble: customLayout,
+  network: customLayout,
 };

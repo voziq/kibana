@@ -26,6 +26,7 @@ import { SankeyChart } from '../../../../sankey/public/sankey_chart';
 import { RadarChart } from '../../../../radar/public/radar_chart';
 import { HeatMap_dnChart } from '../../../../heatmap_dn/public/heatmap_dn_chart';
 import { ScatterBubbleChart } from '../../../../scatterbubble/public/scatterbubble_chart';
+import { NetworkChart } from '../../../../network/public/network_chart';
 
 export const visTypes = {
   pie: PieChart,
@@ -39,4 +40,5 @@ export const visTypes = {
   radar: RadarChart,
   heatmap_dn: HeatMap_dnChart,
   scatterbubble: ScatterBubbleChart,
+  network: NetworkChart,
 };
