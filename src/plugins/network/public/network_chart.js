@@ -25,7 +25,7 @@ import { esFilters } from '../../data/public';
 	 * @param chartData {Object} Elasticsearch query results for this specific chart
 	 */
 	 
-		const visN = require('../../../legacy/ui/public/node_modules/vis');
+		const visN = require('../../../legacy/ui/public/network_node_modules/vis');
 		const randomColor = require('../../../legacy/ui/public/network_node_modules/randomcolor');
 		const ElementQueries = require('../../../legacy/ui/public/network_node_modules/css-element-queries/src/ElementQueries');
 		const ResizeSensor = require('../../../legacy/ui/public/network_node_modules/css-element-queries/src/ResizeSensor');
