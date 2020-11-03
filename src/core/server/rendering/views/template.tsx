@@ -38,8 +38,20 @@ export const Template: FunctionComponent<Props> = ({
     strictCsp,
   },
 }) => {
-	//const logo = _react.default.createElement("img", {src:`${uiPublicUrl}/favicons/apple-touch-icon.png`,width:'80px'});
-	const logo = ( <path src={`${uiPublicUrl}/favicons/apple-touch-icon.png`} width='80px'/>);
+	const logo = React.createElement("img", {src:`${uiPublicUrl}/favicons/apple-touch-icon.png`,width:'80px'});
+	//const logo = ( <path fill={`${uiPublicUrl}/favicons/apple-touch-icon.png`} width='80px'/>);
+
+ /*const logo = (
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <g fill="none">
+        <path
+          fill={`${uiPublicUrl}/favicons/apple-touch-icon.png`}
+        />
+ 
+      </g>
+    </svg>
+  );
+*/
 /*  const logo = (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
       <g fill="none">
