@@ -1,6 +1,7 @@
 
 // Hack because the management wrapper is flat HTML and needs a class
 .mgtPage__body {
-  max-width: map-get($euiBreakpoints, 'xl');
+ // max-width: map-get($euiBreakpoints, 'xl');
+ max-width:100%;
   margin: 0 auto;
 }

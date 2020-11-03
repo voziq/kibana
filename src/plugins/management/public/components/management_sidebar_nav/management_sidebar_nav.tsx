@@ -122,17 +122,7 @@ export const ManagementSidebarNav = ({
 
   return (
     <>
-      <EuiScreenReaderOnly>
-        <h2 id={HEADER_ID}>{headerLabel}</h2>
-      </EuiScreenReaderOnly>
-      <EuiSideNav
-        aria-labelledby={HEADER_ID}
-        mobileTitle={navMenuLabel}
-        toggleOpenOnMobile={toggleOpenOnMobile}
-        isOpenOnMobile={isSideNavOpenOnMobile}
-        items={sectionsToNavItems(sections)}
-        className="mgtSideBarNav"
-      />
+  
     </>
   );
 };

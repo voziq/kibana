@@ -38,7 +38,9 @@ export const Template: FunctionComponent<Props> = ({
     strictCsp,
   },
 }) => {
-  const logo = (
+	//const logo = _react.default.createElement("img", {src:`${uiPublicUrl}/favicons/apple-touch-icon.png`,width:'80px'});
+	const logo = ( <path src={`${uiPublicUrl}/favicons/apple-touch-icon.png`} width='80px'/>);
+/*  const logo = (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
       <g fill="none">
         <path
@@ -68,13 +70,14 @@ export const Template: FunctionComponent<Props> = ({
       </g>
     </svg>
   );
+  */
   return (
     <html lang={locale}>
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width" />
-        <title>Elastic</title>
+        <title>VOZIQ | Actionable Customer Intelligence</title>
         <Fonts url={uiPublicUrl} />
         {/* Favicons (generated from http://realfavicongenerator.net/) */}
         <link
@@ -126,10 +129,10 @@ export const Template: FunctionComponent<Props> = ({
               className="kbnWelcomeText"
               data-error-message={i18n('core.ui.welcomeErrorMessage', {
                 defaultMessage:
-                  'Elastic did not load properly. Check the server output for more information.',
+                  'VOZIQ Insights did not load properly. Check the server output for more information.',
               })}
             >
-              {i18n('core.ui.welcomeMessage', { defaultMessage: 'Loading Elastic' })}
+              {i18n('core.ui.welcomeMessage', { defaultMessage: 'Loading VOZIQ Insights' })}
             </div>
             <div className="kbnProgress" />
           </div>
@@ -146,7 +149,7 @@ export const Template: FunctionComponent<Props> = ({
           <div className="kbnWelcomeText">
             {i18n('core.ui.legacyBrowserMessage', {
               defaultMessage:
-                'This Elastic installation has strict security requirements enabled that your current browser does not meet.',
+                'This VOZIQ Insights installation has strict security requirements enabled that your current browser does not meet.',
             })}
           </div>
         </div>
