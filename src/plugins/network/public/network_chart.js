@@ -26,9 +26,9 @@ import { esFilters } from '../../data/public';
 	 */
 	 
 		const visN = require('../../../legacy/ui/public/node_modules/vis');
-		const randomColor = require('../../../legacy/ui/public/node_modules/randomcolor');
-		const ElementQueries = require('../../../legacy/ui/public/node_modules/css-element-queries/src/ElementQueries');
-		const ResizeSensor = require('../../../legacy/ui/public/node_modules/css-element-queries/src/ResizeSensor');
+		const randomColor = require('../../../legacy/ui/public/network_node_modules/randomcolor');
+		const ElementQueries = require('../../../legacy/ui/public/network_node_modules/css-element-queries/src/ElementQueries');
+		const ResizeSensor = require('../../../legacy/ui/public/network_node_modules/css-element-queries/src/ResizeSensor');
 		
 	  export class NetworkChart extends Chart {		
 		constructor(handler, chartEl, chartData, deps) {
