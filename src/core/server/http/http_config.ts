@@ -117,7 +117,7 @@ export const config = {
           rawConfig.ssl.redirectHttpFromPort === rawConfig.port
         ) {
           return (
-            'Kibana does not accept http traffic to [port] when ssl is ' +
+            'VOZIQ Insights does not accept http traffic to [port] when ssl is ' +
             'enabled (only https is allowed), so [ssl.redirectHttpFromPort] ' +
             `cannot be configured to the same value. Both are [${rawConfig.port}].`
           );

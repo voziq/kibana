@@ -28,7 +28,7 @@ import { SearchResponse, SearchError } from '..';
 export class RequestFailure extends KbnError {
   public resp: SearchResponse;
   constructor(err: SearchError | null = null, resp?: SearchResponse) {
-    super(`Request to Elasticsearch failed: ${JSON.stringify(resp || err?.message)}`);
+    super(`Request to VOZIQ BI failed: ${JSON.stringify(resp || err?.message)}`);
 
     this.resp = resp;
   }

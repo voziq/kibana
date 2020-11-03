@@ -322,7 +322,7 @@ class FilterEditorUI extends Component<Props, State> {
     return (
       <EuiFormRow
         label={i18n.translate('data.filter.filterEditor.queryDslLabel', {
-          defaultMessage: 'Elasticsearch Query DSL',
+          defaultMessage: 'Query DSL',
         })}
       >
         <EuiCodeEditor

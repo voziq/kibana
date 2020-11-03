@@ -74,7 +74,7 @@ export class HttpService
       configService.atPath<HttpConfigType>(httpConfig.path),
       configService.atPath<CspConfigType>(cspConfig.path),
     ]).pipe(map(([http, csp]) => new HttpConfig(http, csp)));
-    this.httpServer = new HttpServer(logger, 'Kibana');
+    this.httpServer = new HttpServer(logger, 'VOZIQ');
     this.httpsRedirectServer = new HttpsRedirectServer(logger.get('http', 'redirect', 'server'));
   }
 
@@ -187,13 +187,13 @@ export class HttpService
       path: '/{p*}',
       method: '*',
       handler: (req, responseToolkit) => {
-        this.log.debug(`Kibana server is not ready yet ${req.method}:${req.url.href}.`);
+        this.log.debug(`VOZIQ server is not ready yet ${req.method}:${req.url.href}.`);
 
         // If server is not ready yet, because plugins or core can perform
         // long running tasks (build assets, saved objects migrations etc.)
         // we should let client know that and ask to retry after 30 seconds.
         return responseToolkit
-          .response('Kibana server is not ready yet')
+          .response('VOZIQ server is not ready yet')
           .code(503)
           .header('Retry-After', '30');
       },

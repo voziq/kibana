@@ -127,7 +127,7 @@ function getTopNavConfig(
   setBreadcrumbs
 ) {
   return [
-    {
+ /*   {
       id: 'full-screen',
       label: i18n.translate('xpack.maps.mapController.fullScreenButtonLabel', {
         defaultMessage: `full screen`,
@@ -140,7 +140,7 @@ function getTopNavConfig(
         getCoreChrome().setIsVisible(false);
         enableFullScreen();
       },
-    },
+    },*/
     {
       id: 'inspect',
       label: i18n.translate('xpack.maps.mapController.openInspectorButtonLabel', {

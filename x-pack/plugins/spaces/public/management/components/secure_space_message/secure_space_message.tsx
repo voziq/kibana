@@ -26,7 +26,7 @@ export const SecureSpaceMessage = (props: SecureSpaceMessageProps) => {
         <p>
           <FormattedMessage
             id="xpack.spaces.management.secureSpaceMessage.howToAssignRoleToSpaceDescription"
-            defaultMessage="Want to assign a role to a space? Go to {rolesLink}."
+            defaultMessage="Want to assign a role to a space? Go to Roles."
             values={{
               rolesLink: (
                 <EuiLink

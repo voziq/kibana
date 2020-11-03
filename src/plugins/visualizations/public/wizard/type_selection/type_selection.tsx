@@ -239,12 +239,12 @@ class TypeSelection extends React.Component<TypeSelectionProps, TypeSelectionSta
         const aliasDescription = i18n.translate(
           'visualizations.newVisWizard.visTypeAliasDescription',
           {
-            defaultMessage: 'Opens a Kibana application that is outside of Visualize.',
+            defaultMessage: 'Opens a VOZIQ Insights application that is outside of Visualize.',
           }
         );
         stage = {
           betaBadgeLabel: i18n.translate('visualizations.newVisWizard.visTypeAliasTitle', {
-            defaultMessage: 'Kibana application',
+            defaultMessage: 'VOZIQ Insights application',
           }),
           betaBadgeTooltipContent: aliasDescription,
           betaBadgeIconType: 'popout',

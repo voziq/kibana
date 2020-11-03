@@ -48,7 +48,7 @@ function MissingBucketParamEditor(props: AggParamEditorProps<boolean>) {
             'Only works for fields of type "string". When enabled, include documents with missing ' +
             'values in the search. If this bucket is in the top N, it appears in the chart. ' +
             'If not in the top N, and you enable "Group other values in separate bucket", ' +
-            'Elasticsearch adds the missing values to the "other" bucket.',
+            'VOZIQ BI adds the missing values to the "other" bucket.',
         }
       )}
       disabled={fieldTypeIsNotString}

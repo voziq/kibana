@@ -171,15 +171,7 @@ export const IndexPatternTable = ({ canSave, history }: Props) => {
               <EuiText>
                 <h2>{title}</h2>
               </EuiText>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiButtonIcon
-                iconSize="l"
-                iconType="questionInCircle"
-                onClick={() => setShowFlyout(true)}
-                aria-label="Help"
-              />
-            </EuiFlexItem>
+            </EuiFlexItem>        
           </EuiFlexGroup>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>{createButton}</EuiFlexItem>

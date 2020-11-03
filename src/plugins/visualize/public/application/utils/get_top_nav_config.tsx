@@ -271,34 +271,7 @@ export const getTopNavConfig = (
           },
         ]
       : []),
-    {
-      id: 'share',
-      label: i18n.translate('visualize.topNavMenu.shareVisualizationButtonLabel', {
-        defaultMessage: 'share',
-      }),
-      description: i18n.translate('visualize.topNavMenu.shareVisualizationButtonAriaLabel', {
-        defaultMessage: 'Share Visualization',
-      }),
-      testId: 'shareTopNavButton',
-      run: (anchorElement) => {
-        if (share) {
-          share.toggleShareContextMenu({
-            anchorElement,
-            allowEmbed: true,
-            allowShortUrl: visualizeCapabilities.createShortUrl,
-            shareableUrl: unhashUrl(window.location.href),
-            objectId: savedVis.id,
-            objectType: 'visualization',
-            sharingData: {
-              title: savedVis.title,
-            },
-            isDirty: hasUnappliedChanges || hasUnsavedChanges,
-          });
-        }
-      },
-      // disable the Share button if no action specified
-      disableButton: !share,
-    },
+    
     {
       id: 'inspector',
       label: i18n.translate('visualize.topNavMenu.openInspectorButtonLabel', {

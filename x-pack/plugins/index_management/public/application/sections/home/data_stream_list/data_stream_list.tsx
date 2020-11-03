@@ -86,7 +86,7 @@ export const DataStreamList: React.FunctionComponent<RouteComponentProps<MatchPa
             {ingestManager ? (
               <FormattedMessage
                 id="xpack.idxMgmt.dataStreamList.emptyPrompt.noDataStreamsCtaIngestManagerMessage"
-                defaultMessage="Get started with data streams in {link}."
+                defaultMessage="Get started with data streams."
                 values={{
                   link: (
                     <EuiLink

@@ -165,7 +165,7 @@ export class TelemetryManagementSection extends Component<Props, State> {
                   <strong>
                     <FormattedMessage
                       id="telemetry.callout.appliesSettingTitle.allOfKibanaText"
-                      defaultMessage="all of Kibana"
+                      defaultMessage="all of VOZIQ Insights"
                     />
                   </strong>
                 ),
@@ -183,7 +183,7 @@ export class TelemetryManagementSection extends Component<Props, State> {
         <FormattedMessage
           id="telemetry.telemetryConfigAndLinkDescription"
           defaultMessage="Enabling data usage collection helps us manage and improve our products and services.
-          See our {privacyStatementLink} for more details."
+          See our Privacy Statement for more details."
           values={{
             privacyStatementLink: (
               <EuiLink href={PRIVACY_STATEMENT_URL} target="_blank">

@@ -125,15 +125,7 @@ function DateRangesParamEditor({
 
   return (
     <EuiFormRow compressed fullWidth>
-      <>
-        <EuiText size="xs">
-          <EuiLink href={services.docLinks.links.date.dateMath} target="_blank">
-            <FormattedMessage
-              id="visDefaultEditor.controls.dateRanges.acceptedDateFormatsLinkText"
-              defaultMessage="Acceptable date formats"
-            />
-          </EuiLink>
-        </EuiText>
+      <>      
         <EuiSpacer size="s" />
 
         {ranges.map(({ from, to, id }, index) => {

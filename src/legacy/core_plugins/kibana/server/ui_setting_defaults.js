@@ -9,7 +9,6 @@
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
@@ -63,8 +62,8 @@ export function getUiSettingDefaults() {
       }),
       description: i18n.translate('kbn.advancedSettings.defaultRoute.defaultRouteText', {
         defaultMessage:
-          'This setting specifies the default route when opening Kibana. ' +
-          'You can use this setting to modify the landing page when opening Kibana. ' +
+          'This setting specifies the default route when opening VOZIQ Insights. ' +
+          'You can use this setting to modify the landing page when opening VOZIQ Insights. ' +
           'The route must be a relative URL.',
       }),
     },
@@ -74,7 +73,7 @@ export function getUiSettingDefaults() {
       }),
       value: 'MMM D, YYYY @ HH:mm:ss.SSS',
       description: i18n.translate('kbn.advancedSettings.dateFormatText', {
-        defaultMessage: 'When displaying a pretty formatted date, use this {formatLink}',
+        defaultMessage: 'When displaying a pretty formatted date, use this format',
         description:
           'Part of composite text: kbn.advancedSettings.dateFormatText + ' +
           'kbn.advancedSettings.dateFormat.optionsLinkText',
@@ -128,7 +127,7 @@ export function getUiSettingDefaults() {
         defaultMessage:
           'Values that define the format used in situations where time-based ' +
           'data is rendered in order, and formatted timestamps should adapt to the ' +
-          'interval between measurements. Keys are {intervalsLink}.',
+          'interval between measurements. Keys are intervals.',
         description:
           'Part of composite text: kbn.advancedSettings.dateFormat.scaledText + ' +
           'kbn.advancedSettings.dateFormat.scaled.intervalsLinkText',
@@ -159,7 +158,7 @@ export function getUiSettingDefaults() {
       }),
       value: 'MMM D, YYYY @ HH:mm:ss.SSSSSSSSS',
       description: i18n.translate('kbn.advancedSettings.dateNanosFormatText', {
-        defaultMessage: 'Used for the {dateNanosLink} datatype of Elasticsearch',
+        defaultMessage: 'Used for the date_nanos datatype of VOZIQ BI',
         values: {
           dateNanosLink:
             '<a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/date_nanos.html" target="_blank" rel="noopener noreferrer">' +
@@ -177,7 +176,7 @@ export function getUiSettingDefaults() {
       value: 7,
       description: i18n.translate('kbn.advancedSettings.visualization.tileMap.maxPrecisionText', {
         defaultMessage:
-          'The maximum geoHash precision displayed on tile maps: 7 is high, 10 is very high, 12 is the max. {cellDimensionsLink}',
+          'The maximum geoHash precision displayed on tile maps: 7 is high, 10 is very high, 12 is the max.',
         description:
           'Part of composite text: kbn.advancedSettings.visualization.tileMap.maxPrecisionText + ' +
           'kbn.advancedSettings.visualization.tileMap.maxPrecision.cellDimensionsLinkText',
@@ -219,7 +218,7 @@ export function getUiSettingDefaults() {
       type: 'json',
       description: i18n.translate('kbn.advancedSettings.visualization.tileMap.wmsDefaultsText', {
         defaultMessage:
-          'Default {propertiesLink} for the WMS map server support in the coordinate map',
+          'Default properties for the WMS map server support in the coordinate map',
         description:
           'Part of composite text: kbn.advancedSettings.visualization.tileMap.wmsDefaultsText + ' +
           'kbn.advancedSettings.visualization.tileMap.wmsDefaults.propertiesLinkText',
@@ -268,7 +267,7 @@ export function getUiSettingDefaults() {
 }`,
       type: 'json',
       description: i18n.translate('kbn.advancedSettings.timepicker.timeDefaultsText', {
-        defaultMessage: 'The timefilter selection to use when Kibana is started without one',
+        defaultMessage: 'The timefilter selection to use when VOZIQ Insights is started without one',
       }),
       requiresPageReload: true,
     },
@@ -278,7 +277,7 @@ export function getUiSettingDefaults() {
       }),
       value: false,
       description: i18n.translate('kbn.advancedSettings.darkModeText', {
-        defaultMessage: `Enable a dark mode for the Kibana UI. A page refresh is required for the setting to be applied.`,
+        defaultMessage: `Enable a dark mode for the VOZIQ Insights UI. A page refresh is required for the setting to be applied.`,
       }),
       requiresPageReload: true,
     },
@@ -290,7 +289,7 @@ export function getUiSettingDefaults() {
       type: 'select',
       options: ['v7', 'v8 (beta)'],
       description: i18n.translate('kbn.advancedSettings.themeVersionText', {
-        defaultMessage: `Switch between the theme used for the current and next version of Kibana. A page refresh is required for the setting to be applied.`,
+        defaultMessage: `Switch between the theme used for the current and next version of VOZIQ Insights. A page refresh is required for the setting to be applied.`,
       }),
       requiresPageReload: true,
     },
@@ -302,7 +301,7 @@ export function getUiSettingDefaults() {
       type: 'markdown',
       description: i18n.translate('kbn.advancedSettings.notifications.bannerText', {
         defaultMessage:
-          'A custom banner intended for temporary notices to all users. {markdownLink}.',
+          'A custom banner intended for temporary notices to all users. Markdown supported.',
         description:
           'Part of composite text: kbn.advancedSettings.notifications.bannerText + ' +
           'kbn.advancedSettings.notifications.banner.markdownLinkText',
@@ -389,7 +388,7 @@ export function getUiSettingDefaults() {
       value: false,
       description: i18n.translate('kbn.advancedSettings.disableAnimationsText', {
         defaultMessage:
-          'Turn off all unnecessary animations in the Kibana UI. Refresh the page to apply the changes.',
+          'Turn off all unnecessary animations in the VOZIQ Insights UI. Refresh the page to apply the changes.',
       }),
       category: ['accessibility'],
       requiresPageReload: true,

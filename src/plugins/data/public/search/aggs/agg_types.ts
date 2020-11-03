@@ -43,7 +43,6 @@ import { getDateHistogramBucketAgg } from './buckets/date_histogram';
 import { getHistogramBucketAgg } from './buckets/histogram';
 import { getRangeBucketAgg } from './buckets/range';
 import { getDateRangeBucketAgg } from './buckets/date_range';
-import { getIpRangeBucketAgg } from './buckets/ip_range';
 import { getTermsBucketAgg } from './buckets/terms';
 import { getFilterBucketAgg } from './buckets/filter';
 import { getFiltersBucketAgg } from './buckets/filters';
@@ -94,7 +93,6 @@ export const getAggTypes = ({
     getHistogramBucketAgg({ uiSettings, getInternalStartServices }),
     getRangeBucketAgg({ getInternalStartServices }),
     getDateRangeBucketAgg({ uiSettings }),
-    getIpRangeBucketAgg(),
     getTermsBucketAgg(),
     getFilterBucketAgg(),
     getFiltersBucketAgg({ uiSettings }),

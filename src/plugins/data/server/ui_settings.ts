@@ -86,7 +86,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       value: '{ "analyze_wildcard": true }',
       description: i18n.translate('data.advancedSettings.query.queryStringOptionsText', {
         defaultMessage:
-          '{optionsLink} for the lucene query string parser. Is only used when "{queryLanguage}" is set ' +
+          'Options for the lucene query string parser. Is only used when "{queryLanguage}" is set ' +
           'to {luceneLanguage}.',
         description:
           'Part of composite text: data.advancedSettings.query.queryStringOptions.optionsLinkText + ' +
@@ -146,7 +146,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       }),
       value: '{ "unmapped_type": "boolean" }',
       description: i18n.translate('data.advancedSettings.sortOptionsText', {
-        defaultMessage: '{optionsLink} for the Elasticsearch sort parameter',
+        defaultMessage: 'Options for the VOZIQ BI sort parameter',
         description:
           'Part of composite text: data.advancedSettings.sortOptions.optionsLinkText + ' +
           'data.advancedSettings.sortOptionsText',
@@ -226,7 +226,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       type: 'string',
       description: i18n.translate('data.advancedSettings.courier.customRequestPreferenceText', {
         defaultMessage:
-          '{requestPreferenceLink} used when {setRequestReferenceSetting} is set to {customSettingValue}.',
+          'Request Preference used when {setRequestReferenceSetting} is set to {customSettingValue}.',
         description:
           'Part of composite text: data.advancedSettings.courier.customRequestPreference.requestPreferenceLinkText + ' +
           'data.advancedSettings.courier.customRequestPreferenceText',
@@ -255,8 +255,8 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       type: 'number',
       description: i18n.translate('data.advancedSettings.courier.maxRequestsText', {
         defaultMessage:
-          'Controls the {maxRequestsLink} setting used for _msearch requests sent by Kibana. ' +
-          'Set to 0 to disable this config and use the Elasticsearch default.',
+          'Controls the max concurrent shard requests setting used for _msearch requests sent by VOZIQ Insights. ' +
+          'Set to 0 to disable this config and use the VOZIQ BI default.',
         values: {
           maxRequestsLink: `<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
             target="_blank" rel="noopener" >max_concurrent_shard_requests</a>`,
@@ -287,8 +287,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
     },
     [UI_SETTINGS.SEARCH_INCLUDE_FROZEN]: {
       name: 'Search in frozen indices',
-      description: `Will include <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/frozen-indices.html"
-        target="_blank" rel="noopener">frozen indices</a> in results if enabled. Searching through frozen indices
+      description: `Will include frozen indices in results if enabled. Searching through frozen indices
         might increase the search time.`,
       value: false,
       category: ['search'],
@@ -398,7 +397,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       value: '0,0.[000]',
       type: 'string',
       description: i18n.translate('data.advancedSettings.format.numberFormatText', {
-        defaultMessage: 'Default {numeralFormatLink} for the "number" format',
+        defaultMessage: 'Default numeral format for the "number" format',
         description:
           'Part of composite text: data.advancedSettings.format.numberFormatText + ' +
           'data.advancedSettings.format.numberFormat.numeralFormatLinkText',
@@ -420,7 +419,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       value: '0,0.[000]%',
       type: 'string',
       description: i18n.translate('data.advancedSettings.format.percentFormatText', {
-        defaultMessage: 'Default {numeralFormatLink} for the "percent" format',
+        defaultMessage: 'Default numeral format for the "percent" format',
         description:
           'Part of composite text: data.advancedSettings.format.percentFormatText + ' +
           'data.advancedSettings.format.percentFormat.numeralFormatLinkText',
@@ -442,7 +441,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       value: '0,0.[0]b',
       type: 'string',
       description: i18n.translate('data.advancedSettings.format.bytesFormatText', {
-        defaultMessage: 'Default {numeralFormatLink} for the "bytes" format',
+        defaultMessage: 'Default numeral format for the "bytes" format',
         description:
           'Part of composite text: data.advancedSettings.format.bytesFormatText + ' +
           'data.advancedSettings.format.bytesFormat.numeralFormatLinkText',
@@ -464,7 +463,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       value: '($0,0.[00])',
       type: 'string',
       description: i18n.translate('data.advancedSettings.format.currencyFormatText', {
-        defaultMessage: 'Default {numeralFormatLink} for the "currency" format',
+        defaultMessage: 'Default numeral format for the "currency" format',
         description:
           'Part of composite text: data.advancedSettings.format.currencyFormatText + ' +
           'data.advancedSettings.format.currencyFormat.numeralFormatLinkText',
@@ -490,7 +489,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
         numeralLanguages.map((language: Record<string, any>) => [language.id, language.name])
       ),
       description: i18n.translate('data.advancedSettings.format.formattingLocaleText', {
-        defaultMessage: `{numeralLanguageLink} locale`,
+        defaultMessage: `Numeral language locale`,
         description:
           'Part of composite text: data.advancedSettings.format.formattingLocale.numeralLanguageLinkText + ' +
           'data.advancedSettings.format.formattingLocaleText',
@@ -610,7 +609,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
       description: i18n.translate('data.advancedSettings.timepicker.quickRangesText', {
         defaultMessage:
           'The list of ranges to show in the Quick section of the time filter. This should be an array of objects, ' +
-          'with each object containing "from", "to" (see {acceptedFormatsLink}), and ' +
+          'with each object containing "from", "to" (see  accepted formats), and ' +
           '"display" (the title to be displayed).',
         description:
           'Part of composite text: data.advancedSettings.timepicker.quickRangesText + ' +

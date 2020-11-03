@@ -103,15 +103,15 @@ export function mapNodesVersionCompatibility(
   if (incompatibleNodes.length > 0) {
     const incompatibleNodeNames = incompatibleNodes.map((node) => node.name).join(', ');
     if (ignoreVersionMismatch) {
-      message = `Ignoring version incompatibility between Kibana v${kibanaVersion} and the following Elasticsearch nodes: ${incompatibleNodeNames}`;
+      message = `Ignoring version incompatibility between VOZIQ Insights v${kibanaVersion} and the following VOZIQ BI nodes: ${incompatibleNodeNames}`;
     } else {
-      message = `This version of Kibana (v${kibanaVersion}) is incompatible with the following Elasticsearch nodes in your cluster: ${incompatibleNodeNames}`;
+      message = `This version of VOZIQ Insights (v${kibanaVersion}) is incompatible with the following VOZIQ BI nodes in your cluster: ${incompatibleNodeNames}`;
     }
   } else if (warningNodes.length > 0) {
     const warningNodeNames = warningNodes.map((node) => node.name).join(', ');
     message =
-      `You're running Kibana ${kibanaVersion} with some different versions of ` +
-      'Elasticsearch. Update Kibana or Elasticsearch to the same ' +
+      `You're running VOZIQ Insights ${kibanaVersion} with some different versions of ` +
+      'VOZIQ BI. Update VOZIQ Insights or VOZIQ BI to the same ' +
       `version to prevent compatibility issues: ${warningNodeNames}`;
   }
 

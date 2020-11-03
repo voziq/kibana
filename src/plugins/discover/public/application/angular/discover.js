@@ -471,7 +471,7 @@ function discoverController(
       newSearch,
       ...(uiCapabilities.discover.save ? [saveSearch] : []),
       openSearch,
-      shareSearch,
+    
       inspectSearch,
     ];
   };
@@ -911,7 +911,7 @@ function discoverController(
       defaultMessage: 'data',
     });
     const description = i18n.translate('discover.inspectorRequestDescription', {
-      defaultMessage: 'This request queries Elasticsearch to fetch the data for the search.',
+      defaultMessage: 'This request queries VOZIQ BI to fetch the data for the search.',
     });
     inspectorRequest = inspectorAdapters.requests.start(title, { description });
     inspectorRequest.stats(getRequestInspectorStats($scope.searchSource));

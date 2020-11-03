@@ -47,7 +47,7 @@ export function QueryLanguageSwitcher(props: Props) {
     <FormattedMessage id="data.query.queryBar.luceneLanguageName" defaultMessage="Lucene" />
   );
   const kqlLabel = (
-    <FormattedMessage id="data.query.queryBar.kqlLanguageName" defaultMessage="KQL" />
+    <FormattedMessage id="data.query.queryBar.kqlLanguageName" defaultMessage=" " />
   );
   const kqlFullName = (
     <FormattedMessage

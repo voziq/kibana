@@ -37,13 +37,10 @@ export function getTopNavConfig(
     case ViewMode.VIEW:
       return hideWriteControls
         ? [
-            getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
-            getShareConfig(actions[TopNavIds.SHARE]),
+          
           ]
         : [
-            getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
-            getShareConfig(actions[TopNavIds.SHARE]),
-            getCloneConfig(actions[TopNavIds.CLONE]),
+        	getCloneConfig(actions[TopNavIds.CLONE]),
             getEditConfig(actions[TopNavIds.ENTER_EDIT_MODE]),
           ];
     case ViewMode.EDIT:
@@ -52,8 +49,8 @@ export function getTopNavConfig(
         getSaveConfig(actions[TopNavIds.SAVE]),
         getViewConfig(actions[TopNavIds.EXIT_EDIT_MODE]),
         getAddConfig(actions[TopNavIds.ADD_EXISTING]),
-        getOptionsConfig(actions[TopNavIds.OPTIONS]),
-        getShareConfig(actions[TopNavIds.SHARE]),
+     
+       
       ];
     default:
       return [];

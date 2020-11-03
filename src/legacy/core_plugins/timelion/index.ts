@@ -90,7 +90,7 @@ const timelionPluginInitializer: LegacyPluginInitializer = ({ Plugin }: LegacyPl
           }),
           value: '_all',
           description: i18n.translate('timelion.uiSettings.defaultIndexDescription', {
-            defaultMessage: 'Default elasticsearch index to search with {esParam}',
+            defaultMessage: 'Default VOZIQ BI index to search with {esParam}',
             values: { esParam: '.es()' },
           }),
           category: ['timelion'],
@@ -163,7 +163,7 @@ const timelionPluginInitializer: LegacyPluginInitializer = ({ Plugin }: LegacyPl
           },
           description: i18n.translate('timelion.uiSettings.graphiteURLDescription', {
             defaultMessage:
-              '{experimentalLabel} The <a href="https://www.hostedgraphite.com/UID/ACCESS_KEY/graphite" target="_blank" rel="noopener">URL</a> of your graphite host',
+              '{experimentalLabel} The URL of your graphite host',
             values: { experimentalLabel: `<em>[${experimentalLabel}]</em>` },
           }),
           type: 'select',
