@@ -35,6 +35,8 @@ export const registerFindRoute = (
           page: schema.number({ min: 0, defaultValue: 1 }),
           type: schema.oneOf([schema.string(), schema.arrayOf(schema.string())]),
           search: schema.maybe(schema.string()),
+		  accountId: schema.maybe(schema.string()),
+          userId: schema.maybe(schema.string()),
           defaultSearchOperator: schema.oneOf([schema.literal('OR'), schema.literal('AND')], {
             defaultValue: 'OR',
           }),

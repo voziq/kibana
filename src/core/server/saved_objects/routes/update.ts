@@ -29,6 +29,10 @@ export const registerUpdateRoute = (router: IRouter) => {
           type: schema.string(),
           id: schema.string(),
         }),
+		 query: schema.object({    	     
+          accountId: schema.string(),
+          userId: schema.string()
+        }),
         body: schema.object({
           attributes: schema.recordOf(schema.string(), schema.any()),
           version: schema.maybe(schema.string()),
@@ -47,7 +51,9 @@ export const registerUpdateRoute = (router: IRouter) => {
     router.handleLegacyErrors(async (context, req, res) => {
       const { type, id } = req.params;
       const { attributes, version, references } = req.body;
-      const options = { version, references };
+	  const { accountId } = req.query;
+      const { userId } = req.query;
+      const options = { version, references, accountId, userId };
 
       const result = await context.core.savedObjects.client.update(type, id, attributes, options);
       return res.ok({ body: result });

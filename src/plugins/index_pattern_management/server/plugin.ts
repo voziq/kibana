@@ -43,6 +43,8 @@ export class IndexPatternManagementPlugin implements Plugin<void, void> {
                 schema.literal('none'),
               ])
             ),
+			userId: schema.string(),
+          accountId: schema.string()
           }),
         },
       },

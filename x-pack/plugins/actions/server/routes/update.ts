@@ -19,6 +19,11 @@ const paramSchema = schema.object({
   id: schema.string(),
 });
 
+const querySchema = schema.object({
+	  userId: schema.string(),
+	          accountId: schema.string()
+	});
+
 const bodySchema = schema.object({
   name: schema.string(),
   config: schema.recordOf(schema.string(), schema.any(), { defaultValue: {} }),
@@ -32,6 +37,7 @@ export const updateActionRoute = (router: IRouter, licenseState: ILicenseState) 
       validate: {
         body: bodySchema,
         params: paramSchema,
+		 query:querySchema
       },
       options: {
         tags: ['access:actions-all'],
@@ -46,15 +52,23 @@ export const updateActionRoute = (router: IRouter, licenseState: ILicenseState) 
       if (!context.actions) {
         return res.badRequest({ body: 'RouteHandlerContext is not registered for actions' });
       }
+	     const { accountId } = req.query;
+    const { userId } = req.query;
       const actionsClient = context.actions.getActionsClient();
       const { id } = req.params;
       const { name, config, secrets } = req.body;
+	  
+	
 
       try {
         return res.ok({
           body: await actionsClient.update({
             id,
             action: { name, config, secrets },
+			 options1:{
+    			userId,
+    			accountId
+    		}
           }),
         });
       } catch (e) {

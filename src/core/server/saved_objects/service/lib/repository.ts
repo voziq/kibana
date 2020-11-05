@@ -221,6 +221,9 @@ export class SavedObjectsRepository {
       references = [],
       refresh = DEFAULT_REFRESH_SETTING,
     } = options;
+	
+	const accountId=options.accountId,
+    userId=options.userId;
 
     if (!this._allowedTypes.includes(type)) {
       throw SavedObjectsErrorHelpers.createUnsupportedTypeError(type);
@@ -253,6 +256,9 @@ export class SavedObjectsRepository {
     });
 
     const raw = this._serializer.savedObjectToRaw(migrated as SavedObjectSanitizedDoc);
+	
+	raw._source.accountId= accountId;
+    raw._source.userId= userId;
 
     const method = id && overwrite ? 'index' : 'create';
     const response = await this._writeToCluster(method, {
@@ -589,6 +595,8 @@ export class SavedObjectsRepository {
     perPage = 20,
     sortField,
     sortOrder,
+	accountId,
+    userId,
     fields,
     namespaces,
     type,
@@ -644,6 +652,8 @@ export class SavedObjectsRepository {
       preference,
       body: {
         seq_no_primary_term: true,
+		accountId,
+        userId,
         ...getSearchDsl(this._mappings, this._registry, {
           search,
           defaultSearchOperator,
@@ -862,6 +872,8 @@ export class SavedObjectsRepository {
     }
 
     const { version, namespace, references, refresh = DEFAULT_REFRESH_SETTING } = options;
+	
+	 const accountId=options.accountId, userId=options.userId;
 
     let preflightResult: SavedObjectsRawDoc | undefined;
     if (this._registry.isMultiNamespace(type)) {
@@ -884,6 +896,8 @@ export class SavedObjectsRepository {
       ignore: [404],
       body: {
         doc,
+		accountId:accountId,
+		userId:userId
       },
       _sourceIncludes: ['namespace', 'namespaces'],
     });

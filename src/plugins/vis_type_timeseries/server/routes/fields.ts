@@ -27,7 +27,11 @@ export const fieldsRoutes = (framework: Framework) => {
     {
       path: '/api/metrics/fields',
       validate: {
-        query: schema.object({ index: schema.string() }),
+        query: schema.object({ index: schema.string(),
+		userId: schema.string(),
+        accountId: schema.string()
+
+		}),
       },
     },
     async (context, req, res) => {

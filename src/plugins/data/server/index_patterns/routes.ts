@@ -39,6 +39,8 @@ export function registerRoutes(http: HttpServiceSetup) {
       validate: {
         query: schema.object({
           pattern: schema.string(),
+		  accountId: schema.string(),
+           userId: schema.string(),
           meta_fields: schema.oneOf([schema.string(), schema.arrayOf(schema.string())], {
             defaultValue: [],
           }),
@@ -56,10 +58,14 @@ export function registerRoutes(http: HttpServiceSetup) {
       } catch (error) {
         return response.badRequest();
       }
+	   const accountId=request.query.accountId;
+    const userId=request.query.userId;
 
       try {
         const fields = await indexPatterns.getFieldsForWildcard({
           pattern,
+		  accountId,
+        userId,
           metaFields: parsedFields,
         });
 
@@ -97,6 +103,8 @@ export function registerRoutes(http: HttpServiceSetup) {
         query: schema.object({
           pattern: schema.string(),
           interval: schema.maybe(schema.string()),
+		  accountId: schema.string(),
+        userId: schema.string(),
           look_back: schema.number({ min: 1 }),
           meta_fields: schema.oneOf([schema.string(), schema.arrayOf(schema.string())], {
             defaultValue: [],
@@ -115,12 +123,15 @@ export function registerRoutes(http: HttpServiceSetup) {
       } catch (error) {
         return response.badRequest();
       }
-
+      const accountId=request.query.accountId;
+        const userId=request.query.userId;
       try {
         const fields = await indexPatterns.getFieldsForTimePattern({
           pattern,
           interval: interval ? interval : '',
           lookBack,
+		  userId,
+        accountId,
           metaFields: parsedFields,
         });
 

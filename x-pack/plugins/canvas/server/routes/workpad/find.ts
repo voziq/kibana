@@ -19,6 +19,8 @@ export function initializeFindWorkpadsRoute(deps: RouteInitializerDeps) {
           name: schema.string(),
           page: schema.maybe(schema.number()),
           perPage: schema.number(),
+		  userId: schema.string(),
+        accountId: schema.string()
         }),
       },
     },
@@ -34,6 +36,8 @@ export function initializeFindWorkpadsRoute(deps: RouteInitializerDeps) {
           search: name ? `${name}* | ${name}` : '*',
           searchFields: ['name'],
           fields: ['id', 'name', '@created', '@timestamp'],
+		  accountId: request.query.accountId,
+          userId: request.query.userId,
           page,
           perPage,
         });

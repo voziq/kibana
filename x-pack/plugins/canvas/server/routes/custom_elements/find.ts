@@ -19,6 +19,8 @@ export function initializeFindCustomElementsRoute(deps: RouteInitializerDeps) {
           name: schema.string(),
           page: schema.maybe(schema.number()),
           perPage: schema.number(),
+		  userId: schema.string(),
+          accountId: schema.string()
         }),
       },
     },

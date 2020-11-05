@@ -39,6 +39,10 @@ export function initializeCreateWorkpadRoute(deps: RouteInitializerDeps) {
       path: `${API_ROUTE_WORKPAD}`,
       validate: {
         body: createRequestBodySchema,
+		 query: schema.object({
+          userId: schema.string(),
+          accountId: schema.string()
+        })
       },
       options: {
         body: {
@@ -70,7 +74,10 @@ export function initializeCreateWorkpadRoute(deps: RouteInitializerDeps) {
           '@timestamp': now,
           '@created': now,
         },
-        { id }
+        { id,
+		 accountId: request.query.accountId,
+       userId: request.query.userId
+		}
       );
 
       return response.ok({

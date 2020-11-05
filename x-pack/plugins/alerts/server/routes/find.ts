@@ -23,6 +23,8 @@ const querySchema = schema.object({
   per_page: schema.number({ defaultValue: 10, min: 0 }),
   page: schema.number({ defaultValue: 1, min: 1 }),
   search: schema.maybe(schema.string()),
+    accountId: schema.maybe(schema.string()),
+	userId: schema.maybe(schema.string()),
   default_search_operator: schema.oneOf([schema.literal('OR'), schema.literal('AND')], {
     defaultValue: 'OR',
   }),
@@ -78,6 +80,13 @@ export const findAlertRoute = (router: IRouter, licenseState: LicenseState) => {
         filter: 'filter',
       };
 
+
+   if (req.query.accountId) {
+    	renameMap.accountId = req.query.accountId;
+      }
+            if (req.query.userId) {
+            	renameMap.userId = req.query.userId;
+      }
       const options = renameKeys<FindOptions, Record<string, unknown>>(renameMap, query);
 
       if (query.search_fields) {

@@ -49,19 +49,21 @@ export class IndexPatternsApiClient implements IIndexPatternsApiClient {
   }
 
   getFieldsForTimePattern(options: GetFieldsOptions = {}) {
-    const { pattern, lookBack, metaFields } = options;
+    const { pattern, lookBack, metaFields, accountId, userId } = options;
 
     const url = this._getUrl(['_fields_for_time_pattern']);
 
     return this._request(url, {
       pattern,
+	  accountId:accountId,
+        userId:userId,
       look_back: lookBack,
       meta_fields: metaFields,
     }).then((resp: any) => resp.fields);
   }
 
   getFieldsForWildcard(options: GetFieldsOptions = {}) {
-    const { pattern, metaFields, type, params } = options;
+    const { pattern, metaFields, type, params, accountId, userId } = options;
 
     let url;
     let query;
@@ -71,12 +73,16 @@ export class IndexPatternsApiClient implements IIndexPatternsApiClient {
       query = {
         pattern,
         meta_fields: metaFields,
+		accountId:accountId,
+          userId:userId,
         params: JSON.stringify(params),
       };
     } else {
       url = this._getUrl(['_fields_for_wildcard']);
       query = {
         pattern,
+		 accountId:accountId,
+          userId:userId,
         meta_fields: metaFields,
       };
     }

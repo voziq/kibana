@@ -97,7 +97,7 @@ export class ActionsClient {
   /**
    * Create an action
    */
-  public async create({ action }: CreateOptions): Promise<ActionResult> {
+  public async create({ action, options1 }: CreateOptions): Promise<ActionResult> {
     const { actionTypeId, name, config, secrets } = action;
     const actionType = this.actionTypeRegistry.get(actionTypeId);
     const validatedActionTypeConfig = validateConfig(actionType, config);
@@ -110,7 +110,7 @@ export class ActionsClient {
       name,
       config: validatedActionTypeConfig as SavedObjectAttributes,
       secrets: validatedActionTypeSecrets as SavedObjectAttributes,
-    });
+    },{...options1});
 
     return {
       id: result.id,
@@ -124,7 +124,7 @@ export class ActionsClient {
   /**
    * Update action
    */
-  public async update({ id, action }: UpdateOptions): Promise<ActionResult> {
+  public async update({ id, action, options1 }: UpdateOptions): Promise<ActionResult> {
     if (
       this.preconfiguredActions.find((preconfiguredAction) => preconfiguredAction.id === id) !==
       undefined
@@ -153,7 +153,7 @@ export class ActionsClient {
       name,
       config: validatedActionTypeConfig as SavedObjectAttributes,
       secrets: validatedActionTypeSecrets as SavedObjectAttributes,
-    });
+    },{...options1});
 
     return {
       id,

@@ -29,6 +29,10 @@ export const createActionRoute = (router: IRouter, licenseState: ILicenseState) 
       path: `${BASE_ACTION_API_PATH}/action`,
       validate: {
         body: bodySchema,
+		   query: schema.object({
+          userId: schema.string(),
+          accountId: schema.string()
+        })
       },
       options: {
         tags: ['access:actions-all'],
@@ -44,10 +48,15 @@ export const createActionRoute = (router: IRouter, licenseState: ILicenseState) 
       if (!context.actions) {
         return res.badRequest({ body: 'RouteHandlerContext is not registered for actions' });
       }
+	  
+	   const options1 = {     
+    	      accountId:req.query.accountId,
+    	      userId: req.query.userId
+    	    };
       const actionsClient = context.actions.getActionsClient();
       const action = req.body;
       try {
-        const actionRes: ActionResult = await actionsClient.create({ action });
+        const actionRes: ActionResult = await actionsClient.create({ action, options1 });
         return res.ok({
           body: actionRes,
         });
