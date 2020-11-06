@@ -56,7 +56,29 @@ export function TopNavMenu(props: TopNavMenuProps): ReactElement | null {
   function renderItems(): ReactElement[] | null {
     if (!config || config.length === 0) return null;
     return config.map((menuItem: TopNavMenuData, i: number) => {
-      return (
+		if(menuItem.id == "visualName" || menuItem.id == "screen-title")
+		{
+		   return (
+        <EuiFlexItem
+          grow={false}
+          key={`nav-menu-${i}`}
+          className={'visualNameMenuItem'}
+        >
+          <TopNavMenuItem {...menuItem} />
+        </EuiFlexItem>
+      );
+		  
+			}else{				
+			 return (
+        <EuiFlexItem
+          grow={false}
+          key={`nav-menu-${i}`}
+        >
+          <TopNavMenuItem {...menuItem} />
+        </EuiFlexItem>
+      );
+			}
+  /*    return (
         <EuiFlexItem
           grow={false}
           key={`nav-menu-${i}`}
@@ -64,7 +86,7 @@ export function TopNavMenu(props: TopNavMenuProps): ReactElement | null {
         >
           <TopNavMenuItem {...menuItem} />
         </EuiFlexItem>
-      );
+      );*/
     });
   }
 

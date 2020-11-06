@@ -94,6 +94,7 @@ const waitForBootstrap = new Promise((resolve) => {
     targetDomElement.setAttribute('kbn-chrome', 'true');
     targetDomElement.setAttribute('ng-class', "{ 'hidden-chrome': !chrome.getVisible() }");
     targetDomElement.className = 'app-wrapper';
+    targetDomElement.setAttribute("style", "left : 0 !important");
     angular.bootstrap(targetDomElement, ['kibana']);
     resolve(targetDomElement);
   };

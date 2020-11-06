@@ -31,25 +31,28 @@ import { NavAction } from '../../types';
 export function getTopNavConfig(
   dashboardMode: ViewMode,
   actions: { [key: string]: NavAction },
-  hideWriteControls: boolean
+  hideWriteControls: boolean,
+  screenTitle
 ) {
   switch (dashboardMode) {
     case ViewMode.VIEW:
       return hideWriteControls
         ? [
-          
+        getScreenTitle(screenTitle),
+          getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
+            getShareConfig(actions[TopNavIds.SHARE]), 
           ]
         : [
+  getScreenTitle(screenTitle),
         	getCloneConfig(actions[TopNavIds.CLONE]),
             getEditConfig(actions[TopNavIds.ENTER_EDIT_MODE]),
           ];
     case ViewMode.EDIT:
       return [
-        getCreateNewConfig(actions[TopNavIds.VISUALIZE]),
+      getScreenTitle(screenTitle),
         getSaveConfig(actions[TopNavIds.SAVE]),
         getViewConfig(actions[TopNavIds.EXIT_EDIT_MODE]),
         getAddConfig(actions[TopNavIds.ADD_EXISTING]),
-     
        
       ];
     default:
@@ -213,3 +216,17 @@ function getOptionsConfig(action: NavAction) {
     run: action,
   };
 }
+function getScreenTitle(action) {
+	return {
+	id: "screen-title",
+	label: i18n.translate("kbn.dashboard.topNave.fullScreenButtonAriaLabel", {
+	defaultMessage: (action == "") ? "Editing New Dashboard" : action
+	}),
+	description: i18n.translate("kbn.dashboard.topNave.fullScreenConfigDescription", {
+	defaultMessage: (action == "") ? "Editing New Dashboard" : action
+	}),
+	testId: "screenTitleValue",
+	//type : text
+	//run: action
+	}
+	}

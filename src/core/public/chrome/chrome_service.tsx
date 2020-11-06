@@ -213,7 +213,6 @@ export class ChromeService {
       navLinks,
       recentlyAccessed,
       docTitle,
-
       getHeaderComponent: () => (
         <Header
           loadingCount$={http.getLoadingCount$()}

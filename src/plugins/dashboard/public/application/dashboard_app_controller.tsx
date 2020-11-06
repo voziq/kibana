@@ -364,6 +364,7 @@ export class DashboardAppController {
         refreshInterval: timefilter.getRefreshInterval(),
       };
       $scope.panels = dashboardStateManager.getPanels();
+	    $scope.screenTitle = dashboardStateManager.getTitle();
     };
 
     updateState();
@@ -1118,7 +1119,7 @@ export class DashboardAppController {
       $scope.topNavMenu = getTopNavConfig(
         dashboardStateManager.getViewMode(),
         navActions,
-        dashboardConfig.getHideWriteControls()
+        dashboardConfig.getHideWriteControls(),$scope.screenTitle
       );
       updateNavBar();
     });
