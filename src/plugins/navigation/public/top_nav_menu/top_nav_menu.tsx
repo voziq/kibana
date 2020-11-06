@@ -25,6 +25,7 @@ import classNames from 'classnames';
 import { TopNavMenuData } from './top_nav_menu_data';
 import { TopNavMenuItem } from './top_nav_menu_item';
 import { StatefulSearchBarProps, DataPublicPluginStart } from '../../../data/public';
+import './_index.scss';
 
 export type TopNavMenuProps = StatefulSearchBarProps & {
   config?: TopNavMenuData[];
