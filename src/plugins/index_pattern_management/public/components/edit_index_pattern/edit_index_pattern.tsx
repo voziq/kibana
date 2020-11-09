@@ -214,15 +214,13 @@ export const EditIndexPattern = withRouter(
                 <p>
                   <FormattedMessage
                     id="indexPatternManagement.editIndexPattern.timeFilterLabel.timeFilterDetail"
-                    defaultMessage="This page lists every field in the {indexPatternTitle} index and the field's associated core type as recorded by Elasticsearch. To change a field type, use the Elasticsearch"
+                    defaultMessage="This page lists every field in the {indexPatternTitle} index and the field's associated core type as recorded by VOZIQ BI. To change a field type, use the VOZIQ BI"
                     values={{ indexPatternTitle: <strong>{indexPattern.title}</strong> }}
                   />{' '}
                   <EuiLink
                     href="http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html"
                     target="_blank"
-                  >
-                    {mappingAPILink}
-                    <EuiIcon type="link" />
+                  >                                    
                   </EuiLink>
                 </p>
               </EuiText>

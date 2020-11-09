@@ -30,7 +30,7 @@ export const LoadingState = () => (
         <h2 style={{ textAlign: 'center' }}>
           <FormattedMessage
             id="indexPatternManagement.createIndexPattern.loadingState.checkingLabel"
-            defaultMessage="Checking for Elasticsearch data"
+            defaultMessage="Checking for VOZIQ BI data"
           />
         </h2>
       </EuiTitle>

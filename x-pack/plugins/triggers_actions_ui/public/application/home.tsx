@@ -97,19 +97,7 @@ export const TriggersActionsUIHome: React.FunctionComponent<RouteComponentProps<
                   defaultMessage="Alerts and Actions"
                 />
                 &emsp;
-                <EuiBetaBadge
-                  label="Beta"
-                  tooltipContent={i18n.translate(
-                    'xpack.triggersActionsUI.home.betaBadgeTooltipContent',
-                    {
-                      defaultMessage:
-                        '{pluginName} is in beta and is subject to change. The design and code is less mature than official GA features and is being provided as-is with no warranties. Beta features are not subject to the support SLA of official GA features.',
-                      values: {
-                        pluginName: PLUGIN.getI18nName(i18n),
-                      },
-                    }
-                  )}
-                />
+              
               </h1>
             </EuiTitle>
             <EuiSpacer size="s" />

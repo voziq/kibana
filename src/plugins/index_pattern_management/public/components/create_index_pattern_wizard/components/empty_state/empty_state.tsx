@@ -37,20 +37,20 @@ export const EmptyState = ({
       title={
         <FormattedMessage
           id="indexPatternManagement.createIndexPattern.emptyStateHeader"
-          defaultMessage="Couldn't find any Elasticsearch data"
+          defaultMessage="Couldn't find any VOZIQ BI data"
         />
       }
     >
       <p>
         <FormattedMessage
           id="indexPatternManagement.createIndexPattern.emptyStateLabel.emptyStateDetail"
-          defaultMessage="{needToIndex} {learnHowLink} or {getStartedLink}"
+          defaultMessage="{needToIndex}"
           values={{
             needToIndex: (
               <EuiTextColor color="subdued">
                 <FormattedMessage
                   id="indexPatternManagement.createIndexPattern.emptyStateLabel.needToIndexLabel"
-                  defaultMessage="You'll need to index some data into Elasticsearch before you can create an index pattern."
+                  defaultMessage="You'll need to index some data into VOZIQ BI before you can create an index pattern."
                 />
               </EuiTextColor>
             ),
