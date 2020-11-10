@@ -124,7 +124,7 @@ class NewVisModal extends React.Component<TypeSelectionProps, TypeSelectionState
 
   private onCloseModal = () => {
     this.setState({ showSearchVisModal: false });
-    this.props.onClose();
+    //this.props.onClose();
   };
 
   private onVisTypeSelected = (visType: VisType | VisTypeAlias) => {
