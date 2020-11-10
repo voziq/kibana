@@ -822,11 +822,11 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
       default: false,
       help: '',
     },
-  /*  includeFormatHints: {
+   includeFormatHints: {
       types: ['boolean'],
       default: false,
       help: '',
-    },*/
+    },
     aggConfigs: {
       types: ['string'],
       default: '""',
@@ -837,11 +837,11 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
        default: '"{}"',
           help: ""
       },
-  /*  timeFields: {
+    timeFields: {
       types: ['string'],
       help: '',
       multi: true,
-    },*/
+    },
   },
   async fn(input, args, { inspectorAdapters, abortSignal }) {
     const indexPatterns = getIndexPatterns();
@@ -875,7 +875,6 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
 	    visParams : JSON.parse(args.visParams),
                   vis_type: args.type,
     });
-console.dir(response);
     const table: KibanaDatatable = {
       type: 'kibana_datatable',
       rows: response.rows,

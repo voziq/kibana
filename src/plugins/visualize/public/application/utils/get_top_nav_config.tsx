@@ -148,7 +148,7 @@ export const getTopNavConfig = (
   }
 
   const topNavMenu: TopNavMenuData[] = [
-    ...(originatingApp && savedVis.id
+ /*   ...(originatingApp && savedVis.id
       ? [
           {
             id: 'saveAndReturn',
@@ -184,9 +184,23 @@ export const getTopNavConfig = (
             },
           },
         ]
-      : []),
+      : []),*/
+	  
     ...(visualizeCapabilities.save
       ? [
+	                                                            {
+      id: "visualName",
+      label: i18n.translate("visualize.topNavMenu.refreshButtonLabel", {
+          defaultMessage: (savedVis.title == "") ? "Create" :  savedVis.title
+      }),
+      description: i18n.translate("visualize.visualize.topNavMenu.refreshButtonAriaLabel", {
+          defaultMessage: (savedVis.title == "") ? "Create" :  savedVis.title
+      }),
+      /* run: function run() {
+          vis.forceReload()
+      }, */
+      testId: "visualizeNameButton"
+  },
           {
             id: 'save',
             label:
@@ -197,7 +211,7 @@ export const getTopNavConfig = (
                 : i18n.translate('visualize.topNavMenu.saveVisualizationButtonLabel', {
                     defaultMessage: 'save',
                   }),
-            emphasize: !savedVis.id || !originatingApp,
+           // emphasize: !savedVis.id || !originatingApp,
             description: i18n.translate('visualize.topNavMenu.saveVisualizationButtonAriaLabel', {
               defaultMessage: 'Save Visualization',
             }),
@@ -270,8 +284,47 @@ export const getTopNavConfig = (
             },
           },
         ]
-      : []),
-    
+      : [{
+      id: "visualName",
+      label: i18n.translate("visualize.topNavMenu.refreshButtonLabel", {
+          defaultMessage: (savedVis.title == "") ? "Create" :  savedVis.title
+      }),
+      description: i18n.translate("visualize.visualize.topNavMenu.refreshButtonAriaLabel", {
+          defaultMessage: (savedVis.title == "") ? "Create" :  savedVis.title
+      }),
+      /* run: function run() {
+          vis.forceReload()
+      }, */
+      testId: "visualizeNameButton"
+  }]),
+  /*  {
+      id: 'share',
+      label: i18n.translate('visualize.topNavMenu.shareVisualizationButtonLabel', {
+        defaultMessage: 'share',
+      }),
+      description: i18n.translate('visualize.topNavMenu.shareVisualizationButtonAriaLabel', {
+        defaultMessage: 'Share Visualization',
+      }),
+      testId: 'shareTopNavButton',
+      run: (anchorElement) => {
+        if (share) {
+          share.toggleShareContextMenu({
+            anchorElement,
+            allowEmbed: true,
+            allowShortUrl: visualizeCapabilities.createShortUrl,
+            shareableUrl: unhashUrl(window.location.href),
+            objectId: savedVis.id,
+            objectType: 'visualization',
+            sharingData: {
+              title: savedVis.title,
+            },
+            isDirty: hasUnappliedChanges || hasUnsavedChanges,
+          });
+        }
+      },
+      // disable the Share button if no action specified
+      disableButton: !share,
+    },*/
     {
       id: 'inspector',
       label: i18n.translate('visualize.topNavMenu.openInspectorButtonLabel', {
