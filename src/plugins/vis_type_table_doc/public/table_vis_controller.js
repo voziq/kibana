@@ -18,7 +18,9 @@
  */
 import { assign } from 'lodash';
 import { getFormatService } from './services';
-export function TableVisController1($scope) {
+export function TableVisController($scope) {
+	
+
   const uiStateSort = $scope.uiState ? $scope.uiState.get('vis.params.sort') : {};
   assign($scope.visParams.sort, uiStateSort);
 	  const sel_columns = $scope.uiState ? $scope.uiState.get('vis.params.selectedColumns') : [];
@@ -31,12 +33,16 @@ export function TableVisController1($scope) {
     $scope.uiState.set('vis.params.sort', newSort);
   });
 
+
+
+
+
   $scope.$watchCollection('vwList', function () {
-		 // console.dir("vwList");
+		  console.dir("vwList");
 		  makeOptions();
 	  });
 	  $scope.$watchCollection('expList', function () {
-		//  console.dir("expList");
+		 console.dir("expList");
 		  makeOptions();
 	  });
 	  
@@ -79,11 +85,15 @@ export function TableVisController1($scope) {
 		};
 		setUpOptions();
    	    function makeOptions () {
-			if($scope.vis.editorMode){
-				$("#AutoApplyButton").prop('disabled', true);
+			
+			
+			
+			if($("#fieldsList" + ' option').length > 0){
+				
+				//$(".euiButton--fill").prop('disabled', true);
 			var data1=$("#viewList" + ' option');
 			var data2=$("#exportList" + ' option');
-
+	
 			$scope.vis.params.selectedColumnsExp =[];
 			$scope.vis.params.selectedColumns =[];
 
@@ -96,8 +106,8 @@ export function TableVisController1($scope) {
 				 $('#viewList option').prop('selected', true);
 				 $('#exportList option').prop('selected', true);
 				
-				 //$scope.uiState.set('vis.params.selectedColumns', $scope.vis.params.selectedColumns);
-				 //$scope.uiState.set('vis.params.selectedColumnsExp', $scope.vis.params.selectedColumnsExp);  
+				 $scope.uiState.set('vis.params.selectedColumns', $scope.vis.params.selectedColumns);
+				 $scope.uiState.set('vis.params.selectedColumnsExp', $scope.vis.params.selectedColumnsExp);  
 				 
 			}
 			//console.dir($scope);
@@ -141,16 +151,19 @@ export function TableVisController1($scope) {
 	    	//$("#AutoApplyButton").attr("disabled", true);
 	      tableGroups = resp;
 		
+	
 			//$scope.tableData=[];
 			$scope.columnsShow=[];
 			$scope.columnsExport=[];
 			$scope.isCustomExport=true;
 			$scope.dataAvailable=false;
-		console.dir("resp");
-		console.dir(resp);
+	
+	
 			var data=resp.tables[0].raw.raw.hits.hits;
 			var columnsRaw=$scope.vis.params.selectedColumns;
-			console.dir(resp.tables[0].raw.columns[0].aggConfig.aggConfigs.indexPattern);
+			
+			//var columnsRaw=$scope.visParams.selectedColumns;
+		
 			$scope.vis.indexPattern=resp.tables[0].raw.columns[0].aggConfig.aggConfigs.indexPattern;
 		
 			if($scope.vis.indexPattern.timeFieldName != undefined && 
@@ -200,6 +213,7 @@ export function TableVisController1($scope) {
 			}
 			 var m=1;
 			var columnsExpRaw=$scope.vis.params.selectedColumnsExp;
+			//var columnsExpRaw=$scope.visParams.selectedColumnsExp;
 			if($scope.vis.indexPattern.timeFieldName != undefined && 
 							$scope.vis.indexPattern.timeFieldName != null) { 
 							if(columnsExpRaw.indexOf($scope.vis.indexPattern.timeFieldName) > -1){
@@ -232,8 +246,8 @@ export function TableVisController1($scope) {
 			
 			tableGroups.tables[0].rows=[];
 			tableGroups.tables[0].rowsE=[];
-			
-console.dir(data.length);
+
+
 			for (var i = 0, len = data.length; i < len; i++) {
 				var row={};
 				var rowE={};
@@ -322,22 +336,30 @@ console.dir(data.length);
 				
 			}
 			//$scope.uiState.set('vis.params.time', new Date().getTime());
+		
+			
 	      hasSomeRows = tableGroups.tables.some(function haveRows(table) {
+			 
 	        if (table.tables) return table.tables.some(haveRows);
 	        return table.rows.length > 0;
 	      });
-			//console.dir(tableGroups);
+		 
 	      
 	    }
-	    //console.dir($scope);
+	
 	    $scope.vis.showSpyPanel=false;
-	    
+		
+		
+
 	    $scope.hasSomeRows = hasSomeRows;
+		hasSomeRows=true;
 	    if (hasSomeRows) {
 	       $scope.dimensions = $scope.visParams.dimensions;
 	      $scope.tableGroups = tableGroups;
 	    }
 	    $scope.renderComplete();
+		
 	    $scope.vis.dirty=true;
-	  });
+		
+	  });0
 }

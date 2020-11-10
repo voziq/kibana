@@ -18,7 +18,7 @@
  */
 import './index.scss';
 import { PluginInitializerContext } from 'kibana/public';
-import { TableVisDocPlugin as Plugin } from './plugin';
+import { TableVisPlugin as Plugin } from './plugin';
 
 export function plugin(initializerContext: PluginInitializerContext) {
   return new Plugin(initializerContext);

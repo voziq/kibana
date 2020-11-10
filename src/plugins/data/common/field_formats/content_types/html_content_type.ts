@@ -28,7 +28,14 @@ const getConvertFn = (
 ): HtmlContextTypeConvert => {
   const fallbackHtml: HtmlContextTypeConvert = (value, options = {}) => {
     const { field, hit } = options;
-    const formatted = escape(format.convert(value, 'text'));
+    //const formatted = escape(format.convert(value, 'text'));
+	
+	 var formatted=null;
+                if(value.toString().includes("<mark>")){
+                                                formatted = value;
+                                        }else{
+                                                formatted =escape(format.convert(value, 'text'));
+                                        }
 
     return !field || !hit || !hit.highlight || !hit.highlight[field.name]
       ? formatted

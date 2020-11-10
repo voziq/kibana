@@ -38,7 +38,7 @@ interface RenderValue {
   };
 }
 
-export const createTableVisDocFn = (): ExpressionFunctionDefinition<
+export const createTableVisFn = (): ExpressionFunctionDefinition<
   'kibana_table',
   Input,
   Arguments,

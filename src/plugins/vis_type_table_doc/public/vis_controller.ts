@@ -21,11 +21,9 @@ import angular, { IModule, auto, IRootScopeService, IScope, ICompileService } fr
 import $ from 'jquery';
 
 import { VisParams, ExprVis } from '../../visualizations/public';
-//import { VisParams, Vis } from '../../visualizations/public';
-import { Vis } from '../../visualizations/public';
 import { getAngularModule } from './get_inner_angular';
 import { getKibanaLegacy } from './services';
-import { initTableVisLegacyModule1 } from './table_vis_legacy_module';
+import { initTableVisLegacyModule } from './table_vis_legacy_module';
 
 const innerAngularName = 'kibana/table_vis_doc';
 
@@ -37,26 +35,16 @@ export function getTableVisualizationControllerClass(
     private tableVisModule: IModule | undefined;
     private injector: auto.IInjectorService | undefined;
     el: JQuery<Element>;
-   // vis: ExprVis;
-   vis:Vis;
+    vis: ExprVis;
     $rootScope: IRootScopeService | null = null;
     $scope: (IScope & { [key: string]: any }) | undefined;
     $compile: ICompileService | undefined;
 
-  /*  constructor(domeElement: Element, vis: ExprVis) {
-		console.dir("vis controller");
-		console.dir(vis);
+    constructor(domeElement: Element, vis: ExprVis) {
       this.el = $(domeElement);
       this.vis = vis;
     }
-*/
-  constructor(domeElement: Element, vis: Vis) {
-		console.dir("vis controller");
-		console.dir(VisParams);
-		console.dir(vis);
-      this.el = $(domeElement);
-      this.vis = vis;
-    }
+
     getInjector() {
       if (!this.injector) {
         const mountpoint = document.createElement('div');
@@ -72,7 +60,7 @@ export function getTableVisualizationControllerClass(
       if (!this.tableVisModule) {
         const [coreStart] = await core.getStartServices();
         this.tableVisModule = getAngularModule(innerAngularName, coreStart, context);
-        initTableVisLegacyModule1(this.tableVisModule);
+        initTableVisLegacyModule(this.tableVisModule);
       }
     }
 

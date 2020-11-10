@@ -22,7 +22,7 @@ import aggTableTemplate from './agg_table.html';
 import { getFormatService } from '../services';
 import { i18n } from '@kbn/i18n';
 
-export function KbnAggTable1(config, RecursionHelper) {
+export function KbnAggTable(config, RecursionHelper) {
   return {
     restrict: 'E',
     template: aggTableTemplate,
@@ -37,7 +37,7 @@ export function KbnAggTable1(config, RecursionHelper) {
       percentageCol: '=',
       filter: '=',
     },
-    controllerAs: 'aggTable1',
+    controllerAs: 'aggTable',
     compile: function ($el) {
       // Use the compile function from the RecursionHelper,
       // And return the linking function(s) which it returns
@@ -58,31 +58,40 @@ export function KbnAggTable1(config, RecursionHelper) {
       };
  self.generateReportForTbl=function(){
 			var params={};
-			console.dir($scope);
+			
 			$scope.table.query._source=$scope.table.columnsE.map(function(a) {return a.title+"::"+a.field.name;});
 			params.query=$scope.table.query;
 			params.query.indexName=$scope.table.indexName;
 			params.fileName=$scope.exportTitle;
 			window.parent.generateReportForTbl(params);
-	};	
-	  self.isCustomExport=$scope.table.isCustomExport;
-	  
+	};
+	 self.isCustomExport=$scope.table.isCustomExport;
       self.toCsv = function (formatted) {
-       // const rows = formatted ? $scope.rows : $scope.table.rows;
+		  
+		  
+		  
+        //const rows = formatted ? $scope.rows : $scope.table.rows;
        // const columns = formatted ? [...$scope.formattedColumns] : [...$scope.table.columns];
-
-      /*  if ($scope.splitRow && formatted) {
-          columns.unshift($scope.splitRow);
-        }*/
-   	var rows =[];
+	   
+	   
+	   
+	   var rows =[];
  		 var columns =[];
+		 
  		 if($scope.table.isCustomExport){
  			 rows=$scope.table.rowsE;
  			 columns=$scope.table.columnsE;
  		 }else{
- 			 rows=$scope.table.rows;
- 			 columns=formatted ? $scope.formattedColumns : $scope.table.columns;
+			 
+			
+ 			 rows=formatted ? $scope.rows : $scope.table.rows;
+ 			 columns= formatted ? [...$scope.formattedColumns] : [...$scope.table.columns];
  		 }
+
+        if ($scope.splitRow && formatted) {
+          columns.unshift($scope.splitRow);
+        }
+
         const nonAlphaNumRE = /[^a-zA-Z0-9]/;
         const allDoubleQuoteRE = /"/g;
 
@@ -138,32 +147,27 @@ export function KbnAggTable1(config, RecursionHelper) {
           $scope.rows = table.rows;
           $scope.formattedColumns = [];
 
-         // if (typeof $scope.dimensions === 'undefined') return;
            if (typeof $scope.dimensions === 'undefined') {
         	  $scope.dimensions=$scope.table.vis.dimensions;  
           }
           if($scope.dimensions.bucket == undefined || !$scope.dimensions.bucket){ $scope.dimensions.bucket=[]; }
-         
-		 const { buckets, metrics, splitColumn, splitRow } = $scope.dimensions;
+
+          const { buckets, metrics, splitColumn, splitRow } = $scope.dimensions;
 
           $scope.formattedColumns = table.columns
             .map(function (col, i) {
-             /* const isBucket = buckets.find((bucket) => bucket.accessor === i);*/
+              const isBucket = true;
               const isSplitColumn = splitColumn
                 ? splitColumn.find((splitColumn) => splitColumn.accessor === i)
                 : undefined;
-				const isBucket = true;
-				const dimension = true;
               const isSplitRow = splitRow
                 ? splitRow.find((splitRow) => splitRow.accessor === i)
                 : undefined;
-            /*  const dimension =
-                isBucket || isSplitColumn || metrics.find((metric) => metric.accessor === i);*/
+              const dimension =true;
 
-            /*  const formatter = dimension
-                ? getFormatService().deserialize(dimension.format)
-                : undefined;*/
-const formatter = getFormatService().deserialize();
+              const formatter = dimension
+                ? getFormatService().deserialize()
+                : undefined;
 
               const formattedColumn = {
                 id: col.id,

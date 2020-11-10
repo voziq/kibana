@@ -9,7 +9,7 @@
   <tbody>
     <tr>
       <td>
-        <kbn-agg-table-group1
+        <kbn-agg-table-group
           ng-if="table.tables"
           group="table"
           filter="filter"
@@ -18,8 +18,8 @@
           sort="sort"
           percentage-col="percentageCol"
           show-total="showTotal"
-          total-func="totalFunc"></kbn-agg-table-group1>
-        <kbn-agg-table1
+          total-func="totalFunc"></kbn-agg-table-group>
+        <kbn-agg-table
           ng-if="table.rows"
           filter="filter"
           table="table"
@@ -30,7 +30,7 @@
           percentage-col="percentageCol"
           show-total="showTotal"
           total-func="totalFunc">
-        </kbn-agg-table1>
+        </kbn-agg-table>
       </td>
     </tr>
   </tbody>
@@ -47,7 +47,7 @@
   <tbody>
     <tr>
       <td ng-repeat="table in columns">
-        <kbn-agg-table-group1
+        <kbn-agg-table-group
           ng-if="table.tables"
           filter="filter"
           group="table"
@@ -56,8 +56,8 @@
           sort="sort"
           show-total="showTotal"
           percentage-col="percentageCol"
-          total-func="totalFunc"></kbn-agg-table-group1>
-        <kbn-agg-table1
+          total-func="totalFunc"></kbn-agg-table-group>
+        <kbn-agg-table
           ng-if="table.rows"
           filter="filter"
           table="table"
@@ -68,7 +68,7 @@
           show-total="showTotal"
           percentage-col="percentageCol"
           total-func="totalFunc">
-        </kbn-agg-table1>
+        </kbn-agg-table>
       </td>
     </tr>
   </tbody>

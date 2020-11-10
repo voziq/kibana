@@ -16,41 +16,40 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-//import './css/site.less';
-import './jquery_selectlistactions';
-import {tableVisParamsTemplateDoc} from './table_vis_params_doc.html';
 
 import { IModule } from 'angular';
 
 // @ts-ignore
-import { TableVisController1 } from './table_vis_controller.js';
+import { TableVisController } from './table_vis_controller.js';
 // @ts-ignore
-import { KbnAggTable1 } from './agg_table/agg_table';
+import { KbnAggTable } from './agg_table/agg_table';
 // @ts-ignore
-import { KbnAggTableGroup1 } from './agg_table/agg_table_group';
+import { KbnAggTableGroup } from './agg_table/agg_table_group';
 // @ts-ignore
-import { KbnRows1 } from './paginated_table/rows';
+import { KbnRows } from './paginated_table/rows';
 // @ts-ignore
-import { PaginatedTable1 } from './paginated_table/paginated_table';
+import { PaginatedTable } from './paginated_table/paginated_table';
+
+import tableVisParamsTemplateDoc from './table_vis_params_doc.html';
 
 /** @internal */
-export const initTableVisLegacyModule1 = (angularIns: IModule): void => {
+export const initTableVisLegacyModule = (angularIns: IModule): void => {
   angularIns
-    .controller('KbnTableVisController1', TableVisController1)
-    .directive('kbnAggTable1', KbnAggTable1)
-    .directive('kbnAggTableGroup1', KbnAggTableGroup1)
-    .directive('kbnRows1', KbnRows1)
-    .directive('paginatedTable1', PaginatedTable1).directive('tableVisParamsDoc', function () {
-		alert("in");
+    .controller('KbnTableVisController', TableVisController)
+    .directive('kbnAggTable', KbnAggTable)
+    .directive('kbnAggTableGroup', KbnAggTableGroup)
+    .directive('kbnRows', KbnRows)
+    .directive('paginatedTable', PaginatedTable)
+	.directive('tableVisParamsDoc', function () {
     return {
       restrict: 'E',
       template: tableVisParamsTemplateDoc,
       link: function ($scope) {
-		  alert("legacymodule");
-		  console.dir("table_vis_lega");
-		  console.dir($scope);
+		  
 		$scope.fieldsList=[];
 		$scope.jsonField=false;
+		
+		
 		var labels=$scope.vis.indexPattern.fieldLabelMap;
 			for(var obj of $scope.vis.indexPattern.fields){
 				if(labels != undefined && JSON.parse(labels)[obj.name] !=undefined && JSON.parse(labels)[obj.name].length > 0){
@@ -65,9 +64,11 @@ export const initTableVisLegacyModule1 = (angularIns: IModule): void => {
 	 	 moveToFields();
 	   }
 	    $scope.addToView=function(){
+			alert("1");
 	 	  moveToList('#fieldsList', '#viewList',true);
 	   }
 	   $scope.addToExport=function(){
+		   alert("2");
 	 	  moveToList('#fieldsList', '#exportList',false);
 	   }
 	   $scope.moveUpView=function(){
@@ -103,8 +104,13 @@ export const initTableVisLegacyModule1 = (angularIns: IModule): void => {
 		   		}		 
 		   		  
 		    }
+			
+			
 		function moveToFields(){
-			var data=$scope.fieldsList;
+			
+			
+			
+			var data=$scope.fieldsList1;
 			try{
 				if($scope.vis.params.jsonInput!=""&&$scope.vis.params.jsonInput!=undefined)
 				{
@@ -202,4 +208,5 @@ export const initTableVisLegacyModule1 = (angularIns: IModule): void => {
       }
     };
   });
+	
 };

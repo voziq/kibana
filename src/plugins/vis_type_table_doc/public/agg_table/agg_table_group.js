@@ -19,7 +19,7 @@
 
 import aggTableGroupTemplate from './agg_table_group.html';
 
-export function KbnAggTableGroup1(RecursionHelper) {
+export function KbnAggTableGroup(RecursionHelper) {
   return {
     restrict: 'E',
     template: aggTableGroupTemplate,
@@ -39,6 +39,8 @@ export function KbnAggTableGroup1(RecursionHelper) {
       // And return the linking function(s) which it returns
       return RecursionHelper.compile($el, {
         post: function ($scope) {
+			
+			
           $scope.$watch('group', function (group) {
             // clear the previous "state"
             $scope.rows = $scope.columns = false;

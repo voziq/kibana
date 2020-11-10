@@ -21,11 +21,12 @@ import { EuiLoadingSpinner } from '@elastic/eui';
 import { VisOptionsProps } from 'src/plugins/vis_default_editor/public';
 import { TableVisParams } from '../types';
 
+
+
 const TableOptionsComponent = lazy(() => import('./table_vis_options'));
 
 export const TableOptions = (props: VisOptionsProps<TableVisParams>) => (
-  /*<Suspense fallback={<EuiLoadingSpinner />}>
+  <Suspense fallback={<EuiLoadingSpinner />}>
     <TableOptionsComponent {...props} />
-  </Suspense>*/
-  <table-vis-params-doc></table-vis-params-doc>
+  </Suspense>
 );

@@ -113,44 +113,4 @@
 
 	</div>
 </div>
-<script>
-	$('#btnAvenger').click(function(e) {
-		moveToList('#fieldsList', '#viewList');
-		e.preventDefault();
-	});
 
-	$('#btnRemoveView').click(function(e) {
-		$('select').removeSelected('#viewList');
-		e.preventDefault();
-	});
-
-	$('#btnViewUp').click(function(e) {
-		$('select').moveUpDown('#viewList', true, false);
-		e.preventDefault();
-	});
-
-	$('#btnViewrDown').click(function(e) {
-		$('select').moveUpDown('#viewList', false, true);
-		e.preventDefault();
-	});
-
-	$('#btnShield').click(function(e) {
-		$('select').moveToList('#fieldsList', '#exportList');
-		e.preventDefault();
-	});
-
-	$('#btnRemoveExport').click(function(e) {
-		$('select').removeSelected('#exportList');
-		e.preventDefault();
-	});
-
-	$('#btnExportUp').click(function(e) {
-		$('select').moveUpDown('#exportList', true, false);
-		e.preventDefault();
-	});
-
-	$('#btnExportDown').click(function(e) {
-		moveUpDown('#exportList', false, true);
-		e.preventDefault();
-	});
-</script>

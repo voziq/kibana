@@ -20,7 +20,7 @@
 import _ from 'lodash';
 import paginatedTableTemplate from './paginated_table.html';
 
-export function PaginatedTable1($filter) {
+export function PaginatedTable($filter) {
   const orderBy = $filter('orderBy');
 
   return {
@@ -41,9 +41,10 @@ export function PaginatedTable1($filter) {
       filter: '=',
       percentageCol: '=',
     },
-    controllerAs: 'paginatedTable1',
+    controllerAs: 'paginatedTable',
     controller: function ($scope) {
-		$scope.columns=$scope.table.columns;
+	
+		$scope.columns=$scope.table.columns;			  
       const self = this;
       self.sort = {
         columnIndex: null,
@@ -104,7 +105,8 @@ export function PaginatedTable1($filter) {
       }
 
       // update the sortedRows result
-      $scope.$watchMulti(['rows', 'columns', '[]sort', '[]paginatedTable1.sort'], resortRows);
+      $scope.$watchMulti(['rows', 'columns', '[]sort', '[]paginatedTable.sort'], resortRows);
+	  
     },
   };
 }

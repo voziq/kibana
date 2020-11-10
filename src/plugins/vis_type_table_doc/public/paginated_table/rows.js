@@ -22,10 +22,11 @@ import _ from 'lodash';
 import angular from 'angular';
 import tableCellFilterHtml from './table_cell_filter.html';
 
-export function KbnRows1($compile) {
+export function KbnRows($compile) {
   return {
     restrict: 'A',
     link: function ($scope, $el, attr) {
+		
       function addCell($tr, contents, column, row) {
         function createCell() {
           return $(document.createElement('td'));
@@ -106,7 +107,7 @@ export function KbnRows1($compile) {
         $tr.append($cell);
       }
 
-      $scope.$watchMulti([attr.kbnRows1, attr.kbnRowsMin], function (vals) {
+      $scope.$watchMulti([attr.kbnRows, attr.kbnRowsMin], function (vals) {
         let rows = vals[0];
         const min = vals[1];
 
@@ -129,6 +130,8 @@ export function KbnRows1($compile) {
           const $tr = $(document.createElement('tr')).appendTo($el);
           $scope.columns.forEach((column) => {
             const value = row[column.id];
+			
+			
             addCell($tr, value, column, row);
           });
         });

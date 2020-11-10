@@ -20,8 +20,8 @@ import { PluginInitializerContext, CoreSetup, CoreStart, Plugin } from 'kibana/p
 import { Plugin as ExpressionsPublicPlugin } from '../../expressions/public';
 import { VisualizationsSetup } from '../../visualizations/public';
 
-import { createTableVisDocFn } from './table_vis_fn';
-import { getTableVisTypeDefinition1 } from './table_vis_type';
+import { createTableVisFn } from './table_vis_fn';
+import { getTableVisTypeDefinition } from './table_vis_type';
 import { DataPublicPluginStart } from '../../data/public';
 import { setFormatService, setKibanaLegacy } from './services';
 import { KibanaLegacyStart } from '../../kibana_legacy/public';
@@ -39,7 +39,7 @@ export interface TablePluginStartDependencies {
 }
 
 /** @internal */
-export class TableVisDocPlugin implements Plugin<Promise<void>, void> {
+export class TableVisPlugin implements Plugin<Promise<void>, void> {
   initializerContext: PluginInitializerContext;
   createBaseVisualization: any;
 
@@ -51,9 +51,9 @@ export class TableVisDocPlugin implements Plugin<Promise<void>, void> {
     core: CoreSetup,
     { expressions, visualizations }: TablePluginSetupDependencies
   ) {
-    expressions.registerFunction(createTableVisDocFn);
+    expressions.registerFunction(createTableVisFn);
     visualizations.createBaseVisualization(
-      getTableVisTypeDefinition1(core, this.initializerContext)
+      getTableVisTypeDefinition(core, this.initializerContext)
     );
   }
 

@@ -1,4 +1,4 @@
-<paginated-table1
+<paginated-table
   ng-if="rows.length"
   table="table"
   rows="rows"
@@ -12,24 +12,24 @@
 
   <div class="kbnAggTable__controls">
     <small
-      i18n-id="visTypeTable.aggTable1.exportLabel"
+      i18n-id="visTypeTable.aggTable.exportLabel"
       i18n-default-message="Export:"
     ></small>&nbsp;&nbsp;
-    <a class="small" ng-click="aggTable1.exportAsCsv(false)">
+    <a class="small" ng-click="aggTable.exportAsCsv(false)">
       <span
         i18n-id="visTypeTable.aggTable.rawLabel"
         i18n-default-message="Raw"
        ></span>
        <i aria-hidden="true" class="fa fa-download"></i>
     </a>&nbsp;&nbsp;&nbsp;
-    <a class="small" ng-click="aggTable1.exportAsCsv(true)">
+    <a class="small" ng-click="aggTable.exportAsCsv(true)">
       <span
         i18n-id="visTypeTable.aggTable.formattedLabel"
         i18n-default-message="Formatted"
        ></span>
        <i aria-hidden="true" class="fa fa-download"></i>
     </a>&nbsp;&nbsp;&nbsp;
-    <a class="small" ng-if="aggTable1.isCustomExport" ng-click="aggTable1.generateReportForTbl()">
+    <a class="small" ng-if="aggTable.isCustomExport" ng-click="aggTable.generateReportForTbl()">
       <span
         i18n-id="common.ui.aggTable.formattedLabel"
         i18n-default-message="Total Rows"
@@ -38,4 +38,4 @@
     </a>
     <paginate-controls></paginate-controls>
   </div>
-</paginated-table1>
+</paginated-table>

@@ -136,7 +136,7 @@ const handleCourierRequest = async ({
             }
 
             if (visParams.typeName == 'table_doc') {
-            	  requestSearchSource.setField('size', visParams.numRows);
+            	  requestSearchSource.setField('size', 500);
             	  var hlt = {
             	  "pre_tags" : [
             	  "@kibana-highlighted-field@"

@@ -10,7 +10,7 @@
           <th
             scope="col"
             ng-repeat="col in columns"
-            ng-click="paginatedTable1.sortColumn($index)"
+            ng-click="paginatedTable.sortColumn($index)"
             kbn-accessible-click
             tabindex="0"
             class="{{ col.class }}">
@@ -25,9 +25,9 @@
               ng-if="col.sortable !== false"
               class="fa"
               ng-class="{
-                'fa-sort-asc': paginatedTable1.sort.columnIndex === $index && paginatedTable1.sort.direction === 'asc',
-                'fa-sort-desc': paginatedTable1.sort.columnIndex === $index && paginatedTable1.sort.direction === 'desc',
-                'fa-sort': paginatedTable1.sort.columnIndex !== $index || paginatedTable1.sort.direction === null
+                'fa-sort-asc': paginatedTable.sort.columnIndex === $index && paginatedTable.sort.direction === 'asc',
+                'fa-sort-desc': paginatedTable.sort.columnIndex === $index && paginatedTable.sort.direction === 'desc',
+                'fa-sort': paginatedTable.sort.columnIndex !== $index || paginatedTable.sort.direction === null
               }">
             </i>
           </th>

@@ -27,14 +27,13 @@ import tableVisTemplate from './table_vis.html';
 import { TableOptions } from './components/table_vis_options_lazy';
 import { getTableVisualizationControllerClass } from './vis_controller';
 import { VIS_EVENT_TO_TRIGGER } from '../../../plugins/visualizations/public';
-//import chrome from '../chrome';
-
-export function getTableVisTypeDefinition1(core: CoreSetup, context: PluginInitializerContext) {
+import './site.scss';
+export function getTableVisTypeDefinition(core: CoreSetup, context: PluginInitializerContext) {
   return {
     type: 'table',
     name: 'table_doc',
     title: i18n.translate('visTypeTable.tableVisTitle', {
-      defaultMessage: 'Advanced Data Table',
+      defaultMessage: 'Advance Data Table',
     }),
     icon: 'visTable',
     description: i18n.translate('visTypeTable.tableVisDescription', {
@@ -47,14 +46,14 @@ export function getTableVisTypeDefinition1(core: CoreSetup, context: PluginIniti
     visConfig: {
       defaults: {
         perPage: 10,
-		 typeName: 'table_doc',
         showPartialRows: false,
         showMetricsAtAllLevels: false,
+		typeName: 'table_doc',
         sort: {
           columnIndex: null,
           direction: null,
         },
-		    selectedColumns:[],
+		selectedColumns:[],
         selectedColumnsExp:[],
         showTotal: false,
         totalFunc: 'sum',
@@ -64,7 +63,6 @@ export function getTableVisTypeDefinition1(core: CoreSetup, context: PluginIniti
     },
     editorConfig: {
       optionsTemplate: TableOptions,
-	//optionsTemplate:'<table-vis-params-doc></table-vis-params-doc>',
       schemas: new Schemas([
         {
           group: AggGroupNames.Metrics,

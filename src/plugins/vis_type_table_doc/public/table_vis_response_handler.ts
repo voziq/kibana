@@ -51,7 +51,10 @@ export function tableVisResponseHandler(table: Input, dimensions: any): TableCon
 
   const split = dimensions.splitColumn || dimensions.splitRow;
 
+
   if (split) {
+	  
+	 
     converted.direction = dimensions.splitRow ? 'row' : 'column';
     const splitColumnIndex = split[0].accessor;
     const splitColumnFormatter = getFormatService().deserialize(split[0].format);
@@ -88,6 +91,7 @@ export function tableVisResponseHandler(table: Input, dimensions: any): TableCon
       (converted.tables[tableIndex] as any).tables[0].rows.push(row);
     });
   } else {
+	  
     converted.tables.push({
 		 raw:table.resp,
       columns: table.columns,
