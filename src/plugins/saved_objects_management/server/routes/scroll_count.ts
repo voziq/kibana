@@ -30,10 +30,10 @@ export const registerScrollForCountRoute = (router: IRouter) => {
           typesToInclude: schema.arrayOf(schema.string()),
           searchString: schema.maybe(schema.string()),
         }),
-		query: schema.object({
+		/*query: schema.object({
           userId: schema.string(),
           accountId: schema.string()
-        })
+        })*/
       },
     },
     router.handleLegacyErrors(async (context, req, res) => {
@@ -41,9 +41,9 @@ export const registerScrollForCountRoute = (router: IRouter) => {
 
       const findOptions: SavedObjectsFindOptions = {
         type: req.body.typesToInclude,
-        perPage: 1000,
-		accountId: req.query.accountId,
-      userId:req.query.userId	
+        perPage: 1000
+		//accountId: req.query.accountId,
+      //userId:req.query.userId	
       };
       if (req.body.searchString) {
         findOptions.search = `${req.body.searchString}*`;
