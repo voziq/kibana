@@ -105,7 +105,7 @@ export const TemplatesForm = React.memo(({ value }: Props) => {
       <EuiText size="s" color="subdued">
         <FormattedMessage
           id="xpack.idxMgmt.mappingsEditor.dynamicTemplatesDescription"
-          defaultMessage="Use dynamic templates to define custom mappings that can be applied to dynamically added fields. {docsLink}"
+          defaultMessage="Use dynamic templates to define custom mappings that can be applied to dynamically added fields."
           values={{
             docsLink: (
               <EuiLink href={documentationService.getDynamicTemplatesLink()} target="_blank">

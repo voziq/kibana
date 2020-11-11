@@ -87,7 +87,7 @@ export class FatalErrorsService {
       .subscribe({
         error: (error) => {
           // eslint-disable-next-line no-console
-          console.error('Uncaught error in fatal error service internals', error);
+       
         },
       });
 
@@ -100,7 +100,7 @@ export class FatalErrorsService {
         if (error instanceof Error) {
           // make stack traces clickable by putting whole error in the console
           // eslint-disable-next-line no-console
-          console.error(error);
+        
         }
 
         throw error;
@@ -146,7 +146,7 @@ export class FatalErrorsService {
   private setupGlobalErrorHandlers(fatalErrorsSetup: FatalErrorsSetup) {
     if (window.addEventListener) {
       window.addEventListener('unhandledrejection', function (e) {
-        console.log(`Detected an unhandled Promise rejection.\n${e.reason}`); // eslint-disable-line no-console
+    
       });
     }
   }

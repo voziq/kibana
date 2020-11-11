@@ -150,7 +150,7 @@ export const configurationFormSchema: FormSchema<MappingsConfiguration> = {
       helpText: () => (
         <FormattedMessage
           id="xpack.idxMgmt.mappingsEditor.configuration.dynamicDatesFieldHelpText"
-          defaultMessage="Strings in these formats will be mapped as dates. You can use built-in formats or custom formats. {docsLink}"
+          defaultMessage="Strings in these formats will be mapped as dates. You can use built-in formats or custom formats."
           values={{
             docsLink: (
               <EuiLink href={documentationService.getDateFormatLink()} target="_blank">

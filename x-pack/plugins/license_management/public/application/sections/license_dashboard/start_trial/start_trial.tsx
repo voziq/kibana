@@ -238,7 +238,7 @@ export class StartTrial extends Component<Props, State> {
         <FormattedMessage
           id="xpack.licenseMgmt.licenseDashboard.startTrial.subscriptionFeaturesExperienceDescription"
           defaultMessage="Experience what machine learning, advanced security,
-          and all our other {subscriptionFeaturesLinkText} have to offer."
+          and all our other subscription features have to offer."
           values={{
             subscriptionFeaturesLinkText: (
               <EuiLink href={EXTERNAL_LINKS.SUBSCRIPTIONS} target="_blank">

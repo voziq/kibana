@@ -37,7 +37,7 @@ export const ScriptingSyntax = () => {
         <p>
           <FormattedMessage
             id="indexPatternManagement.syntax.defaultLabel.defaultDetail"
-            defaultMessage="By default, Kibana scripted fields use {painless}, a simple and secure scripting language designed
+            defaultMessage="By default, Kibana scripted fields use Painless, a simple and secure scripting language designed
           specifically for use with Elasticsearch, to access values in the document use the following format:"
             values={{
               painless: (
@@ -63,7 +63,7 @@ export const ScriptingSyntax = () => {
         <p>
           <FormattedMessage
             id="indexPatternManagement.syntax.painlessLabel.painlessDetail"
-            defaultMessage="Painless is powerful but easy to use. It provides access to many {javaAPIs}. Read up on its {syntax} and
+            defaultMessage="Painless is powerful but easy to use. It provides access to many native Java APIs. Read up on its syntax and
           you'll be up to speed in no time!"
             values={{
               javaAPIs: (
@@ -99,7 +99,7 @@ export const ScriptingSyntax = () => {
         <p>
           <FormattedMessage
             id="indexPatternManagement.syntax.lucene.commonLabel.commonDetail"
-            defaultMessage="Coming from an older version of Kibana? The {lucene} you know and love are still available. Lucene expressions
+            defaultMessage="Coming from an older version of Kibana? The Lucene Expressions you know and love are still available. Lucene expressions
           are a lot like JavaScript, but limited to basic arithmetic, bitwise and comparison operations."
             values={{
               lucene: (

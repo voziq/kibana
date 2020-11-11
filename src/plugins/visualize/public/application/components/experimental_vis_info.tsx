@@ -40,7 +40,6 @@ export const InfoComponent = () => {
       className="hide-for-sharing"
       data-test-subj="experimentalVisInfo"
       size="s"
-      title={title}
       iconType="beaker"
     />
   );

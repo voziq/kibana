@@ -185,7 +185,7 @@ export function createTagCloudVisualization({ colors }) {
                                                                                                                 })
                                                                                                         }
 																									
-								console.dir(data);
+								
 	
 if(data.columns[0]!=undefined && data.columns[1]!=undefined)
 {

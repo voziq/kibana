@@ -43,10 +43,6 @@ class DefaultEditorController {
   constructor(el: HTMLElement, vis: Vis, eventEmitter: EventEmitter, embeddableHandler: any) {
     this.el = el;
     const { type: visType } = vis;
-console.dir("default editor");
-console.dir(visType);
-console.dir(visType.schemas.buckets || visType.schemas.metrics);
-console.dir(visType.name);
 var showData=visType.schemas.buckets || visType.schemas.metrics;
 	if(visType.name == 'table_doc'){		
             	  showData=false; 
@@ -76,7 +72,6 @@ var showData=visType.schemas.buckets || visType.schemas.metrics;
           ]
         : visType.editorConfig.optionTabs),
     ];
-console.dir(optionTabs);
     this.state = {
       vis,
       optionTabs,

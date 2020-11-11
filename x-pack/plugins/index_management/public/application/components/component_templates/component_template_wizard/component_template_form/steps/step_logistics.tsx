@@ -88,19 +88,7 @@ export const StepLogistics: React.FunctionComponent<Props> = React.memo(
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="s"
-              flush="right"
-              href={documentation.componentTemplates}
-              target="_blank"
-              iconType="help"
-              data-test-subj="documentationLink"
-            >
-              <FormattedMessage
-                id="xpack.idxMgmt.componentTemplateForm.stepLogistics.docsButtonLabel"
-                defaultMessage="Component Templates docs"
-              />
-            </EuiButtonEmpty>
+            
           </EuiFlexItem>
         </EuiFlexGroup>
 

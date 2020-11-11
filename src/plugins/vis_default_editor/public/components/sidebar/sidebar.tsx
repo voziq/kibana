@@ -176,11 +176,6 @@ function DefaultEditorSideBar({
     setValidity: setStateValidity,
     setTouched,
   };
-console.dir("sidebar");
-console.dir(SidebarTitle);
-console.dir(optionTabs);
-console.dir(selectedTab);
-console.dir("optionTabs");
   return (
     <>
       <EuiFlexGroup

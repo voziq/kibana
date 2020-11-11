@@ -20,7 +20,7 @@ export const buildTreemapData = (table, dimensions) => {
 		//chart.tooltipFormatter = tooltipFormatter;
 		initXAxis(chart, table);
 		initYAxis(chart);
-		console.dir(chart.aspects);
+		
 		
 		var series = getSeries(table, chart);
 		//console.dir(series);	
@@ -52,8 +52,7 @@ export const buildTreemapData = (table, dimensions) => {
 				})[0]);
 		}
                 
-		console.dir(sources.length);	
-		console.dir(sources);	
+		
 		for (var lpId = 0; lpId < sources.length; lpId++) {
             var value = [];
             var bucket = sources[lpId];

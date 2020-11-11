@@ -15,7 +15,6 @@ import { initXAxis } from '../../../vis_type_vislib/public/vislib/helpers/point_
 export const buildSankeyData = (table, dimensions) => {		
 		//getSeries(table.rows, chart);
 		
-		console.dir("-----------------jjjjj");
 		
 		var nodes = [];
 		var links = [];
@@ -28,7 +27,7 @@ export const buildSankeyData = (table, dimensions) => {
 		try {
 			sources = table.custom_rows;
 			aggConf = table.custom_columns[0].aggConfig;
-			console.dir(sources);
+			
 		} catch (e) {
 			return;
 		}
@@ -675,6 +674,4 @@ export const buildSankeyData = (table, dimensions) => {
 		delete chart.aspects;
 		return chart;
 		
-		console.dir("Sankey55555555555555");
-console.dir(chart);
 	};

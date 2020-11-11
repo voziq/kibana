@@ -61,18 +61,7 @@ export const StepAliases: React.FunctionComponent<Props> = React.memo(
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="s"
-              flush="right"
-              href={`${esDocsBase}/indices-aliases.html`}
-              target="_blank"
-              iconType="help"
-            >
-              <FormattedMessage
-                id="xpack.idxMgmt.formWizard.stepAliases.docsButtonLabel"
-                defaultMessage="Index Aliases docs"
-              />
-            </EuiButtonEmpty>
+           
           </EuiFlexItem>
         </EuiFlexGroup>
 

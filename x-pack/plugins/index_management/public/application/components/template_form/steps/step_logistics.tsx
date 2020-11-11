@@ -62,7 +62,7 @@ function getFieldsMeta(esDocsBase: string) {
       description: (
         <FormattedMessage
           id="xpack.idxMgmt.templateForm.stepLogistics.dataStreamDescription"
-          defaultMessage="The template creates data streams instead of indices. {docsLink}"
+          defaultMessage="The template creates data streams instead of indices."
           values={{
             docsLink: (
               <EuiLink
@@ -201,18 +201,7 @@ export const StepLogistics: React.FunctionComponent<Props> = React.memo(
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="s"
-              flush="right"
-              href={documentationService.getTemplatesDocumentationLink()}
-              target="_blank"
-              iconType="help"
-            >
-              <FormattedMessage
-                id="xpack.idxMgmt.templateForm.stepLogistics.docsButtonLabel"
-                defaultMessage="Index Templates docs"
-              />
-            </EuiButtonEmpty>
+            
           </EuiFlexItem>
         </EuiFlexGroup>
 

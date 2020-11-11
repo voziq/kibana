@@ -195,17 +195,7 @@ export const ConnectorAddFlyout = ({
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlyoutHeader>
-      <EuiFlyoutBody
-        banner={
-          !actionType && hasActionsUpgradeableByTrial ? (
-            <UpgradeYourLicenseCallOut http={http} />
-          ) : (
-            <Fragment />
-          )
-        }
-      >
-        {currentForm}
-      </EuiFlyoutBody>
+    
 
       <EuiFlyoutFooter>
         <EuiFlexGroup justifyContent="spaceBetween">

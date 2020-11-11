@@ -547,8 +547,7 @@ export class Field extends PureComponent<FieldProps> {
     }
 
     return (
-      <Fragment>
-        {deprecation}
+      <Fragment>      
         {description}
         {this.renderDefaultValue(setting)}
       </Fragment>

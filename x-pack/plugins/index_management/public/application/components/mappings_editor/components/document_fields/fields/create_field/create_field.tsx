@@ -103,7 +103,7 @@ export const CreateField = React.memo(function CreateFieldComponent({
         <TypeParameter
           isRootLevelField={isRootLevelField}
           isMultiField={isMultiField}
-          showDocLink
+          
         />
       </EuiFlexItem>
 
