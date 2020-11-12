@@ -661,7 +661,19 @@ export const ActionForm = ({
                 {hasDisabledByLicenseActionTypes && (
                   <EuiFlexItem grow={false}>
                     <EuiTitle size="xs">
-                     
+                      <h5>
+                        <EuiLink
+                          href={VIEW_LICENSE_OPTIONS_LINK}
+                          target="_blank"
+                          external
+                          className="actActionForm__getMoreActionsLink"
+                        >
+                          <FormattedMessage
+                            defaultMessage="Get more actions"
+                            id="xpack.triggersActionsUI.sections.actionForm.getMoreActionsTitle"
+                          />
+                        </EuiLink>
+                      </h5>
                     </EuiTitle>
                   </EuiFlexItem>
                 )}

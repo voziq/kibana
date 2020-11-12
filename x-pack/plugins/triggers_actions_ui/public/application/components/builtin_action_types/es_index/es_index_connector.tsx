@@ -84,7 +84,15 @@ const IndexActionConnectorFields: React.FunctionComponent<ActionConnectorFieldsP
               defaultMessage="Use * to broaden your query."
             />
             <EuiSpacer size="s" />
-           
+            <EuiLink
+              href={`${docLinks.ELASTIC_WEBSITE_URL}guide/en/kibana/${docLinks.DOC_LINK_VERSION}/index-action-type.html`}
+              target="_blank"
+            >
+              <FormattedMessage
+                id="xpack.triggersActionsUI.components.builtinActionTypes.indexAction.configureIndexHelpLabel"
+                defaultMessage="Configuring index connector."
+              />
+            </EuiLink>
           </>
         }
       >

@@ -94,7 +94,7 @@ export class StartTrial extends Component<Props, State> {
                   <p>
                     <FormattedMessage
                       id="xpack.licenseMgmt.licenseDashboard.startTrial.confirmModalDescription"
-                      defaultMessage="This trial is for the full set of {subscriptionFeaturesLinkText} of the Elastic Stack.
+                      defaultMessage="This trial is for the full set of subscription features of the Elastic Stack.
                       You'll get immediate access to:"
                       values={{
                         subscriptionFeaturesLinkText: (
@@ -144,7 +144,7 @@ export class StartTrial extends Component<Props, State> {
                       id="xpack.licenseMgmt.licenseDashboard.startTrial.confirmModalDescription.securityFeaturesConfigurationDescription"
                       defaultMessage="Advanced security features, such as authentication ({authenticationTypeList}),
                       field- and document-level security, and auditing, require configuration.
-                      See the {securityDocumentationLinkText} for instructions."
+                      See the documentation for instructions."
                       values={{
                         authenticationTypeList: 'AD/LDAP, SAML, PKI, SAML/SSO',
                         securityDocumentationLinkText: (
@@ -161,7 +161,7 @@ export class StartTrial extends Component<Props, State> {
                   <p>
                     <FormattedMessage
                       id="xpack.licenseMgmt.licenseDashboard.startTrial.confirmModalDescription.termsAndConditionsDescription"
-                      defaultMessage="By starting this trial, you agree that it is subject to these {termsAndConditionsLinkText}."
+                      defaultMessage="By starting this trial, you agree that it is subject to these terms and conditions."
                       values={{
                         termsAndConditionsLinkText: (
                           <EuiLink href={EXTERNAL_LINKS.TRIAL_LICENSE} target="_blank">
