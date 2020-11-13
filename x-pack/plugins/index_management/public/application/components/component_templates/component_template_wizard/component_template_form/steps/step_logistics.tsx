@@ -153,7 +153,7 @@ export const StepLogistics: React.FunctionComponent<Props> = React.memo(
             <>
               <FormattedMessage
                 id="xpack.idxMgmt.componentTemplateForm.stepLogistics.metaDescription"
-                defaultMessage="Arbitrary information about the template, stored in the cluster state. {learnMoreLink}"
+                defaultMessage="Arbitrary information about the template, stored in the cluster state."
                 values={{
                   learnMoreLink: (
                     <EuiLink
