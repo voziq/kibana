@@ -41,87 +41,13 @@ function TableOptions({
 }: VisOptionsProps<TableVisParams>) {
 
 
-  const percentageColumns = useMemo(
-    () => [
-      {
-        value: '',
-        text: i18n.translate('visTypeTable.params.defaultPercentageCol', {
-          defaultMessage: 'Don’t show',
-        }),
-      },
-      ...tabifyGetColumns(aggs.getResponseAggs(), true)
-        .filter((col) => get(col.aggConfig.toSerializedFieldFormat(), 'id') === 'number')
-        .map(({ name }) => ({ value: name, text: name })),
-    ],
-    [aggs]
-  );
-  
-  
-var moveToList=null;
-
-  const isPerPageValid = stateParams.perPage === '' || stateParams.perPage > 0;
-  
-    //const [selectedColumns, setSselectedColumns] = useState(())
-   
-  // setSselectedColumns(selectedColumns => [...selectedColumns, vis.params.selectedColumns]);
-	
-  //const [selectedColumnsExp, setSetSiblingsNum] = 
-   // useState([])
-
-  //const handleAge = () => setSselectedColumns(selectedColumns => [...selectedColumns, vis.params.selectedColumns])
- /* const handleSiblingsNum = () => 
-      setSiblingsNum(siblingsNum + 1)*/
-	  
-	  
-	 
-	   //console.dir(selectedColumns);
-
- /* useEffect(() => {
-    setValidity(isPerPageValid);
-  }, [isPerPageValid, setValidity]);
-
-  useEffect(() => {
-	  alert("lll");
-    if (
-      !percentageColumns.find(({ value }) => value === stateParams.percentageCol) &&
-      percentageColumns[0] &&
-      percentageColumns[0].value !== stateParams.percentageCol
-    ) {
-      setValue('percentageCol', percentageColumns[0].value);
-    }
-	
-	
-  }, [percentageColumns, stateParams.percentageCol, setValidity, setValue]);*/
-
-
-
-useEffect(() => {
-	
-  setValue('selectedColumns', vis.params.selectedColumns);
-  }, []);
-
 var fieldsList=[];
 
-
-
-
-
-$("button[data-test-subj='visualizeEditorRenderButton']").click(function(){
-
-
-	
-	//uiState.set('vis.params.selectedColumns', vis.params.selectedColumns);
-	//console.dir(vis.params.selectedColumns);
-	//console.dir(uiState.get('vis.params.selectedColumns'));
-		
-		stateParams.selectedColumnsExp.push(vis.params.selectedColumns)
-		uiState._events.reload();
-		
-})
 $(document).ready(function(){
 
-
-
+$("button[data-test-subj='visualizeEditorRenderButton']").click(function(){		
+		uiState._events.reload();		
+})
 			
 		var jsonField=false;
 		var labels=aggs.indexPattern.fieldLabelMap;
@@ -133,12 +59,8 @@ $(document).ready(function(){
 				}
 			}
 		
-		
-			
-			
 
-			moveToFields();
-			
+			moveToFields();			
 			
 			$('#btnAvenger11').click(function(e) {
 				
@@ -147,6 +69,7 @@ $(document).ready(function(){
 	});
 			   
 	   		$('#btnAvenger1').click(function(e) {
+				
 				
 		 moveToList('#fieldsList', '#viewList',true);
 	});
@@ -159,6 +82,7 @@ $(document).ready(function(){
 	    
 	   
 	         		$('#btnViewUp1').click(function(e) {
+
 						
 		 moveUp('#viewList');
 	});
@@ -209,9 +133,7 @@ $(document).ready(function(){
 		   jsonField=true;
 		   		}
 	});
-	   
-			
-						
+	   				
 			
 			
 		function moveToFields(){
@@ -405,22 +327,22 @@ $( 'select[id="fieldsList"]' ).append( optionsAsString );
 		<div className="kuiSideBarFormRow">
 			
 						<div className="selected-left">
-							<select multiple className="form-control" ng-model="vwList"
+							<select multiple className="form-control" 
 								id="viewList">
 							</select>
 						</div>
 					
 						<div className="selected-right" >
 							<button type="button" className="btn btn-default btn-sm"
-								ng-click='moveUpView()' id="btnViewUp1">
+								 id="btnViewUp1">
 								<span className="fa fa-chevron-up"></span>
 							</button>
 							<button type="button" className="btn btn-default btn-sm"
-								ng-click='moveDownView()' id="btnViewDown1">
+								 id="btnViewDown1">
 								<span className="fa fa-chevron-down"></span>
 							</button>
 							<button type="button" className="btn btn-default btn-sm"
-								ng-click='removeView()' id="btnRemoveView1">
+								 id="btnRemoveView1">
 								<span className="fa fa-remove"></span>
 							</button>
 						</div>
@@ -434,7 +356,7 @@ $( 'select[id="fieldsList"]' ).append( optionsAsString );
 		<div className="kuiSideBarFormRow">
 			
 						<div className="selected-left">
-							<select multiple className="form-control" ng-model="expList"
+							<select multiple className="form-control" 
 								id="exportList">
 							</select>
 						</div>
