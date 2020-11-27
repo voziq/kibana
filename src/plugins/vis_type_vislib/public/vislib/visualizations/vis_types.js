@@ -20,11 +20,12 @@
 import { PointSeries } from './point_series';
 import { PieChart } from './pie_chart';
 import { GaugeChart } from './gauge_chart';
-
+import { BubbleChart } from '../../../../bubble/public/bubble_chart';
 export const visTypes = {
   pie: PieChart,
   point_series: PointSeries,
   gauge: GaugeChart,
   goal: GaugeChart,
   metric: GaugeChart,
+  bubble: BubbleChart,
 };

@@ -20,11 +20,12 @@
 import { columnLayout } from './types/column_layout';
 import { pieLayout } from './types/pie_layout';
 import { gaugeLayout } from './types/gauge_layout';
-
+import { customLayout } from './types/custom_layout';
 export const layoutTypes = {
   pie: pieLayout,
   gauge: gaugeLayout,
   goal: gaugeLayout,
   metric: gaugeLayout,
   point_series: columnLayout,
+   bubble: customLayout,
 };

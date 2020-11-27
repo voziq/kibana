@@ -25,3 +25,4 @@ export { createHeatmapVisTypeDefinition } from './heatmap';
 export { createHorizontalBarVisTypeDefinition } from './horizontal_bar';
 export { createGaugeVisTypeDefinition } from './gauge';
 export { createGoalVisTypeDefinition } from './goal';
+export { createBubbleVisTypeDefinition } from '../../bubble/public/bubble';

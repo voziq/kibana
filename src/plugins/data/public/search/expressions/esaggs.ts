@@ -71,6 +71,8 @@ export interface RequestHandlerParams {
 const name = 'esaggs';
 
 const handleCourierRequest = async ({
+visParams,
+vis_type,		   
   searchSource,
   aggs,
   timeRange,
@@ -196,7 +198,8 @@ const handleCourierRequest = async ({
   (searchSource as any).tabifiedResponse = tabifyAggResponse(
     aggs,
     (searchSource as any).finalResponse,
-    tabifyParams
+    tabifyParams,
+	visParams
   );
 
   inspectorAdapters.data.setTabularLoader(
@@ -228,6 +231,11 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
       default: false,
       help: '',
     },
+	 type: {
+          types: ['string', 'null'],
+           default: null,
+           help: ''
+         }, 
     partialRows: {
       types: ['boolean'],
       default: false,
@@ -242,7 +250,11 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
       types: ['string'],
       default: '""',
       help: '',
-    },
+    },visParams: {
+          types: ["string"],
+       default: '"{}"',
+          help: ""
+      },
     timeFields: {
       types: ['string'],
       help: '',
@@ -277,11 +289,15 @@ export const esaggs = (): EsaggsExpressionFunctionDefinition => ({
       inspectorAdapters: inspectorAdapters as Adapters,
       filterManager,
       abortSignal: (abortSignal as unknown) as AbortSignal,
+		 visParams : JSON.parse(args.visParams),
+                  vis_type: args.type,									
     });
 
     const table: KibanaDatatable = {
       type: 'kibana_datatable',
       rows: response.rows,
+		resp: response,
+	  filterManager:filterManager,		  
       columns: response.columns.map((column: any) => {
         const cleanedColumn: KibanaDatatableColumn = {
           id: column.id,

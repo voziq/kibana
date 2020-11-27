@@ -84,6 +84,7 @@ const vislibCharts: string[] = [
   'histogram',
   'horizontal_bar',
   'line',
+  'bubble',
 ];
 
 export const getSchemas = <TVisParams>(
@@ -414,8 +415,10 @@ export const buildPipeline = async (vis: Vis, params: BuildPipelineParams) => {
       pipeline += `esaggs
     ${prepareString('index', indexPattern!.id)}
     metricsAtAllLevels=${vis.isHierarchical()}
+	type=${vis.type.name}
     partialRows=${vis.params.showPartialRows || false}
-    ${prepareJson('aggConfigs', vis.data.aggs!.aggs)} | `;
+    ${prepareJson('aggConfigs', vis.data.aggs!.aggs)}
+	${prepareString('visParams', JSON.stringify(vis.params))}| `;
     }
 
     const schemas = getSchemas(vis, params);

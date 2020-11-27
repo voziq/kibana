@@ -20,3 +20,4 @@
 export { Tooltip } from './tooltip';
 export { hierarchicalTooltipFormatter } from './_hierarchical_tooltip_formatter';
 export { pointSeriesTooltipFormatter } from './_pointseries_tooltip_formatter';
+export { bubbleTooltipFormatter } from './_bubble_tooltip_formatter';

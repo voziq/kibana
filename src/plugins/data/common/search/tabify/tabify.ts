@@ -30,7 +30,8 @@ import { AggGroupNames, IAggConfigs } from '../aggs';
 export function tabifyAggResponse(
   aggConfigs: IAggConfigs,
   esResponse: Record<string, any>,
-  respOpts?: Partial<TabbedResponseWriterOptions>
+  respOpts?: Partial<TabbedResponseWriterOptions>,
+	vis 
 ) {
   /**
    * read an aggregation from a bucket, which *might* be found at key (if
@@ -49,6 +50,7 @@ export function tabifyAggResponse(
     if (column) {
       const agg = column.aggConfig;
       const aggInfo = agg.write(aggs);
+		agg.doc_count=[];			
       aggScale *= aggInfo.metricScale || 1;
 
       switch (agg.type.type) {
@@ -65,6 +67,7 @@ export function tabifyAggResponse(
 
               if (hasBucketValue) {
                 write.bucketBuffer.push({ id: column.id, value: bucketValue });
+					rawData.push(subBucket);		
               }
 
               collectBucket(
@@ -146,14 +149,28 @@ export function tabifyAggResponse(
       write.columns.unshift(column);
     }
   }
-
-  const write = new TabbedAggResponseWriter(aggConfigs, respOpts || {});
+let rawData=null;
+  const write = new TabbedAggResponseWriter(aggConfigs, respOpts || {}, vis);
   const topLevelBucket: AggResponseBucket = {
     ...esResponse.aggregations,
     doc_count: esResponse.hits.total,
   };
-
+ rawData=[];	  
+if(aggConfigs.length !=0){
   collectBucket(aggConfigs, write, topLevelBucket, '', 1);
+}
+     try{
 
-  return write.response();
+														  
+
+		if(aggConfigs.length !=0 && (vis.typeName == 'table_doc' || vis.type == 'tagcloud' || vis.type == 'network')){
+			
+			var tb=write.response(rawData);			
+			tb.raw=esResponse;	
+			tb.qry=respOpts.reqBody;
+			return tb;
+		}/*else if(aggConfigs.length !=0 && (vis.type.name == 'bubble' || vis.type.name == 'co_occurrence')){		
+			return write.response2(rawData);
+		}*/}catch(e){}
+  return write.response(rawData);
 }

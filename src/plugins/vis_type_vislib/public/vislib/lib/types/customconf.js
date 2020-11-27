@@ -17,9 +17,17 @@
  * under the License.
  */
 
-export { GaugeOptions } from './gauge';
-export { PieOptions } from './pie';
-export { PointSeriesOptions } from './point_series';
-export { HeatmapOptions } from './heatmap';
-export { MetricsAxisOptions } from './metrics_axes';
-export { BubbleOptions } from './bubble';
+import _ from 'lodash';
+
+export function vislibCustomConfig(config) {
+  if (!config.chart) {
+    config.chart = _.defaults({}, config, {
+      type: 'pie',
+      labels: {
+        show: false,
+        truncate: 100
+      }
+    });
+  }
+  return config;
+}

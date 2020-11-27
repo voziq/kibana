@@ -20,7 +20,7 @@
 import { vislibPointSeriesTypes as pointSeries } from './point_series';
 import { vislibPieConfig } from './pie';
 import { vislibGaugeConfig } from './gauge';
-
+import { vislibCustomConfig } from './customconf';
 export const vislibTypesConfig = {
   histogram: pointSeries.column,
   horizontal_bar: pointSeries.column,
@@ -32,4 +32,5 @@ export const vislibTypesConfig = {
   gauge: vislibGaugeConfig,
   goal: vislibGaugeConfig,
   metric: vislibGaugeConfig,
+  bubble: vislibCustomConfig,
 };
