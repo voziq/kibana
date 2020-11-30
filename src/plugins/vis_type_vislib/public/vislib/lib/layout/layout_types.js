@@ -29,4 +29,5 @@ export const layoutTypes = {
   point_series: columnLayout,
    bubble: customLayout,
     treemap: customLayout,
+	sankey: customLayout,
 };

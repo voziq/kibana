@@ -86,6 +86,7 @@ const vislibCharts: string[] = [
   'line',
   'bubble',
   'treemap',
+  'sankey',
 ];
 
 export const getSchemas = <TVisParams>(

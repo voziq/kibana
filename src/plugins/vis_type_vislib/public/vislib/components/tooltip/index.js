@@ -22,3 +22,4 @@ export { hierarchicalTooltipFormatter } from './_hierarchical_tooltip_formatter'
 export { pointSeriesTooltipFormatter } from './_pointseries_tooltip_formatter';
 export { bubbleTooltipFormatter } from './_bubble_tooltip_formatter';
 export { treemapTooltipFormatter } from './_treemap_tooltip_formatter';
+export { sankeyTooltipFormatter } from './_sankey_tooltip_formatter';

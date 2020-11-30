@@ -22,6 +22,7 @@ import { PieChart } from './pie_chart';
 import { GaugeChart } from './gauge_chart';
 import { BubbleChart } from '../../../../bubble/public/bubble_chart';
 import { TreemapChart } from '../../../../treemap/public/treemap_chart';
+import { SankeyChart } from '../../../../sankey/public/sankey_chart';
 export const visTypes = {
   pie: PieChart,
   point_series: PointSeries,
@@ -30,4 +31,5 @@ export const visTypes = {
   metric: GaugeChart,
   bubble: BubbleChart,
   treemap: TreemapChart,
+  sankey: SankeyChart,
 };
