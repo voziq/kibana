@@ -1,0 +1,21 @@
+.axis path,
+	.axis line {
+	  fill: none;
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+	  opacity: 1;
+	}
+
+	.axis text { font-size:10px; }
+
+	
+	.circles { opacity: .5; cursor: pointer;}
+
+	.tipsy { font-size:11px; margin-top:-10px;}
+
+	.guide line {
+	  fill: none;
+	  stroke: #000;
+	  shape-rendering: crispEdges;
+	  opacity: 0;
+	}

@@ -31,4 +31,5 @@ export const layoutTypes = {
     treemap: customLayout,
 	sankey: customLayout,
 	 heatmap_dn: customLayout,
+	  scatterbubble: customLayout,
 };

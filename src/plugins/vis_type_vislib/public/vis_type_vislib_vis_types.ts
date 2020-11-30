@@ -29,3 +29,4 @@ export { createBubbleVisTypeDefinition } from '../../bubble/public/bubble';
 export { createTreemapVisTypeDefinition } from '../../treemap/public/treemap';
 export { createSankeyVisTypeDefinition } from '../../sankey/public/sankey';
 export { createHeatmapDnVisTypeDefinition } from '../../heatmap_dn/public/heatmap_dn';
+export { createScatterBubbleVisTypeDefinition } from '../../scatterbubble/public/scatterbubble';

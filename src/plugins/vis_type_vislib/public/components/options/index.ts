@@ -26,3 +26,4 @@ export { BubbleOptions } from './bubble';
 export { TreemapOptions } from './treemap';
 export { SankeyOptions } from './sankey';
 export { HeatMap_dnOptions } from './heatmap_dn';
+export { ScatterBubbleOptions } from './scatterbubble';
