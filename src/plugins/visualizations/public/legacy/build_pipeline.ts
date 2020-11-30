@@ -89,6 +89,7 @@ const vislibCharts: string[] = [
   'sankey',
   'heatmap_dn',
   'scatterbubble',
+  'radar',
 ];
 
 export const getSchemas = <TVisParams>(

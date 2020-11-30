@@ -32,4 +32,5 @@ export const layoutTypes = {
 	sankey: customLayout,
 	 heatmap_dn: customLayout,
 	  scatterbubble: customLayout,
+	  radar: customLayout,
 };

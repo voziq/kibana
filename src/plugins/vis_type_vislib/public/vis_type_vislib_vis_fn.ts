@@ -20,7 +20,7 @@
 import { i18n } from '@kbn/i18n';
 import { ExpressionFunctionDefinition, KibanaDatatable, Render } from '../../expressions/public';
 // @ts-ignore
-import { vislibSeriesResponseHandler, vislibBubbleResponseHandler, vislibTreemapResponseHandler, vislibSankeyResponseHandler, vislibHeatmapDnResponseHandler, vislibScatterBubbleResponseHandler } from './vislib/response_handler';
+import { vislibSeriesResponseHandler, vislibBubbleResponseHandler, vislibTreemapResponseHandler, vislibSankeyResponseHandler, vislibHeatmapDnResponseHandler, vislibScatterBubbleResponseHandler, vislibRadarResponseHandler } from './vislib/response_handler';
 
 interface Arguments {
   type: string;
@@ -74,6 +74,8 @@ export const createVisTypeVislibVisFn = (): ExpressionFunctionDefinition<
 			 convertedData = vislibHeatmapDnResponseHandler(context, visConfigParams.dimensions);
 		}else if(args.type == 'scatterbubble'){			
 			 convertedData = vislibScatterBubbleResponseHandler(context, visConfigParams.dimensions);
+		}else if(args.type == 'radar'){			
+			 convertedData = vislibRadarResponseHandler(context, visConfigParams.dimensions);
 		}else{
 			convertedData = vislibSeriesResponseHandler(context, visConfigParams.dimensions);
 		}

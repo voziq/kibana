@@ -46,6 +46,7 @@ import {
   createSankeyVisTypeDefinition,
   createHeatmapDnVisTypeDefinition,
   createScatterBubbleVisTypeDefinition,
+  createRadarVisTypeDefinition,
 } from './vis_type_vislib_vis_types';
 import { ChartsPluginSetup } from '../../charts/public';
 import { DataPublicPluginStart } from '../../data/public';
@@ -99,6 +100,7 @@ export class VisTypeVislibPlugin implements Plugin<void, void> {
 	  createSankeyVisTypeDefinition,
 	  createHeatmapDnVisTypeDefinition,
 	  createScatterBubbleVisTypeDefinition,
+	  createRadarVisTypeDefinition,
     ];
     const vislibFns = [createVisTypeVislibVisFn(), createPieVisFn()];
 
