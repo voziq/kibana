@@ -352,38 +352,6 @@ export const StepReview: React.FunctionComponent<Props> = React.memo(
         </EuiTitle>
 
         <EuiSpacer size="l" />
-
-        {hasWildCardIndexPattern ? (
-          <Fragment>
-            <EuiCallOut
-              title={
-                <FormattedMessage
-                  id="xpack.idxMgmt.templateForm.stepReview.summaryTab.indexPatternsWarningTitle"
-                  defaultMessage="This template uses a wildcard (*) as an index pattern."
-                />
-              }
-              color="warning"
-              iconType="help"
-              data-test-subj="indexPatternsWarning"
-            >
-              <p data-test-subj="indexPatternsWarningDescription">
-                <FormattedMessage
-                  id="xpack.idxMgmt.templateForm.stepReview.summaryTab.indexPatternsWarningDescription"
-                  defaultMessage="All new indices that you create will use this template."
-                />{' '}
-                {/* Edit link navigates back to step 1 (logistics) */}
-                <EuiLink onClick={navigateToStep.bind(null, 'logistics')}>
-                  <FormattedMessage
-                    id="xpack.idxMgmt.templateForm.stepReview.summaryTab.indexPatternsWarningLinkText"
-                    defaultMessage="Edit index patterns."
-                  />
-                </EuiLink>
-              </p>
-            </EuiCallOut>
-            <EuiSpacer size="m" />
-          </Fragment>
-        ) : null}
-
         <EuiTabbedContent data-test-subj="summaryTabContent" tabs={tabs} />
       </div>
     );

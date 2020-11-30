@@ -171,7 +171,7 @@ export const EditIndexPattern = withRouter(
       'indexPatternManagement.editIndexPattern.mappingConflictLabel',
       {
         defaultMessage:
-          '{conflictFieldsLength, plural, one {A field is} other {# fields are}} defined as several types (string, integer, etc) across the indices that match this pattern. You may still be able to use these conflict fields in parts of Kibana, but they will be unavailable for functions that require Kibana to know their type. Correcting this issue will require reindexing your data.',
+          '{conflictFieldsLength, plural, one {A field is} other {# fields are}} defined as several types (string, integer, etc) across the indices that match this pattern. You may still be able to use these conflict fields in parts of VOZIQ Insights, but they will be unavailable for functions that require VOZIQ Insights to know their type. Correcting this issue will require reindexing your data.',
         values: { conflictFieldsLength: conflictedFields.length },
       }
     );
@@ -214,16 +214,10 @@ export const EditIndexPattern = withRouter(
             <p>
               <FormattedMessage
                 id="indexPatternManagement.editIndexPattern.timeFilterLabel.timeFilterDetail"
-                defaultMessage="This page lists every field in the {indexPatternTitle} index and the field's associated core type as recorded by Elasticsearch. To change a field type, use the Elasticsearch"
+                defaultMessage="This page lists every field in the {indexPatternTitle} index and the field's associated core type as recorded by VOZIQ BI. To change a field type, use the VOZIQ BI"
                 values={{ indexPatternTitle: <strong>{indexPattern.title}</strong> }}
               />{' '}
-              <EuiLink
-                href="http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html"
-                target="_blank"
-                external
-              >
-                {mappingAPILink}
-              </EuiLink>
+             
             </p>
           </EuiText>
           {conflictedFields.length > 0 && (

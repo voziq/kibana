@@ -88,22 +88,7 @@ export const StepLogistics: React.FunctionComponent<Props> = React.memo(
               </h2>
             </EuiTitle>
           </EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="s"
-              flush="right"
-              href={documentation.componentTemplates}
-              target="_blank"
-              iconType="help"
-              data-test-subj="documentationLink"
-            >
-              <FormattedMessage
-                id="xpack.idxMgmt.componentTemplateForm.stepLogistics.docsButtonLabel"
-                defaultMessage="Component Templates docs"
-              />
-            </EuiButtonEmpty>
-          </EuiFlexItem>
+       
         </EuiFlexGroup>
 
         <EuiSpacer size="l" />
@@ -167,7 +152,7 @@ export const StepLogistics: React.FunctionComponent<Props> = React.memo(
             <>
               <FormattedMessage
                 id="xpack.idxMgmt.componentTemplateForm.stepLogistics.metaDescription"
-                defaultMessage="Arbitrary information about the template, stored in the cluster state. {learnMoreLink}"
+                defaultMessage="Arbitrary information about the template, stored in the cluster state."
                 values={{
                   learnMoreLink: (
                     <EuiLink

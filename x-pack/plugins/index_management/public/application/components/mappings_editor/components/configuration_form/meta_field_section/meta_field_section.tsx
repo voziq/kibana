@@ -23,7 +23,7 @@ export const MetaFieldSection = () => (
       <>
         <FormattedMessage
           id="xpack.idxMgmt.mappingsEditor.metaFieldDescription"
-          defaultMessage="Use the _meta field to store any metadata you want. {docsLink}"
+          defaultMessage="Use the _meta field to store any metadata you want."
           values={{
             docsLink: (
               <EuiLink href={documentationService.getMetaFieldLink()} target="_blank">

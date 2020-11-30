@@ -82,7 +82,7 @@ export class RevertToBasic extends React.PureComponent {
         <FormattedMessage
           id="xpack.licenseMgmt.licenseDashboard.revertToBasic.revertToFreeFeaturesDescription"
           defaultMessage="You’ll revert to our free features and lose access to
-          machine learning, advanced security, and other {subscriptionFeaturesLinkText}."
+          machine learning, advanced security, and other subscription features."
           values={{
             subscriptionFeaturesLinkText: (
               <EuiLink href={EXTERNAL_LINKS.SUBSCRIPTIONS} target="_blank">

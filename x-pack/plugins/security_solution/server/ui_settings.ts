@@ -71,12 +71,12 @@ export const initUiSettings = (uiSettings: CoreSetup['uiSettings']) => {
     },
     [DEFAULT_INDEX_KEY]: {
       name: i18n.translate('xpack.securitySolution.uiSettings.defaultIndexLabel', {
-        defaultMessage: 'Elasticsearch indices',
+        defaultMessage: 'VOZIQ BI indices',
       }),
       value: DEFAULT_INDEX_PATTERN,
       description: i18n.translate('xpack.securitySolution.uiSettings.defaultIndexDescription', {
         defaultMessage:
-          '<p>Comma-delimited list of Elasticsearch indices from which the Security app collects events.</p>',
+          '<p>Comma-delimited list of VOZIQ BI indices from which the Security app collects events.</p>',
       }),
       category: ['securitySolution'],
       requiresPageReload: true,

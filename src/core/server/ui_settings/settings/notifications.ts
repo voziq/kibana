@@ -31,7 +31,7 @@ export const getNotificationsSettings = (): Record<string, UiSettingsParams> => 
       type: 'markdown',
       description: i18n.translate('core.ui_settings.params.notifications.bannerText', {
         defaultMessage:
-          'A custom banner intended for temporary notices to all users. {markdownLink}.',
+          'A custom banner intended for temporary notices to all users. Markdown supported.',
         description:
           'Part of composite text: core.ui_settings.params.notifications.bannerText + ' +
           'core.ui_settings.params.notifications.banner.markdownLinkText',

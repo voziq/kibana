@@ -42,7 +42,7 @@ function RawJsonParamEditor({
     () =>
       i18n.translate('visDefaultEditor.controls.jsonInputTooltip', {
         defaultMessage:
-          "Any JSON formatted properties you add here will be merged with the elasticsearch aggregation definition for this section. For example 'shard_size' on a terms aggregation.",
+          "Any JSON formatted properties you add here will be merged with the VOZIQ BI aggregation definition for this section. For example 'shard_size' on a terms aggregation.",
       }),
     []
   );

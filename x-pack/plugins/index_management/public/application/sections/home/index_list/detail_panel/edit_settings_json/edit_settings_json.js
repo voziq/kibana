@@ -134,18 +134,7 @@ export class EditSettingsJson extends React.PureComponent {
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer />
-        <EuiLink
-          href={documentationService.getSettingsDocumentationLink()}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FormattedMessage
-            id="xpack.idxMgmt.editSettingsJSON.settingsReferenceLinkText"
-            defaultMessage="Settings reference"
-          />
-        </EuiLink>
-        <EuiSpacer />
+        <EuiSpacer />    
         <div
           data-test-subj="indexJsonEditor"
           ref={(aceDiv) => {

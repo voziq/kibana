@@ -127,7 +127,7 @@ export const TemplateList: React.FunctionComponent<RouteComponentProps<MatchPara
         <EuiText color="subdued">
           <FormattedMessage
             id="xpack.idxMgmt.home.indexTemplatesDescription"
-            defaultMessage="Use index templates to automatically apply settings, mappings, and aliases to indices. {learnMoreLink}"
+            defaultMessage="Use index templates to automatically apply settings, mappings, and aliases to indices."
             values={{
               learnMoreLink: (
                 <EuiLink

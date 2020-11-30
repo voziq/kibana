@@ -40,17 +40,6 @@ function VegaHelpMenu() {
 
   const items = [
     <EuiContextMenuItem
-      key="vegaHelp"
-      href="https://www.elastic.co/guide/en/kibana/master/vega-graph.html"
-      target="_blank"
-      onClick={closePopover}
-    >
-      <FormattedMessage
-        id="visTypeVega.editor.vegaHelpLinkText"
-        defaultMessage="Kibana Vega help"
-      />
-    </EuiContextMenuItem>,
-    <EuiContextMenuItem
       key="vegaLiteDocs"
       href="https://vega.github.io/vega-lite/docs/"
       target="_blank"

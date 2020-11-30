@@ -32,7 +32,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
         'maps_legacy.advancedSettings.visualization.tileMap.maxPrecisionText',
         {
           defaultMessage:
-            'The maximum geoHash precision displayed on tile maps: 7 is high, 10 is very high, 12 is the max. {cellDimensionsLink}',
+            'The maximum geoHash precision displayed on tile maps: 7 is high, 10 is very high, 12 is the max. Explanation of cell dimensions',
           description:
             'Part of composite text: maps_legacy.advancedSettings.visualization.tileMap.maxPrecisionText + ' +
             'maps_legacy.advancedSettings.visualization.tileMap.maxPrecision.cellDimensionsLinkText',
@@ -78,7 +78,7 @@ export function getUiSettings(): Record<string, UiSettingsParams<unknown>> {
         'maps_legacy.advancedSettings.visualization.tileMap.wmsDefaultsText',
         {
           defaultMessage:
-            'Default {propertiesLink} for the WMS map server support in the coordinate map',
+            'Default properties for the WMS map server support in the coordinate map',
           description:
             'Part of composite text: maps_legacy.advancedSettings.visualization.tileMap.wmsDefaultsText + ' +
             'maps_legacy.advancedSettings.visualization.tileMap.wmsDefaults.propertiesLinkText',

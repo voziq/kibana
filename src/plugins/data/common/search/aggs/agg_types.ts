@@ -43,7 +43,6 @@ import { getDateHistogramBucketAgg, CalculateBoundsFn } from './buckets/date_his
 import { getHistogramBucketAgg } from './buckets/histogram';
 import { getRangeBucketAgg } from './buckets/range';
 import { getDateRangeBucketAgg } from './buckets/date_range';
-import { getIpRangeBucketAgg } from './buckets/ip_range';
 import { getTermsBucketAgg } from './buckets/terms';
 import { getFilterBucketAgg } from './buckets/filter';
 import { getFiltersBucketAgg } from './buckets/filters';
@@ -92,7 +91,6 @@ export const getAggTypes = () => ({
     { name: BUCKET_TYPES.HISTOGRAM, fn: getHistogramBucketAgg },
     { name: BUCKET_TYPES.RANGE, fn: getRangeBucketAgg },
     { name: BUCKET_TYPES.DATE_RANGE, fn: getDateRangeBucketAgg },
-    { name: BUCKET_TYPES.IP_RANGE, fn: getIpRangeBucketAgg },
     { name: BUCKET_TYPES.TERMS, fn: getTermsBucketAgg },
     { name: BUCKET_TYPES.FILTER, fn: getFilterBucketAgg },
     { name: BUCKET_TYPES.FILTERS, fn: getFiltersBucketAgg },

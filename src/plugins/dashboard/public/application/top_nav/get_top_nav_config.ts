@@ -38,42 +38,22 @@ export function getTopNavConfig(
   switch (dashboardMode) {
     case ViewMode.VIEW:
       return hideWriteControls
-        ? [
-            getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
-            getShareConfig(actions[TopNavIds.SHARE]),
+        ? [         
+        
           ]
-        : [
-            getFullScreenConfig(actions[TopNavIds.FULL_SCREEN]),
-            getShareConfig(actions[TopNavIds.SHARE]),
+        : [          
             getCloneConfig(actions[TopNavIds.CLONE]),
             getEditConfig(actions[TopNavIds.ENTER_EDIT_MODE]),
           ];
     case ViewMode.EDIT:
-      return [
-        getOptionsConfig(actions[TopNavIds.OPTIONS]),
-        getShareConfig(actions[TopNavIds.SHARE]),
+      return [          
         getAddConfig(actions[TopNavIds.ADD_EXISTING]),
         getViewConfig(actions[TopNavIds.EXIT_EDIT_MODE]),
-        getSaveConfig(actions[TopNavIds.SAVE]),
-        getCreateNewConfig(actions[TopNavIds.VISUALIZE]),
+        getSaveConfig(actions[TopNavIds.SAVE]),     
       ];
     default:
       return [];
   }
-}
-
-function getFullScreenConfig(action: NavAction) {
-  return {
-    id: 'full-screen',
-    label: i18n.translate('dashboard.topNave.fullScreenButtonAriaLabel', {
-      defaultMessage: 'full screen',
-    }),
-    description: i18n.translate('dashboard.topNave.fullScreenConfigDescription', {
-      defaultMessage: 'Full Screen Mode',
-    }),
-    testId: 'dashboardFullScreenMode',
-    run: action,
-  };
 }
 
 /**
@@ -166,57 +146,4 @@ function getAddConfig(action: NavAction) {
   };
 }
 
-/**
- * @returns {kbnTopNavConfig}
- */
-function getCreateNewConfig(action: NavAction) {
-  return {
-    emphasize: true,
-    iconType: 'plusInCircleFilled',
-    id: 'addNew',
-    label: i18n.translate('dashboard.topNave.addNewButtonAriaLabel', {
-      defaultMessage: 'Create new',
-    }),
-    description: i18n.translate('dashboard.topNave.addNewConfigDescription', {
-      defaultMessage: 'Create a new panel on this dashboard',
-    }),
-    testId: 'dashboardAddNewPanelButton',
-    run: action,
-  };
-}
 
-/**
- * @returns {kbnTopNavConfig}
- */
-function getShareConfig(action: NavAction | undefined) {
-  return {
-    id: 'share',
-    label: i18n.translate('dashboard.topNave.shareButtonAriaLabel', {
-      defaultMessage: 'share',
-    }),
-    description: i18n.translate('dashboard.topNave.shareConfigDescription', {
-      defaultMessage: 'Share Dashboard',
-    }),
-    testId: 'shareTopNavButton',
-    run: action,
-    // disable the Share button if no action specified
-    disableButton: !action,
-  };
-}
-
-/**
- * @returns {kbnTopNavConfig}
- */
-function getOptionsConfig(action: NavAction) {
-  return {
-    id: 'options',
-    label: i18n.translate('dashboard.topNave.optionsButtonAriaLabel', {
-      defaultMessage: 'options',
-    }),
-    description: i18n.translate('dashboard.topNave.optionsConfigDescription', {
-      defaultMessage: 'Options',
-    }),
-    testId: 'dashboardOptionsButton',
-    run: action,
-  };
-}

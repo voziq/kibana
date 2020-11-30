@@ -103,20 +103,7 @@ export const IndexManagementHome: React.FunctionComponent<RouteComponentProps<Ma
                   defaultMessage="Index Management"
                 />
               </h1>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
-                href={documentationService.getIdxMgmtDocumentationLink()}
-                target="_blank"
-                iconType="help"
-                data-test-subj="documentationLink"
-              >
-                <FormattedMessage
-                  id="xpack.idxMgmt.home.idxMgmtDocsLinkText"
-                  defaultMessage="Index Management docs"
-                />
-              </EuiButtonEmpty>
-            </EuiFlexItem>
+            </EuiFlexItem>           
           </EuiFlexGroup>
         </EuiTitle>
 

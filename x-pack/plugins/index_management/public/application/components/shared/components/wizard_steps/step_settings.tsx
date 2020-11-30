@@ -58,22 +58,7 @@ export const StepSettings: React.FunctionComponent<Props> = React.memo(
                 />
               </p>
             </EuiText>
-          </EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="s"
-              flush="right"
-              href={`${esDocsBase}/index-modules.html#index-modules-settings`}
-              target="_blank"
-              iconType="help"
-            >
-              <FormattedMessage
-                id="xpack.idxMgmt.formWizard.stepSettings.docsButtonLabel"
-                defaultMessage="Index settings docs"
-              />
-            </EuiButtonEmpty>
-          </EuiFlexItem>
+          </EuiFlexItem>       
         </EuiFlexGroup>
 
         <EuiSpacer size="l" />

@@ -137,7 +137,7 @@ export const SourceFieldSection = () => {
         <>
           <FormattedMessage
             id="xpack.idxMgmt.mappingsEditor.sourceFieldDescription"
-            defaultMessage="The _source field contains the original JSON document body that was provided at index time. Individual fields can be pruned by defining which ones to include or exclude from the _source field. {docsLink}"
+            defaultMessage="The _source field contains the original JSON document body that was provided at index time. Individual fields can be pruned by defining which ones to include or exclude from the _source field."
             values={{
               docsLink: (
                 <EuiLink href={documentationService.getMappingSourceFieldLink()} target="_blank">

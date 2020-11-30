@@ -23,7 +23,6 @@ import { EuiPage } from '@elastic/eui';
 import { ManagementSection, MANAGEMENT_BREADCRUMB } from '../../utils';
 
 import { ManagementRouter } from './management_router';
-import { ManagementSidebarNav } from '../management_sidebar_nav';
 import { reactRouterNavigate } from '../../../../kibana_react/public';
 import { SectionsServiceStart } from '../../types';
 
@@ -76,8 +75,7 @@ export const ManagementApp = ({ dependencies, history }: ManagementAppProps) => 
 
   return (
     <I18nProvider>
-      <EuiPage>
-        <ManagementSidebarNav selectedId={selectedId} sections={sections} history={history} />
+      <EuiPage>       
         <ManagementRouter
           history={history}
           setBreadcrumbs={setBreadcrumbsScoped}

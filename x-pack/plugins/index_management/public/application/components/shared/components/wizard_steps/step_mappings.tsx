@@ -80,22 +80,7 @@ export const StepMappings: React.FunctionComponent<Props> = React.memo(
             <EuiFlexGroup gutterSize="s">
               <EuiFlexItem grow={false}>
                 <LoadMappingsFromJsonButton onJson={onJsonLoaded} />
-              </EuiFlexItem>
-
-              <EuiFlexItem grow={false}>
-                <EuiButtonEmpty
-                  size="s"
-                  flush="right"
-                  href={`${esDocsBase}/mapping.html`}
-                  target="_blank"
-                  iconType="help"
-                >
-                  <FormattedMessage
-                    id="xpack.idxMgmt.formWizard.stepMappings.docsButtonLabel"
-                    defaultMessage="Mapping docs"
-                  />
-                </EuiButtonEmpty>
-              </EuiFlexItem>
+              </EuiFlexItem>            
             </EuiFlexGroup>
           </EuiFlexItem>
         </EuiFlexGroup>

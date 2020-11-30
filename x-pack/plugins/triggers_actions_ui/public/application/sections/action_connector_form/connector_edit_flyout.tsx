@@ -157,19 +157,7 @@ export const ConnectorEditFlyout = ({
             )}
           />
           &emsp;
-          <EuiBetaBadge
-            label="Beta"
-            tooltipContent={i18n.translate(
-              'xpack.triggersActionsUI.sections.preconfiguredConnectorForm.betaBadgeTooltipContent',
-              {
-                defaultMessage:
-                  '{pluginName} is in beta and is subject to change. The design and code is less mature than official GA features and is being provided as-is with no warranties. Beta features are not subject to the support SLA of official GA features.',
-                values: {
-                  pluginName: PLUGIN.getI18nName(i18n),
-                },
-              }
-            )}
-          />
+          
         </h3>
       </EuiTitle>
       <EuiText size="s">
@@ -188,19 +176,7 @@ export const ConnectorEditFlyout = ({
           id="xpack.triggersActionsUI.sections.editConnectorForm.flyoutPreconfiguredTitle"
         />
         &emsp;
-        <EuiBetaBadge
-          label="Beta"
-          tooltipContent={i18n.translate(
-            'xpack.triggersActionsUI.sections.editConnectorForm.betaBadgeTooltipContent',
-            {
-              defaultMessage:
-                '{pluginName} is in beta and is subject to change. The design and code is less mature than official GA features and is being provided as-is with no warranties. Beta features are not subject to the support SLA of official GA features.',
-              values: {
-                pluginName: PLUGIN.getI18nName(i18n),
-              },
-            }
-          )}
-        />
+       
       </h3>
     </EuiTitle>
   );

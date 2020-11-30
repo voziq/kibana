@@ -31,7 +31,7 @@ export const DynamicMappingSection = () => (
       <>
         <FormattedMessage
           id="xpack.idxMgmt.mappingsEditor.dynamicMappingDescription"
-          defaultMessage="Dynamic mapping allows an index template to interpret unmapped fields. {docsLink}"
+          defaultMessage="Dynamic mapping allows an index template to interpret unmapped fields."
           values={{
             docsLink: (
               <EuiLink href={documentationService.getDynamicMappingLink()} target="_blank">

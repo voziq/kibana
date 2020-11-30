@@ -269,12 +269,7 @@ export const ReportDiagnostic = ({ apiClient }: Props) => {
   return (
     <div>
       {flyout}
-      <EuiButtonEmpty size="xs" flush="left" onClick={showFlyout}>
-        <FormattedMessage
-          id="xpack.reporting.listing.diagnosticButton"
-          defaultMessage="Run reporting diagnostics"
-        />
-      </EuiButtonEmpty>
+     
     </div>
   );
 };

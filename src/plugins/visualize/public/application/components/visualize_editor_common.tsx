@@ -22,7 +22,6 @@ import { FormattedMessage } from '@kbn/i18n/react';
 import { EuiScreenReaderOnly } from '@elastic/eui';
 import { AppMountParameters } from 'kibana/public';
 import { VisualizeTopNav } from './visualize_top_nav';
-import { ExperimentalVisInfo } from './experimental_vis_info';
 import {
   SavedVisInstance,
   VisualizeAppState,
@@ -81,8 +80,7 @@ export const VisualizeEditorCommon = ({
           embeddableId={embeddableId}
           onAppLeave={onAppLeave}
         />
-      )}
-      {visInstance?.vis?.type?.stage === 'experimental' && <ExperimentalVisInfo />}
+      )}     
       {visInstance?.vis?.type?.getInfoMessage?.(visInstance.vis)}
       {visInstance && (
         <EuiScreenReaderOnly>

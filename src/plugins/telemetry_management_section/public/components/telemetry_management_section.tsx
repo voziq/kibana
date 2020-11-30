@@ -173,7 +173,7 @@ export class TelemetryManagementSection extends Component<Props, State> {
                   <strong>
                     <FormattedMessage
                       id="telemetry.callout.appliesSettingTitle.allOfKibanaText"
-                      defaultMessage="all of Kibana"
+                      defaultMessage="all of VOZIQ Insights"
                     />
                   </strong>
                 ),
@@ -190,7 +190,7 @@ export class TelemetryManagementSection extends Component<Props, State> {
     const securityExampleEnabled = isSecurityExampleEnabled();
     const clusterDataLink = (
       <EuiLink onClick={this.toggleExample} data-test-id="cluster_data_example">
-        <FormattedMessage id="telemetry.clusterData" defaultMessage="cluster data" />
+        <FormattedMessage id="telemetry.clusterData" defaultMessage="See an example of what we collect" />
       </EuiLink>
     );
 
@@ -206,7 +206,7 @@ export class TelemetryManagementSection extends Component<Props, State> {
           <FormattedMessage
             id="telemetry.telemetryConfigAndLinkDescription"
             defaultMessage="Enabling data usage collection helps us manage and improve our products and services.
-            See our {privacyStatementLink} for more details."
+            See our Privacy Statement for more details."
             values={{
               privacyStatementLink: (
                 <EuiLink href={PRIVACY_STATEMENT_URL} target="_blank">
@@ -223,7 +223,7 @@ export class TelemetryManagementSection extends Component<Props, State> {
           {securityExampleEnabled ? (
             <FormattedMessage
               id="telemetry.seeExampleOfClusterDataAndEndpointSecuity"
-              defaultMessage="See examples of the {clusterData} and {endpointSecurityData} that we collect."
+              defaultMessage="{clusterData}"
               values={{
                 clusterData: clusterDataLink,
                 endpointSecurityData: endpointSecurityDataLink,

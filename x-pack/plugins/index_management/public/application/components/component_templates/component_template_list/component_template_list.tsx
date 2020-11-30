@@ -153,7 +153,7 @@ export const ComponentTemplateList: React.FunctionComponent<Props> = ({
         <EuiText color="subdued">
           <FormattedMessage
             id="xpack.idxMgmt.home.componentTemplates.list.componentTemplatesDescription"
-            defaultMessage="Use component templates to reuse settings, mappings, and aliases configurations in multiple index templates. {learnMoreLink}"
+            defaultMessage="Use component templates to reuse settings, mappings, and aliases configurations in multiple index templates."
             values={{
               learnMoreLink: (
                 <EuiLink href={documentation.componentTemplates} target="_blank" external>

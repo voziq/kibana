@@ -210,28 +210,7 @@ export function WorkspacePanel({
           </strong>
         </h2>
         <DropIllustration aria-hidden={true} className="lnsWorkspacePanel__dropIllustration" />
-        {expression === null && (
-          <>
-            <p>
-              {i18n.translate('xpack.lens.editorFrame.emptyWorkspaceHeading', {
-                defaultMessage: 'Lens is a new tool for creating visualization',
-              })}
-            </p>
-            <p>
-              <small>
-                <EuiLink
-                  href="https://www.elastic.co/products/kibana/feedback"
-                  target="_blank"
-                  external
-                >
-                  {i18n.translate('xpack.lens.editorFrame.goToForums', {
-                    defaultMessage: 'Make requests and give feedback',
-                  })}
-                </EuiLink>
-              </small>
-            </p>
-          </>
-        )}
+       
       </EuiText>
     );
   }

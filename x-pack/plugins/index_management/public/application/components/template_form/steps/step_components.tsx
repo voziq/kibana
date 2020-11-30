@@ -75,22 +75,12 @@ export const StepComponents = ({ defaultValue, onChange, esDocsBase }: Props) =>
             <EuiTitle>
               <h2 data-test-subj="stepTitle">{i18nTexts.title}</h2>
             </EuiTitle>
-
             <EuiSpacer size="s" />
 
             <EuiText>
               <p>{i18nTexts.description}</p>
             </EuiText>
-          </EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty size="s" flush="right" href={docUri} target="_blank" iconType="help">
-              <FormattedMessage
-                id="xpack.idxMgmt.formWizard.stepComponents.docsButtonLabel"
-                defaultMessage="Component templates docs"
-              />
-            </EuiButtonEmpty>
-          </EuiFlexItem>
+          </EuiFlexItem>     
         </EuiFlexGroup>
 
         <EuiSpacer size="l" />

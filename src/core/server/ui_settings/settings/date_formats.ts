@@ -42,7 +42,7 @@ export const getDateFormatSettings = (): Record<string, UiSettingsParams> => {
       }),
       value: 'MMM D, YYYY @ HH:mm:ss.SSS',
       description: i18n.translate('core.ui_settings.params.dateFormatText', {
-        defaultMessage: 'When displaying a pretty formatted date, use this {formatLink}',
+        defaultMessage: 'When displaying a pretty formatted date, use this format',
         description:
           'Part of composite text: core.ui_settings.params.dateFormatText + ' +
           'core.ui_settings.params.dateFormat.optionsLinkText',
@@ -105,7 +105,7 @@ export const getDateFormatSettings = (): Record<string, UiSettingsParams> => {
         defaultMessage:
           'Values that define the format used in situations where time-based ' +
           'data is rendered in order, and formatted timestamps should adapt to the ' +
-          'interval between measurements. Keys are {intervalsLink}.',
+          'interval between measurements. Keys are ISO8601 intervals.',
         description:
           'Part of composite text: core.ui_settings.params.dateFormat.scaledText + ' +
           'core.ui_settings.params.dateFormat.scaled.intervalsLinkText',
@@ -152,7 +152,7 @@ export const getDateFormatSettings = (): Record<string, UiSettingsParams> => {
       }),
       value: 'MMM D, YYYY @ HH:mm:ss.SSSSSSSSS',
       description: i18n.translate('core.ui_settings.params.dateNanosFormatText', {
-        defaultMessage: 'Used for the {dateNanosLink} datatype of Elasticsearch',
+        defaultMessage: 'Used for the date_nanos datatype of VOZIQ BI',
         values: {
           dateNanosLink:
             '<a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/date_nanos.html" target="_blank" rel="noopener noreferrer">' +

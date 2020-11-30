@@ -19,7 +19,7 @@ export const RequestTrialExtension = ({ shouldShowRequestTrialExtension }) => {
       <FormattedMessage
         id="xpack.licenseMgmt.licenseDashboard.requestTrialExtension.howToContinueUsingPluginsDescription"
         defaultMessage="If you’d like to continue using machine learning, advanced security, and our
-        other awesome {subscriptionFeaturesLinkText}, request an extension now."
+        other awesome subscription features, request an extension now."
         values={{
           subscriptionFeaturesLinkText: (
             <EuiLink href={EXTERNAL_LINKS.SUBSCRIPTIONS} target="_blank">

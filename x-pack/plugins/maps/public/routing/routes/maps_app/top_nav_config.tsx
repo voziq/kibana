@@ -153,20 +153,6 @@ export function getTopNavConfig({
         getInspector().open(inspectorAdapters, {});
       },
     },
-    {
-      id: 'full-screen',
-      label: i18n.translate('xpack.maps.topNav.fullScreenButtonLabel', {
-        defaultMessage: `full screen`,
-      }),
-      description: i18n.translate('xpack.maps.topNav.fullScreenDescription', {
-        defaultMessage: `full screen`,
-      }),
-      testId: 'mapsFullScreenMode',
-      run() {
-        getCoreChrome().setIsVisible(false);
-        enableFullScreen();
-      },
-    }
   );
 
   if (hasWritePermissions) {

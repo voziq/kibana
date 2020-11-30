@@ -182,17 +182,8 @@ const TlsError = ({
         <p role="banner">
           {i18n.translate('xpack.triggersActionsUI.components.healthCheck.tlsError', {
             defaultMessage:
-              'Alerting relies on API keys, which require TLS between Elasticsearch and Kibana. ',
-          })}
-          <EuiLink
-            href={`${ELASTIC_WEBSITE_URL}guide/en/kibana/${DOC_LINK_VERSION}/configuring-tls.html`}
-            external
-            target="_blank"
-          >
-            {i18n.translate('xpack.triggersActionsUI.components.healthCheck.tlsErrorAction', {
-              defaultMessage: 'Learn how to enable TLS.',
-            })}
-          </EuiLink>
+              'Alerting relies on API keys, which require TLS between VOZIQ BI and VOZIQ Insights. ',
+          })}      
         </p>
       </div>
     }

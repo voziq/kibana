@@ -426,33 +426,6 @@ function discoverController($element, $route, $scope, $timeout, $window, Promise
       },
     };
 
-    const shareSearch = {
-      id: 'share',
-      label: i18n.translate('discover.localMenu.shareTitle', {
-        defaultMessage: 'Share',
-      }),
-      description: i18n.translate('discover.localMenu.shareSearchDescription', {
-        defaultMessage: 'Share Search',
-      }),
-      testId: 'shareTopNavButton',
-      run: async (anchorElement) => {
-        const sharingData = await this.getSharingData();
-        share.toggleShareContextMenu({
-          anchorElement,
-          allowEmbed: false,
-          allowShortUrl: uiCapabilities.discover.createShortUrl,
-          shareableUrl: unhashUrl(window.location.href),
-          objectId: savedSearch.id,
-          objectType: 'search',
-          sharingData: {
-            ...sharingData,
-            title: savedSearch.title,
-          },
-          isDirty: !savedSearch.id || isAppStateDirty(),
-        });
-      },
-    };
-
     const inspectSearch = {
       id: 'inspect',
       label: i18n.translate('discover.localMenu.inspectTitle', {
@@ -473,7 +446,6 @@ function discoverController($element, $route, $scope, $timeout, $window, Promise
       newSearch,
       ...(uiCapabilities.discover.save ? [saveSearch] : []),
       openSearch,
-      shareSearch,
       inspectSearch,
     ];
   };
@@ -899,7 +871,7 @@ function discoverController($element, $route, $scope, $timeout, $window, Promise
       defaultMessage: 'data',
     });
     const description = i18n.translate('discover.inspectorRequestDescription', {
-      defaultMessage: 'This request queries Elasticsearch to fetch the data for the search.',
+      defaultMessage: 'This request queries VOZIQ BI to fetch the data for the search.',
     });
     inspectorRequest = inspectorAdapters.requests.start(title, { description });
     inspectorRequest.stats(getRequestInspectorStats($scope.searchSource));

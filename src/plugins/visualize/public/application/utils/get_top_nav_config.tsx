@@ -204,61 +204,7 @@ export const getTopNavConfig = (
           });
         }
       },
-    },
-    {
-      id: 'share',
-      label: i18n.translate('visualize.topNavMenu.shareVisualizationButtonLabel', {
-        defaultMessage: 'share',
-      }),
-      description: i18n.translate('visualize.topNavMenu.shareVisualizationButtonAriaLabel', {
-        defaultMessage: 'Share Visualization',
-      }),
-      testId: 'shareTopNavButton',
-      run: (anchorElement) => {
-        if (share && !embeddableId) {
-          // TODO: support sharing in by-value mode
-          share.toggleShareContextMenu({
-            anchorElement,
-            allowEmbed: true,
-            allowShortUrl: visualizeCapabilities.createShortUrl,
-            shareableUrl: unhashUrl(window.location.href),
-            objectId: savedVis?.id,
-            objectType: 'visualization',
-            sharingData: {
-              title: savedVis?.title,
-            },
-            isDirty: hasUnappliedChanges || hasUnsavedChanges,
-          });
-        }
-      },
-      // disable the Share button if no action specified
-      disableButton: !share || !!embeddableId,
-    },
-    ...(originatingApp === 'dashboards' || originatingApp === 'canvas'
-      ? [
-          {
-            id: 'cancel',
-            label: i18n.translate('visualize.topNavMenu.cancelButtonLabel', {
-              defaultMessage: 'Cancel',
-            }),
-            emphasize: false,
-            description: i18n.translate('visualize.topNavMenu.cancelButtonAriaLabel', {
-              defaultMessage: 'Return to the last app without saving changes',
-            }),
-            testId: 'visualizeCancelAndReturnButton',
-            tooltip() {
-              if (hasUnappliedChanges || hasUnsavedChanges) {
-                return i18n.translate('visualize.topNavMenu.cancelAndReturnButtonTooltip', {
-                  defaultMessage: 'Discard your changes before finishing',
-                });
-              }
-            },
-            run: async () => {
-              return navigateToOriginatingApp();
-            },
-          },
-        ]
-      : []),
+    },    
     ...(visualizeCapabilities.save && !embeddableId
       ? [
           {

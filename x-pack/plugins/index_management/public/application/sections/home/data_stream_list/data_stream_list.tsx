@@ -98,7 +98,7 @@ export const DataStreamList: React.FunctionComponent<RouteComponentProps<MatchPa
             {ingestManager ? (
               <FormattedMessage
                 id="xpack.idxMgmt.dataStreamList.emptyPrompt.noDataStreamsCtaIngestManagerMessage"
-                defaultMessage="Get started with data streams in {link}."
+                defaultMessage="Get started with data streams in  Ingest Manager."
                 values={{
                   link: (
                     <EuiLink
@@ -118,7 +118,7 @@ export const DataStreamList: React.FunctionComponent<RouteComponentProps<MatchPa
             ) : (
               <FormattedMessage
                 id="xpack.idxMgmt.dataStreamList.emptyPrompt.noDataStreamsCtaIndexTemplateMessage"
-                defaultMessage="Get started with data streams by creating a {link}."
+                defaultMessage="Get started with data streams by creating a Ingest Manager."
                 values={{
                   link: (
                     <EuiLink

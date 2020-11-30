@@ -48,7 +48,7 @@ export const ScriptingWarningCallOut = ({ isVisible = false }: ScriptingWarningC
         <p>
           <FormattedMessage
             id="indexPatternManagement.warningCallOutLabel.callOutDetail"
-            defaultMessage="Please familiarize yourself with {scripFields} and with {scriptsInAggregation} before using scripted fields."
+            defaultMessage="Please familiarize yourself with script fields and with scripts in aggregations before using scripted fields."
             values={{
               scripFields: (
                 <EuiLink target="_blank" href={docLinksScriptedFields.scriptFields}>
