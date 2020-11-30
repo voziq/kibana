@@ -33,4 +33,5 @@ export const vislibTypesConfig = {
   goal: vislibGaugeConfig,
   metric: vislibGaugeConfig,
   bubble: vislibCustomConfig,
+  treemap: vislibCustomConfig,
 };

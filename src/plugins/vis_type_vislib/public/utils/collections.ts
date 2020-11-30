@@ -57,6 +57,61 @@ const getPositions = () => [
   },
 ];
 
+
+export const GroupAlignment = Object.freeze({
+  TOP: 'top' as 'top',
+  CENTER: 'middle' as 'middle',
+  BOTTOM: 'bottom' as 'bottom',
+});
+export type GroupAlignment = $Values<typeof GroupAlignment>;
+
+
+const getGroupAlignment = () => [
+  {
+    text: i18n.translate('visTypeVislib.groupAlignment.topText', {
+      defaultMessage: 'Top',
+    }),
+    value: GroupAlignment.TOP,
+  },
+  {
+    text: i18n.translate('visTypeVislib.groupAlignment.centerText', {
+      defaultMessage: 'Center',
+    }),
+    value: GroupAlignment.CENTER,
+  },
+ 
+  {
+    text: i18n.translate('visTypeVislib.groupAlignment.bottomText', {
+      defaultMessage: 'Bottom',
+    }),
+    value: GroupAlignment.BOTTOM,
+  },
+];
+
+
+export const TreemapSortOptions = Object.freeze({
+  ASCENDING: 'ascending' as 'ascending',
+  DESCENDING: 'descending' as 'descending', 
+});
+export type TreemapSortOptions = $Values<typeof TreemapSortOptions>;
+
+const getTreemapSortOptions = () => [
+  {
+    text: i18n.translate('visTypeVislib.TreemapSortOptions.ascendingText', {
+      defaultMessage: 'ascending',
+    }),
+    value: TreemapSortOptions.ASCENDING,
+  },
+  {
+    text: i18n.translate('visTypeVislib.TreemapSortOptions.descendingText', {
+      defaultMessage: 'descending',
+    }),
+    value: TreemapSortOptions.DESCENDING,
+  },
+ 
+ 
+];
+
 export const ChartTypes = Object.freeze({
   LINE: 'line' as 'line',
   AREA: 'area' as 'area',
@@ -321,6 +376,8 @@ const getGaugeCollections = () => ({
 const getHeatmapCollections = () => ({
   legendPositions: getPositions(),
   scales: getScaleTypes(),
+    treemapSortOptions: getTreemapSortOptions(),
+    groupAlignment: getGroupAlignment(),
   colorSchemas,
 });
 

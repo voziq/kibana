@@ -42,6 +42,7 @@ import {
   createGaugeVisTypeDefinition,
   createGoalVisTypeDefinition,
   createBubbleVisTypeDefinition,
+  createTreemapVisTypeDefinition,
 } from './vis_type_vislib_vis_types';
 import { ChartsPluginSetup } from '../../charts/public';
 import { DataPublicPluginStart } from '../../data/public';
@@ -91,6 +92,7 @@ export class VisTypeVislibPlugin implements Plugin<void, void> {
       createGaugeVisTypeDefinition,
       createGoalVisTypeDefinition,
 	  createBubbleVisTypeDefinition,
+	  createTreemapVisTypeDefinition,
     ];
     const vislibFns = [createVisTypeVislibVisFn(), createPieVisFn()];
 
