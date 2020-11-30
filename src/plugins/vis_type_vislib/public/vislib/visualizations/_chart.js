@@ -30,6 +30,7 @@ import {
   bubbleTooltipFormatter,
   treemapTooltipFormatter,
   sankeyTooltipFormatter,
+   heatmapDnTooltipFormatter,
 } from '../components/tooltip';
 
 /**
@@ -64,6 +65,8 @@ export class Chart {
 			tooltipFormatterProvider = treemapTooltipFormatter;
 		}else if(this.handler.visConfig.get('type') === 'sankey'){			
 			tooltipFormatterProvider = sankeyTooltipFormatter;
+		}else if(this.handler.visConfig.get('type') === 'heatmap_dn'){
+			tooltipFormatterProvider = heatmapDnTooltipFormatter;
 		}
 		
     const tooltipFormatter = tooltipFormatterProvider(fieldFormatter);

@@ -23,6 +23,7 @@ import { GaugeChart } from './gauge_chart';
 import { BubbleChart } from '../../../../bubble/public/bubble_chart';
 import { TreemapChart } from '../../../../treemap/public/treemap_chart';
 import { SankeyChart } from '../../../../sankey/public/sankey_chart';
+import { HeatMap_dnChart } from '../../../../heatmap_dn/public/heatmap_dn_chart';
 export const visTypes = {
   pie: PieChart,
   point_series: PointSeries,
@@ -32,4 +33,5 @@ export const visTypes = {
   bubble: BubbleChart,
   treemap: TreemapChart,
   sankey: SankeyChart,
+  heatmap_dn: HeatMap_dnChart,
 };

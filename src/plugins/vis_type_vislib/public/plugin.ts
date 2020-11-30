@@ -44,6 +44,7 @@ import {
   createBubbleVisTypeDefinition,
   createTreemapVisTypeDefinition,
   createSankeyVisTypeDefinition,
+  createHeatmapDnVisTypeDefinition,
 } from './vis_type_vislib_vis_types';
 import { ChartsPluginSetup } from '../../charts/public';
 import { DataPublicPluginStart } from '../../data/public';
@@ -95,6 +96,7 @@ export class VisTypeVislibPlugin implements Plugin<void, void> {
 	  createBubbleVisTypeDefinition,
 	  createTreemapVisTypeDefinition,
 	  createSankeyVisTypeDefinition,
+	  createHeatmapDnVisTypeDefinition,
     ];
     const vislibFns = [createVisTypeVislibVisFn(), createPieVisFn()];
 

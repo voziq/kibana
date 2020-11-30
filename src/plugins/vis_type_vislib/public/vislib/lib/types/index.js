@@ -35,4 +35,5 @@ export const vislibTypesConfig = {
   bubble: vislibCustomConfig,
   treemap: vislibCustomConfig,
   sankey: vislibCustomConfig,
+   heatmap_dn: vislibCustomConfig,
 };

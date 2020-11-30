@@ -22,6 +22,7 @@ import { buildHierarchicalData, buildPointSeriesData } from './helpers';
 import { bubbleDataFromTable } from '../../../bubble/public/response_handler/bubble_viz';
 import { buildTreemapData } from '../../../treemap/public/response_handler/treemap_viz';
 import { buildSankeyData } from '../../../sankey/public/response_handler/sankey_viz';
+import { heatmap_dnDataFromTable } from '../../../heatmap_dn/public/response_handler/heatmap_dn_response';
 import AggConfigResult from './agg_config_result';
 function tableResponseHandler(table, dimensions) {
   const converted = { tables: [] };
@@ -169,3 +170,5 @@ export const vislibBubbleResponseHandler = handlerFunction(bubbleDataFromTable);
 export const vislibTreemapResponseHandler = handlerFunction(buildTreemapData);
 
 export const vislibSankeyResponseHandler = handlerFunction(buildSankeyData);
+
+export const vislibHeatmapDnResponseHandler = handlerFunction(heatmap_dnDataFromTable);
