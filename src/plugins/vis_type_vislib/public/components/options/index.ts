@@ -28,3 +28,4 @@ export { SankeyOptions } from './sankey';
 export { HeatMap_dnOptions } from './heatmap_dn';
 export { ScatterBubbleOptions } from './scatterbubble';
 export { RadarOptions } from './radar';
+export { NetworkOptions } from './network';

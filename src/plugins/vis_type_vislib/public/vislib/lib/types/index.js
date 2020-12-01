@@ -38,4 +38,5 @@ export const vislibTypesConfig = {
    heatmap_dn: vislibCustomConfig,
    scatterbubble: vislibCustomConfig,
     radar: vislibCustomConfig,
+	 network: vislibCustomConfig,
 };

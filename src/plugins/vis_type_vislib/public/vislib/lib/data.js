@@ -55,7 +55,7 @@ class D3MappableObject {
  * @param attr {Object|*} Visualization options
  */
 export class Data {
-  constructor(data, uiState, createColorLookupFunction) {
+  constructor(data, uiState, createColorLookupFunction,typeValue) {
     this.uiState = uiState;
     this.createColorLookupFunction = createColorLookupFunction;
     this.data = this.copyDataObj(data);
@@ -66,6 +66,7 @@ export class Data {
       ? createColorLookupFunction(this.labels, uiState.get('vis.colors'))
       : undefined;
     this._normalizeOrdered();
+    this.typeValue = typeValue;
   }
 
   copyDataObj(data) {
@@ -500,7 +501,17 @@ export class Data {
     const defaultColors = this.uiState.get('vis.defaultColors');
     const overwriteColors = this.uiState.get('vis.colors');
     const colors = defaultColors ? _.defaults({}, overwriteColors, defaultColors) : overwriteColors;
-    return this.createColorLookupFunction(this.getLabels(), colors);
+    //return this.createColorLookupFunction(this.getLabels(), colors);
+    
+    if(this.type === "series" && this.typeValue == "network") {
+		var arr = [];			
+		this.data.series_data.forEach(function(ele){
+			arr.push(ele[0])											
+		})
+		return this.createColorLookupFunction(arr.filter((v, p) => arr.indexOf(v) == p), colors);
+	}else{
+return this.createColorLookupFunction(this.getLabels(), colors);
+	}
   }
 
   /**

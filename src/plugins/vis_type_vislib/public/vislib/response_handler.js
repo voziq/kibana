@@ -25,6 +25,7 @@ import { buildSankeyData } from '../../../sankey/public/response_handler/sankey_
 import { heatmap_dnDataFromTable } from '../../../heatmap_dn/public/response_handler/heatmap_dn_response';
 import { buildScatterBubbleData } from '../../../scatterbubble/public/response_handler/scatter_viz';
 import { radarDataFromTable } from '../../../radar/public/response_handler/radar_viz';
+import { buildNetworkData } from '../../../network/public/response_handler/network_response';
 import AggConfigResult from './agg_config_result';
 function tableResponseHandler(table, dimensions) {
   const converted = { tables: [] };
@@ -178,3 +179,5 @@ export const vislibHeatmapDnResponseHandler = handlerFunction(heatmap_dnDataFrom
 export const vislibScatterBubbleResponseHandler = handlerFunction(buildScatterBubbleData);
 
 export const vislibRadarResponseHandler = handlerFunction(radarDataFromTable);
+
+export const vislibNetworkResponseHandler = handlerFunction(buildNetworkData);

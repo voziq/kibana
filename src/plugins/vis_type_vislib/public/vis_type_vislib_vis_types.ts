@@ -31,3 +31,4 @@ export { createSankeyVisTypeDefinition } from '../../sankey/public/sankey';
 export { createHeatmapDnVisTypeDefinition } from '../../heatmap_dn/public/heatmap_dn';
 export { createScatterBubbleVisTypeDefinition } from '../../scatterbubble/public/scatterbubble';
 export { createRadarVisTypeDefinition } from '../../radar/public/radar';
+export { createNetworkVisTypeDefinition } from '../../network/public/network';

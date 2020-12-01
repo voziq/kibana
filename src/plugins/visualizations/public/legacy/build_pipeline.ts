@@ -90,6 +90,7 @@ const vislibCharts: string[] = [
   'heatmap_dn',
   'scatterbubble',
   'radar',
+  'network',
 ];
 
 export const getSchemas = <TVisParams>(
