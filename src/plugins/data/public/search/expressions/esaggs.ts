@@ -114,6 +114,36 @@ vis_type,
     return aggs.toDsl(metricsAtAllLevels);
   });
 
+
+if (visParams.typeName == 'table_doc') {
+            	  requestSearchSource.setField('size', 500);
+            	  var hlt = {
+            	  "pre_tags" : [
+            	  "@kibana-highlighted-field@"
+            	  ],
+            	  	 "post_tags" : [
+            	  "@/kibana-highlighted-field@"
+            	  ],
+            	           "fields" : {
+            	  "*" : {}
+            	  }
+            	  };
+            	  requestSearchSource.setField('highlight', hlt);
+            	  var ordervis=visParams.sort.direction;
+            	  if(ordervis=='asc')
+            	  {
+            	  ordervis="asc";
+            	  }else{
+            	  	ordervis="desc";
+            	  }
+            	      	 	var order = [];
+            	      	  	order.push({
+            	      	  [aggs.indexPattern.timeFieldName] : {
+            	      	  "order" : ordervis
+            	      	  }
+            	      	  });
+            	  	requestSearchSource.setField('sort', order);
+            	  		}
 /**********************************ADDED***************************************************/
 
 					var mis = "__missing__";

@@ -1,0 +1,17 @@
+{
+  "id": "visTypeTableDoc",
+  "version": "kibana",
+  "server": true,
+  "ui": true,
+  "requiredPlugins": [
+    "expressions",
+    "visualizations",
+    "data",
+    "kibanaLegacy"
+  ],
+  "requiredBundles": [
+    "kibanaUtils",
+    "share",    
+    "visDefaultEditor"
+  ]
+}
