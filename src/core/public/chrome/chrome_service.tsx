@@ -141,7 +141,7 @@ export class ChromeService {
   }: StartDeps): Promise<InternalChromeStart> {
     this.initVisibility(application);
 
-    const appTitle$ = new BehaviorSubject<string>('Kibana');
+    const appTitle$ = new BehaviorSubject<string>('VOZIQ Insights');
     const brand$ = new BehaviorSubject<ChromeBrand>({});
     const applicationClasses$ = new BehaviorSubject<Set<string>>(new Set());
     const helpExtension$ = new BehaviorSubject<ChromeHelpExtension | undefined>(undefined);
@@ -216,7 +216,6 @@ export class ChromeService {
       navLinks,
       recentlyAccessed,
       docTitle,
-
       getHeaderComponent: () => (
         <Header
           loadingCount$={http.getLoadingCount$()}
@@ -287,7 +286,15 @@ export class ChromeService {
       getBreadcrumbs$: () => breadcrumbs$.pipe(takeUntil(this.stop$)),
 
       setBreadcrumbs: (newBreadcrumbs: ChromeBreadcrumb[]) => {
-        breadcrumbs$.next(newBreadcrumbs);
+	/*breadcrumbs$.next(newBreadcrumbs);*/
+       if (newBreadcrumbs.length != 0) {
+					const arr = [];
+					arr.push(newBreadcrumbs.slice(-1).pop());
+					breadcrumbs$.next(arr);
+			}
+			else{
+				breadcrumbs$.next(newBreadcrumbs);
+			}
       },
 
       getHelpExtension$: () => helpExtension$.pipe(takeUntil(this.stop$)),

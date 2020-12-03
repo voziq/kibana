@@ -30,7 +30,7 @@ interface Props {
 }
 
 export function HeaderBreadcrumbs({ appTitle$, breadcrumbs$ }: Props) {
-  const appTitle = useObservable(appTitle$, 'Kibana');
+  const appTitle = useObservable(appTitle$, 'VOZIQ Insights');
   const breadcrumbs = useObservable(breadcrumbs$, []);
   let crumbs = breadcrumbs;
 

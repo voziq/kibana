@@ -458,7 +458,8 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
         values={{ entityNamePlural: this.props.entityNamePlural }}
       />
     );
-    return (
+return"";
+  /*  return (
       <EuiInMemoryTable
         itemId="id"
         items={this.state.items}
@@ -471,7 +472,7 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
         sorting={true}
         data-test-subj="itemsInMemTable"
       />
-    );
+    );*/
   }
 
   renderListingOrEmptyState() {
