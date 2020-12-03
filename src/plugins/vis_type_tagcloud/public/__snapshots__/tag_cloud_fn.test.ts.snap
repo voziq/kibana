@@ -2,9 +2,25 @@
 
 exports[`interpreter/functions#tagcloud returns an object with the correct structure 1`] = `
 Object {
-  "as": "tagloud_vis",
+  "as": "visualization",
   "type": "render",
   "value": Object {
+    "params": Object {
+      "listenOnChange": true,
+    },
+    "visConfig": Object {
+      "maxFontSize": 72,
+      "metric": Object {
+        "accessor": 0,
+        "format": Object {
+          "id": "number",
+        },
+      },
+      "minFontSize": 18,
+      "orientation": "single",
+      "scale": "linear",
+      "showLabel": true,
+    },
     "visData": Object {
       "columns": Array [
         Object {
@@ -18,19 +34,6 @@ Object {
         },
       ],
       "type": "kibana_datatable",
-    },
-    "visParams": Object {
-      "maxFontSize": 72,
-      "metric": Object {
-        "accessor": 0,
-        "format": Object {
-          "id": "number",
-        },
-      },
-      "minFontSize": 18,
-      "orientation": "single",
-      "scale": "linear",
-      "showLabel": true,
     },
     "visType": "tagcloud",
   },

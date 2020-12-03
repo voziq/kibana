@@ -281,6 +281,76 @@ export const buildPipelineVisFunction: BuildPipelineVisFunction = {
     };
     return `kibana_table ${prepareJson('visConfig', visConfig)}`;
   },
+    metric: (params, schemas) => {
+    const {
+      percentageMode,
+      useRanges,
+      colorSchema,
+      metricColorMode,
+      colorsRange,
+      labels,
+      invertColors,
+      style,
+    } = params.metric;
+    const { metrics, bucket } = buildVisConfig.metric(schemas).dimensions;
+
+    // fix formatter for percentage mode
+    if (get(params, 'metric.percentageMode') === true) {
+      metrics.forEach((metric: SchemaConfig) => {
+        metric.format = { id: 'percent' };
+      });
+    }
+
+    let expr = `metricvis `;
+    expr += prepareValue('percentageMode', percentageMode);
+    expr += prepareValue('colorSchema', colorSchema);
+    expr += prepareValue('colorMode', metricColorMode);
+    expr += prepareValue('useRanges', useRanges);
+    expr += prepareValue('invertColors', invertColors);
+    expr += prepareValue('showLabels', labels && labels.show);
+    if (style) {
+      expr += prepareValue('bgFill', style.bgFill);
+      expr += prepareValue('font', `{font size=${style.fontSize}}`, true);
+      expr += prepareValue('subText', style.subText);
+      expr += prepareDimension('bucket', bucket);
+    }
+
+    if (colorsRange) {
+      colorsRange.forEach((range: any) => {
+        expr += prepareValue('colorRange', `{range from=${range.from} to=${range.to}}`, true);
+      });
+    }
+
+    metrics.forEach((metric: SchemaConfig) => {
+      expr += prepareDimension('metric', metric);
+    });
+
+    return expr;
+  },
+  tagcloud: (params, schemas) => {
+    const { scale, orientation, minFontSize, maxFontSize, showLabel,sentiment,invertColors,colorSchema,setColorRange,colorsRange,colorsNumber,period } = params;
+    const { metric, bucket } = buildVisConfig.tagcloud(schemas);
+    let expr = `tagcloud metric={visdimension ${metric.accessor}} `;
+    expr += prepareValue('scale', scale);
+    expr += prepareValue('orientation', orientation);
+    expr += prepareValue('minFontSize', minFontSize);
+    expr += prepareValue('maxFontSize', maxFontSize);
+    expr += prepareValue('showLabel', showLabel);
+	   expr += prepareValue('sentiment', sentiment);
+	expr += prepareValue('invertColors', invertColors);
+	expr += prepareValue('colorSchema', colorSchema);
+	expr += prepareValue('setColorRange', setColorRange);
+	expr += prepareValue('colorsNumber', colorsNumber);
+	 if (colorsRange) {
+      colorsRange.forEach(function (range) {
+        expr += prepareValue('colorRange', "{range from=".concat(range.from, " to=").concat(range.to, "}"), true);
+      });
+    }
+	expr += prepareValue('period', period);
+    expr += prepareDimension('bucket', bucket);
+
+    return expr;
+  },
   region_map: (params, schemas) => {
     const visConfig = {
       ...params,
@@ -322,6 +392,22 @@ const buildVisConfig: BuildVisConfigFunction = {
       // and removing all metrics from the dimensions except the last set.
       const metricsPerBucket = metrics.length / buckets.length;
       visConfig.dimensions.metrics.splice(0, metricsPerBucket * buckets.length - metricsPerBucket);
+    }
+    return visConfig;
+  },
+     metric: (schemas) => {
+    const visConfig = { dimensions: {} } as any;
+    visConfig.dimensions.metrics = schemas.metric;
+    if (schemas.group) {
+      visConfig.dimensions.bucket = schemas.group[0];
+    }
+    return visConfig;
+  },
+    tagcloud: (schemas) => {
+    const visConfig = {} as any;
+    visConfig.metric = schemas.metric[0];
+    if (schemas.segment) {
+      visConfig.bucket = schemas.segment[0];
     }
     return visConfig;
   },

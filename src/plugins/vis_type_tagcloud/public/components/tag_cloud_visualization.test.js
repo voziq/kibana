@@ -19,7 +19,8 @@
 
 import 'jest-canvas-mock';
 
-import { TagCloudVisualization } from './tag_cloud_visualization';
+import { createTagCloudVisTypeDefinition } from '../tag_cloud_type';
+import { createTagCloudVisualization } from './tag_cloud_visualization';
 import { setFormatService } from '../services';
 import { dataPluginMock } from '../../../data/public/mocks';
 import { setHTMLElementOffset, setSVGElementGetBBox } from '../../../../test_utils/public';
@@ -28,7 +29,7 @@ const seedColors = ['#00a69b', '#57c17b', '#6f87d8', '#663db8', '#bc52bc', '#9e3
 
 describe('TagCloudVisualizationTest', () => {
   let domNode;
-  let visParams;
+  let vis;
   let SVGElementGetBBoxSpyInstance;
   let HTMLElementOffsetMockInstance;
 
@@ -51,6 +52,11 @@ describe('TagCloudVisualizationTest', () => {
       { 'col-0': 'BR', 'col-1': 3 },
     ],
   };
+  const TagCloudVisualization = createTagCloudVisualization({
+    colors: {
+      seedColors,
+    },
+  });
 
   const originTransformSVGElement = window.SVGElement.prototype.transform;
 
@@ -76,44 +82,67 @@ describe('TagCloudVisualizationTest', () => {
 
   describe('TagCloudVisualization - basics', () => {
     beforeEach(async () => {
+      const visType = createTagCloudVisTypeDefinition({ colors: seedColors });
       setupDOM(512, 512);
 
-      visParams = {
-        bucket: { accessor: 0, format: {} },
-        metric: { accessor: 0, format: {} },
-        scale: 'linear',
-        orientation: 'single',
+      vis = {
+        type: visType,
+        params: {
+          bucket: { accessor: 0, format: {} },
+          metric: { accessor: 0, format: {} },
+          scale: 'linear',
+          orientation: 'single',
+        },
+        data: {},
       };
     });
 
     test('simple draw', async () => {
-      const tagcloudVisualization = new TagCloudVisualization(domNode, {
-        seedColors,
-      });
+      const tagcloudVisualization = new TagCloudVisualization(domNode, vis);
 
-      await tagcloudVisualization.render(dummyTableGroup, visParams);
+      await tagcloudVisualization.render(dummyTableGroup, vis.params, {
+        resize: false,
+        params: true,
+        aggs: true,
+        data: true,
+        uiState: false,
+      });
 
       const svgNode = domNode.querySelector('svg');
       expect(svgNode.outerHTML).toMatchSnapshot();
     });
 
     test('with resize', async () => {
-      const tagcloudVisualization = new TagCloudVisualization(domNode, {
-        seedColors,
+      const tagcloudVisualization = new TagCloudVisualization(domNode, vis);
+      await tagcloudVisualization.render(dummyTableGroup, vis.params, {
+        resize: false,
+        params: true,
+        aggs: true,
+        data: true,
+        uiState: false,
       });
-      await tagcloudVisualization.render(dummyTableGroup, visParams);
 
-      await tagcloudVisualization.render(dummyTableGroup, visParams);
+      await tagcloudVisualization.render(dummyTableGroup, vis.params, {
+        resize: true,
+        params: false,
+        aggs: false,
+        data: false,
+        uiState: false,
+      });
 
       const svgNode = domNode.querySelector('svg');
       expect(svgNode.outerHTML).toMatchSnapshot();
     });
 
     test('with param change', async function () {
-      const tagcloudVisualization = new TagCloudVisualization(domNode, {
-        seedColors,
+      const tagcloudVisualization = new TagCloudVisualization(domNode, vis);
+      await tagcloudVisualization.render(dummyTableGroup, vis.params, {
+        resize: false,
+        params: true,
+        aggs: true,
+        data: true,
+        uiState: false,
       });
-      await tagcloudVisualization.render(dummyTableGroup, visParams);
 
       SVGElementGetBBoxSpyInstance.mockRestore();
       SVGElementGetBBoxSpyInstance = setSVGElementGetBBox(256, 368);
@@ -121,9 +150,15 @@ describe('TagCloudVisualizationTest', () => {
       HTMLElementOffsetMockInstance.mockRestore();
       HTMLElementOffsetMockInstance = setHTMLElementOffset(256, 386);
 
-      visParams.orientation = 'right angled';
-      visParams.minFontSize = 70;
-      await tagcloudVisualization.render(dummyTableGroup, visParams);
+      vis.params.orientation = 'right angled';
+      vis.params.minFontSize = 70;
+      await tagcloudVisualization.render(dummyTableGroup, vis.params, {
+        resize: true,
+        params: true,
+        aggs: false,
+        data: false,
+        uiState: false,
+      });
 
       const svgNode = domNode.querySelector('svg');
       expect(svgNode.outerHTML).toMatchSnapshot();

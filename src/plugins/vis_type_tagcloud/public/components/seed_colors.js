@@ -17,22 +17,26 @@
  * under the License.
  */
 
-import React, { Component } from 'react';
+/*
+* Using a random color generator presented awful colors and unpredictable color schemes.
+* So we needed to come up with a color scheme of our own that creates consistent, pleasing color patterns.
+* The order allows us to guarantee that 1st, 2nd, 3rd, etc values always get the same color.
+*/
 
-export class Label extends Component {
-  constructor() {
-    super();
-    this.state = { label: '', shouldShowLabel: true };
-  }
-
-  render() {
-    return (
-      <div
-        className="tgcVisLabel"
-        style={{ display: this.state.shouldShowLabel ? 'block' : 'none' }}
-      >
-        {this.state.label}
-      </div>
-    );
-  }
-}
+export const seedColors = [
+'#12ADC8',
+'#E3B124',
+'#586167',
+'#B4B1AA',
+'#EC6923',
+'#044F8D',
+'#FEC044',
+'#289999'
+  /*'#00a69b',
+  '#57c17b',
+  '#6f87d8',
+  '#663db8',
+  '#bc52bc',
+  '#9e3533',
+  '#daa05d'*/
+];

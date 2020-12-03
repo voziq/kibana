@@ -16,16 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+import "./tag_cloud_vis.scss";
 import { i18n } from '@kbn/i18n';
 
 import { Schemas } from '../../vis_default_editor/public';
-import { VIS_EVENT_TO_TRIGGER } from '../../visualizations/public';
 
 import { TagCloudOptions } from './components/tag_cloud_options';
-import { toExpressionAst } from './to_ast';
+import { VIS_EVENT_TO_TRIGGER } from '../../../plugins/visualizations/public';
 
-export const tagCloudVisTypeDefinition = {
+// @ts-ignore
+import { createTagCloudVisualization } from './components/tag_cloud_visualization';
+import { TagCloudVisDependencies } from './plugin';
+
+export const createTagCloudVisTypeDefinition = (deps: TagCloudVisDependencies) => ({
   name: 'tagcloud',
   title: i18n.translate('visTypeTagCloud.vis.tagCloudTitle', { defaultMessage: 'Tag Cloud' }),
   icon: 'visTagCloud',
@@ -38,15 +41,57 @@ export const tagCloudVisTypeDefinition = {
   visConfig: {
     defaults: {
       scale: 'linear',
+	    type: 'tagcloud',
       orientation: 'single',
       minFontSize: 18,
-      maxFontSize: 72,
+      maxFontSize: 55,
       showLabel: true,
+	  	sentiment:false,
+		period:'now-1y',
+        colorSchema: 'Reds',
+        invertColors: false,
+        setColorRange: false,
+        colorsRange: [{
+            from: 0,
+            to: 100
+          }],
     },
   },
-  toExpressionAst,
+  visualization: createTagCloudVisualization(deps),
   editorConfig: {
     collections: {
+				  colorSchemas: [{
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.colorSchemas.LastSevenDays', {
+            defaultMessage: 'Blues'
+          }),
+          value: 'Blues'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.colorSchemas.LastThirtyDays', {
+            defaultMessage: 'Greens'
+          }),
+          value: 'Greens'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.colorSchemas.LastNinetyDays', {
+            defaultMessage: 'Greys'
+          }),
+          value: 'Greys'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.colorSchemas.LastSixMonths', {
+            defaultMessage: 'Reds'
+          }),
+          value: 'Reds'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.colorSchemas.LastOneYear', {
+            defaultMessage: 'Yellow to Red'
+          }),
+          value: 'Yellow to Red'
+        },
+		 {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.colorSchemas.LastOneYear', {
+            defaultMessage: 'Green to Red'
+          }),
+          value: 'Green to Red'
+        }],	
       scales: [
         {
           text: i18n.translate('visTypeTagCloud.vis.editorConfig.scales.linearText', {
@@ -67,6 +112,32 @@ export const tagCloudVisTypeDefinition = {
           value: 'square root',
         },
       ],
+	  		periods: [{
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.periods.LastSevenDays', {
+            defaultMessage: 'Last 7 Days'
+          }),
+          value: 'now-7d'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.periods.LastThirtyDays', {
+            defaultMessage: 'Last 30 Days'
+          }),
+          value: 'now-30d'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.periods.LastNinetyDays', {
+            defaultMessage: 'Last 90 Days'
+          }),
+          value: 'now-90d'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.periods.LastSixMonths', {
+            defaultMessage: 'Last 6 Months'
+          }),
+          value: 'now-6M'
+        }, {
+          text: i18n.translate('visTypeTagCloud.vis.editorConfig.periods.LastOneYear', {
+            defaultMessage: 'Last 1 Year'
+          }),
+          value: 'now-1y'
+        }],	
       orientations: [
         {
           text: i18n.translate('visTypeTagCloud.vis.editorConfig.orientations.singleText', {
@@ -108,6 +179,15 @@ export const tagCloudVisTypeDefinition = {
         ],
         defaults: [{ schema: 'metric', type: 'count' }],
       },
+	  {
+        group: 'metrics',
+        name: 'metric1',
+        title: i18n.translate('visTypeTagCloud.vis.schemas.metricTitle', {
+          defaultMessage: 'Tag Color'
+        }),
+		max: 1,
+        aggFilter: ["count","avg","sum"]  
+      },
       {
         group: 'buckets',
         name: 'segment',
@@ -120,4 +200,5 @@ export const tagCloudVisTypeDefinition = {
       },
     ]),
   },
-};
+  useCustomNoDataScreen: true,
+});

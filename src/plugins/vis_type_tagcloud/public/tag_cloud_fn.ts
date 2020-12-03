@@ -26,23 +26,22 @@ const name = 'tagcloud';
 
 interface Arguments extends TagCloudVisParams {
   metric: any; // these aren't typed yet
-  bucket?: any; // these aren't typed yet
+  bucket: any; // these aren't typed yet
 }
 
-export interface TagCloudVisRenderValue {
+interface RenderValue {
   visType: typeof name;
   visData: KibanaDatatable;
-  visParams: Arguments;
+  visConfig: Arguments;
+  params: any;
 }
 
-export type TagcloudExpressionFunctionDefinition = ExpressionFunctionDefinition<
+export const createTagCloudFn = (): ExpressionFunctionDefinition<
   typeof name,
   KibanaDatatable,
   Arguments,
-  Render<TagCloudVisRenderValue>
->;
-
-export const createTagCloudFn = (): TagcloudExpressionFunctionDefinition => ({
+  Render<RenderValue>
+> => ({
   name,
   type: 'render',
   inputTypes: ['kibana_datatable'],
@@ -58,6 +57,22 @@ export const createTagCloudFn = (): TagcloudExpressionFunctionDefinition => ({
         defaultMessage: 'Scale to determine font size of a word',
       }),
     },
+	  period: {
+        types: ['string'],
+        default: 'now-1y',
+        options: ['now-7d', 'now-30d', 'now-90d', 'now-6M', 'now-1y'],
+        help: i18n.translate('visTypeTagCloud.function.period.help', {
+          defaultMessage: 'Period of words inside tagcloud'
+        })
+      },
+	  colorSchema: {
+        types: ['string'],
+        default: 'Reds',
+        options: ['Blues', 'Greens', 'Greys', 'Reds', 'Yellow to Red', 'Green to Red'],
+        help: i18n.translate('visTypeTagCloud.function.period.help', {
+          defaultMessage: 'Period of words inside tagcloud'
+        })
+      },
     orientation: {
       types: ['string'],
       default: 'single',
@@ -73,14 +88,44 @@ export const createTagCloudFn = (): TagcloudExpressionFunctionDefinition => ({
     },
     maxFontSize: {
       types: ['number'],
-      default: 72,
+      default: 55,
       help: '',
     },
+	 colorsNumber: {
+        types: ['number'],
+        default: 4,
+        help: ''
+      },
     showLabel: {
       types: ['boolean'],
       default: true,
       help: '',
     },
+	      sentiment: {
+        types: ['boolean'],
+        default: false,
+        help: ''
+      },
+      invertColors: {
+        types: ['boolean'],
+        default: false,
+        help: ''
+      },
+	  
+	  
+	  colorRange: {
+        types: ['range'],
+        multi: true,
+        help: i18n.translate('visTypeMetric.function.colorRange.help', {
+          defaultMessage: 'A range object specifying groups of values to which different colors should be applied.'
+        })
+      },
+	 
+      setColorRange: {
+        types: ['boolean'],
+        default: false,
+        help: ''
+      },
     metric: {
       types: ['vis_dimension'],
       help: i18n.translate('visTypeTagCloud.function.metric.help', {
@@ -96,26 +141,36 @@ export const createTagCloudFn = (): TagcloudExpressionFunctionDefinition => ({
     },
   },
   fn(input, args) {
-    const visParams = {
+    const visConfig = {
       scale: args.scale,
       orientation: args.orientation,
       minFontSize: args.minFontSize,
       maxFontSize: args.maxFontSize,
       showLabel: args.showLabel,
-      metric: args.metric,
+	       sentiment: args.sentiment,
+        period: args.period,
+        invertColors: args.invertColors,
+		colorSchema: args.colorSchema,
+		setColorRange: args.setColorRange,
+		colorsRange: args.colorRange,
+         colorsNumber: args.colorsNumber,
+      metric: args.metric
     } as Arguments;
 
     if (args.bucket !== undefined) {
-      visParams.bucket = args.bucket;
+      visConfig.bucket = args.bucket;
     }
 
     return {
       type: 'render',
-      as: 'tagloud_vis',
+      as: 'visualization',
       value: {
         visData: input,
         visType: name,
-        visParams,
+        visConfig,
+        params: {
+          listenOnChange: true,
+        },
       },
     };
   },
