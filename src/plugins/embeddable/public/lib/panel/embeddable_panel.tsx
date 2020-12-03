@@ -205,7 +205,7 @@ export class EmbeddablePanel extends React.Component<Props, State> {
     });
 
     const contentAttrs: { [key: string]: boolean } = {};
-    if (this.state.loading) contentAttrs['data-loading'] = true;
+    //if (this.state.loading) contentAttrs['data-loading'] = true;
     if (this.state.error) contentAttrs['data-error'] = true;
 
     const title = this.props.embeddable.getTitle();
