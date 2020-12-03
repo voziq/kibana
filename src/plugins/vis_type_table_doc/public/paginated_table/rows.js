@@ -72,16 +72,12 @@ export function KbnRows($compile) {
         } else {
           $cell = $cellContent = createCell();
         }
-		console.dir("contents");
-console.dir(contents);
-console.dir(column);
-console.dir(contentsIsDefined);
-console.dir("kkkkk");
+	
         // An AggConfigResult can "enrich" cell contents by applying a field formatter,
         // which we want to do if possible.
         contents = contentsIsDefined ? column.formatter.convert(contents, 'html') : '';
 		
-		console.dir(contents);
+		
 
         if (_.isObject(contents)) {
           if (contents.attr) {
@@ -135,11 +131,7 @@ console.dir("kkkkk");
           const $tr = $(document.createElement('tr')).appendTo($el);
           $scope.columns.forEach((column) => {
             const value = row[column.id];
-			console.dir("rowwwwwwwwwwwwwww");
-			console.dir($tr);
-			console.dir(value);
-			console.dir(column);
-			console.dir(row);
+		
 			
             addCell($tr, value, column, row);
           });

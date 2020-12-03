@@ -150,8 +150,7 @@ export function TableVisController($scope) {
 			$scope.isCustomExport=true;
 			$scope.dataAvailable=false;
 	
-	console.dir("----------");
-	console.dir(resp);
+	
 	
 			var data=resp.tables[0].raw.raw.hits.hits;
 			var columnsRaw=$scope.vis.params.selectedColumns;
@@ -191,23 +190,19 @@ export function TableVisController($scope) {
 				$scope.columnsShow.push(key);
 				var formatId={'id':'string'};
 				var fieldFormat=getFormatService().deserialize(formatId);
-				console.dir("----------rrrrrr");
-				console.dir($scope.vis.indexPattern);
-				console.dir(key);
+				
                 var filterable=false;
 				var field=iFields.find(x => x.name === key);				
 				/*if(field != null && field != undefined){
-					console.dir("ppppp");
-					console.dir(field);
-					console.dir(field.format);
+					
 					fieldFormat=field.format;
 				}*/
 				
 				if(labels[key] != undefined && labels[key].length >0){
-					console.dir("11");
+					
 					tableGroups.tables[0].columns.push({'id':'col-'+l, 'name':labels[key], 'field': field,'title':labels[key], 'formatter': fieldFormat,'filterable':filterable});
 				}else{
-					console.dir("2233333");
+					
 					tableGroups.tables[0].columns.push({'id':'col-'+l, 'name':key,'field': field,'title':key, 'formatter':fieldFormat,'filterable':filterable});
 				}
 				columns.push({'id':'col-'+l, 'name':key,'field': field, 'title':key, 'formatter': fieldFormat,'filterable':filterable});
