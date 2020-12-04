@@ -29,6 +29,8 @@ export const registerFindRoute = (router: IRouter) => {
           per_page: schema.number({ min: 0, defaultValue: 20 }),
           page: schema.number({ min: 0, defaultValue: 1 }),
           type: schema.oneOf([schema.string(), schema.arrayOf(schema.string())]),
+		  accountId: schema.maybe(schema.string()),
+		  userId: schema.maybe(schema.string()),
           search: schema.maybe(schema.string()),
           default_search_operator: schema.oneOf([schema.literal('OR'), schema.literal('AND')], {
             defaultValue: 'OR',
@@ -57,7 +59,7 @@ export const registerFindRoute = (router: IRouter) => {
       const namespaces =
         typeof req.query.namespaces === 'string' ? [req.query.namespaces] : req.query.namespaces;
 
-      const result = await context.core.savedObjects.client.find({
+      /*const result = await context.core.savedObjects.client.find({
         perPage: query.per_page,
         page: query.page,
         type: Array.isArray(query.type) ? query.type : [query.type],
@@ -70,8 +72,30 @@ export const registerFindRoute = (router: IRouter) => {
         fields: typeof query.fields === 'string' ? [query.fields] : query.fields,
         filter: query.filter,
         namespaces,
-      });
+      });*/
 
+  var dataObj={
+		perPage: query.per_page,
+        page: query.page,
+        type: Array.isArray(query.type) ? query.type : [query.type],
+        search: query.search,
+        defaultSearchOperator: query.default_search_operator,
+        searchFields:
+          typeof query.search_fields === 'string' ? [query.search_fields] : query.search_fields,
+        sortField: query.sort_field,
+        hasReference: query.has_reference,
+        fields: typeof query.fields === 'string' ? [query.fields] : query.fields,
+        filter: query.filter,
+        namespaces,
+	  };
+      
+      if (req.query.accountId) {
+        dataObj.accountId = req.query.accountId;
+      }
+            if (req.query.userId) {
+        dataObj.userId = req.query.userId;
+      }
+	  const result = await context.core.savedObjects.client.find(dataObj);
       return res.ok({ body: result });
     })
   );

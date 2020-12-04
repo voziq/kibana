@@ -21,7 +21,10 @@ import { BASE_ALERT_API_PATH } from '../../common';
 const paramSchema = schema.object({
   id: schema.string(),
 });
-
+const querySchema = schema.object({
+	  userId: schema.string(),
+	          accountId: schema.string()
+	});
 const bodySchema = schema.object({
   name: schema.string(),
   tags: schema.arrayOf(schema.string(), { defaultValue: [] }),
@@ -48,6 +51,7 @@ export const updateAlertRoute = (router: IRouter, licenseState: LicenseState) =>
       validate: {
         body: bodySchema,
         params: paramSchema,
+			query:querySchema		   
       },
     },
     handleDisabledApiKeysError(
@@ -63,10 +67,13 @@ export const updateAlertRoute = (router: IRouter, licenseState: LicenseState) =>
         const alertsClient = context.alerting.getAlertsClient();
         const { id } = req.params;
         const { name, actions, params, schedule, tags, throttle } = req.body;
+		const { accountId } = req.query;
+    const { userId } = req.query;						  
         return res.ok({
           body: await alertsClient.update({
             id,
             data: { name, actions, params, schedule, tags, throttle },
+			 	  options1:{ userId, accountId }  
           }),
         });
       })

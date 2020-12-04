@@ -29,6 +29,7 @@ const workpadUpdateHandler = async (
   payload: TypeOf<typeof WorkpadSchema> | TypeOf<typeof AssetPayloadSchema>,
   id: string,
   savedObjectsClient: SavedObjectsClientContract,
+  request,	  
   response: KibanaResponseFactory
 ) => {
   const now = new Date().toISOString();
@@ -42,7 +43,11 @@ const workpadUpdateHandler = async (
       '@timestamp': now, // always update the modified time
       '@created': workpadObject.attributes['@created'], // ensure created is not modified
     },
-    { overwrite: true, id }
+    { overwrite: true, 
+	id,
+	 accountId: request.query.accountId,
+    userId: request.query.userId,
+	}
   );
 
   return response.ok({
@@ -62,6 +67,10 @@ export function initializeUpdateWorkpadRoute(deps: RouteInitializerDeps) {
           id: schema.string(),
         }),
         body: WorkpadSchema,
+			 query: schema.object({
+          userId: schema.string(),
+          accountId: schema.string()
+        })				 
       },
       options: {
         body: {
@@ -75,6 +84,7 @@ export function initializeUpdateWorkpadRoute(deps: RouteInitializerDeps) {
         request.body,
         request.params.id,
         context.core.savedObjects.client,
+		  request,
         response
       );
     })
@@ -88,6 +98,10 @@ export function initializeUpdateWorkpadRoute(deps: RouteInitializerDeps) {
           id: schema.string(),
         }),
         body: WorkpadSchema,
+		 query: schema.object({
+          userId: schema.string(),
+          accountId: schema.string()
+        })				 
       },
       options: {
         body: {
@@ -101,6 +115,7 @@ export function initializeUpdateWorkpadRoute(deps: RouteInitializerDeps) {
         request.body,
         request.params.id,
         context.core.savedObjects.client,
+		  request,
         response
       );
     })
@@ -117,6 +132,10 @@ export function initializeUpdateWorkpadAssetsRoute(deps: RouteInitializerDeps) {
         params: schema.object({
           id: schema.string(),
         }),
+		query: schema.object({
+          userId: schema.string(),
+          accountId: schema.string()
+        }),				
         // ToDo: Currently the validation must be a schema.object
         // Because we don't know what keys the assets will have, we have to allow
         // unknowns and then validate in the handler
@@ -134,6 +153,7 @@ export function initializeUpdateWorkpadAssetsRoute(deps: RouteInitializerDeps) {
         { assets: AssetsRecordSchema.validate(request.body) },
         request.params.id,
         context.core.savedObjects.client,
+		  request,
         response
       );
     }

@@ -110,6 +110,7 @@ export class ActionsClient {
    */
   public async create({
     action: { actionTypeId, name, config, secrets },
+	options1
   }: CreateOptions): Promise<ActionResult> {
     await this.authorization.ensureAuthorized('create', actionTypeId);
 
@@ -124,7 +125,7 @@ export class ActionsClient {
       name,
       config: validatedActionTypeConfig as SavedObjectAttributes,
       secrets: validatedActionTypeSecrets as SavedObjectAttributes,
-    });
+    },{...options1});
 
     return {
       id: result.id,
@@ -138,7 +139,7 @@ export class ActionsClient {
   /**
    * Update action
    */
-  public async update({ id, action }: UpdateOptions): Promise<ActionResult> {
+  public async update({ id, action, options1}: UpdateOptions): Promise<ActionResult> {
     await this.authorization.ensureAuthorized('update');
 
     if (
@@ -175,6 +176,7 @@ export class ActionsClient {
         config: validatedActionTypeConfig as SavedObjectAttributes,
         secrets: validatedActionTypeSecrets as SavedObjectAttributes,
       },
+	  {...options1},
       omitBy(
         {
           id,

@@ -31,6 +31,8 @@ export const registerCreateRoute = (router: IRouter) => {
         }),
         query: schema.object({
           overwrite: schema.boolean({ defaultValue: false }),
+		accountId: schema.string(),
+          userId: schema.string()					   
         }),
         body: schema.object({
           attributes: schema.recordOf(schema.string(), schema.any()),
@@ -52,8 +54,10 @@ export const registerCreateRoute = (router: IRouter) => {
       const { type, id } = req.params;
       const { overwrite } = req.query;
       const { attributes, migrationVersion, references, initialNamespaces } = req.body;
+	 const { accountId } = req.query;
+      const { userId } = req.query;							   
 
-      const options = { id, overwrite, migrationVersion, references, initialNamespaces };
+      const options = { id, overwrite, migrationVersion, references, initialNamespaces, accountId, userId };
       const result = await context.core.savedObjects.client.create(type, attributes, options);
       return res.ok({ body: result });
     })

@@ -38,6 +38,8 @@ export function registerResolveIndexRoute(router: IRouter): void {
               schema.literal('none'),
             ])
           ),
+		  userId: schema.string(),
+          accountId: schema.string()
         }),
       },
     },

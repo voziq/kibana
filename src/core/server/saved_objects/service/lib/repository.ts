@@ -234,6 +234,7 @@ export class SavedObjectsRepository {
       version,
     } = options;
     const namespace = normalizeNamespace(options.namespace);
+	const accountId=options.accountId, userId=options.userId;
 
     if (initialNamespaces) {
       if (!this._registry.isMultiNamespace(type)) {
@@ -281,6 +282,8 @@ export class SavedObjectsRepository {
     });
 
     const raw = this._serializer.savedObjectToRaw(migrated as SavedObjectSanitizedDoc);
+     raw._source.accountId= accountId;
+    raw._source.userId= userId;
 
     const requestParams = {
       id: raw._id,
@@ -712,6 +715,8 @@ export class SavedObjectsRepository {
       perPage = FIND_DEFAULT_PER_PAGE,
       sortField,
       sortOrder,
+	  accountId,
+    userId, 	   
       fields,
       namespaces,
       type,
@@ -779,6 +784,8 @@ export class SavedObjectsRepository {
       preference,
       body: {
         seq_no_primary_term: true,
+		accountId,
+        userId,	
         ...getSearchDsl(this._mappings, this._registry, {
           search,
           defaultSearchOperator,
@@ -1010,6 +1017,7 @@ export class SavedObjectsRepository {
 
     const { version, references, refresh = DEFAULT_REFRESH_SETTING } = options;
     const namespace = normalizeNamespace(options.namespace);
+	const accountId=options.accountId, userId=options.userId;													   
 
     let preflightResult: SavedObjectsRawDoc | undefined;
     if (this._registry.isMultiNamespace(type)) {
@@ -1033,6 +1041,8 @@ export class SavedObjectsRepository {
 
         body: {
           doc,
+		  accountId:accountId,
+		userId:userId
         },
         _source_includes: ['namespace', 'namespaces', 'originId'],
       },

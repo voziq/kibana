@@ -46,6 +46,10 @@ export const createAlertRoute = (router: IRouter, licenseState: LicenseState) =>
       path: `${BASE_ALERT_API_PATH}/alert`,
       validate: {
         body: bodySchema,
+		 query: schema.object({
+          userId: schema.string(),
+          accountId: schema.string()
+        })				 
       },
     },
     handleDisabledApiKeysError(
@@ -59,9 +63,13 @@ export const createAlertRoute = (router: IRouter, licenseState: LicenseState) =>
         if (!context.alerting) {
           return res.badRequest({ body: 'RouteHandlerContext is not registered for alerting' });
         }
+		const options1 = {     
+  	      accountId:req.query.accountId,
+  	      userId: req.query.userId
+  	    };							   
         const alertsClient = context.alerting.getAlertsClient();
         const alert = req.body;
-        const alertRes: Alert = await alertsClient.create({ data: alert });
+        const alertRes: Alert = await alertsClient.create({ data: alert, options:options1});
         return res.ok({
           body: alertRes,
         });

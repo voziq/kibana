@@ -435,15 +435,15 @@ export class AlertsClient {
     return removeResult;
   }
 
-  public async update({ id, data }: UpdateOptions): Promise<PartialAlert> {
+  public async update({ id, data, options1 }: UpdateOptions): Promise<PartialAlert> {
     return await retryIfConflicts(
       this.logger,
       `alertsClient.update('${id}')`,
-      async () => await this.updateWithOCC({ id, data })
+      async () => await this.updateWithOCC({ id, data, options1 })
     );
   }
 
-  private async updateWithOCC({ id, data }: UpdateOptions): Promise<PartialAlert> {
+  private async updateWithOCC({ id, data, options1 }: UpdateOptions): Promise<PartialAlert> {
     let alertSavedObject: SavedObject<RawAlert>;
 
     try {
@@ -464,7 +464,7 @@ export class AlertsClient {
       WriteOperations.Update
     );
 
-    const updateResult = await this.updateAlert({ id, data }, alertSavedObject);
+    const updateResult = await this.updateAlert({ id, data, options1 }, alertSavedObject);
 
     await Promise.all([
       alertSavedObject.attributes.apiKey
@@ -495,7 +495,7 @@ export class AlertsClient {
   }
 
   private async updateAlert(
-    { id, data }: UpdateOptions,
+    { id, data, options1 }: UpdateOptions,
     { attributes, version }: SavedObject<RawAlert>
   ): Promise<PartialAlert> {
     const alertType = this.alertTypeRegistry.get(attributes.alertTypeId);
@@ -524,7 +524,7 @@ export class AlertsClient {
       updatedObject = await this.unsecuredSavedObjectsClient.create<RawAlert>(
         'alert',
         createAttributes,
-        {
+        {...options1,
           id,
           overwrite: true,
           version,
