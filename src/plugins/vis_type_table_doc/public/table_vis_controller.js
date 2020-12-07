@@ -192,11 +192,14 @@ export function TableVisController($scope) {
 				var fieldFormat=getFormatService().deserialize(formatId);
 				
                 var filterable=false;
-				var field=iFields.find(x => x.name === key);				
-				/*if(field != null && field != undefined){
+				var field=iFields.find(x => x.name === key);					
+				var fld = "";
+fld =field.spec.type;
+var formatId1={'id':fld};				
+				if(field != null && field != undefined){
 					
-					fieldFormat=field.format;
-				}*/
+					fieldFormat=getFormatService().deserialize(formatId1);
+				}
 				
 				if(labels[key] != undefined && labels[key].length >0){
 					
@@ -211,6 +214,8 @@ export function TableVisController($scope) {
 			}
 			 var m=1;
 			var columnsExpRaw=$scope.vis.params.selectedColumnsExp;
+			
+			
 			//var columnsExpRaw=$scope.visParams.selectedColumnsExp;
 			if($scope.vis.indexPattern.timeFieldName != undefined && 
 							$scope.vis.indexPattern.timeFieldName != null) { 
@@ -227,11 +232,15 @@ export function TableVisController($scope) {
 				 var filterable=false;
 				var formatId={'id':'string'};
 				var fieldFormat=getFormatService().deserialize(formatId);
-				var field=iFields.find(x => x.name === key);				
+				var field=iFields.find(x => x.name === key);
+				var fld = "";
+fld =field.spec.type;
+var formatId1={'id':fld};					
 				if(field != null && field != undefined){
-					fieldFormat=field.format;
+					//fieldFormat=field.format;
+					fieldFormat=getFormatService().deserialize(formatId1);
 				}
-				
+			
 				if(labels[key] != undefined && labels[key].length >0){
 					tableGroups.tables[0].columnsE.push({'id':'col-'+m, 'name':labels[key],'field': field,'title':labels[key], 'formatter': fieldFormat,'filterable':filterable});
 				}else{
