@@ -114,9 +114,19 @@ export class AxisConfig {
     this._values.rootEl = chartConfig.get('el');
 
     this.data = chartConfig.data;
+		var val=[];	   
     if (isCategoryAxis) {
       if (!this._values.values) {
         this.values = this.data.xValues(chartConfig.get('orderBucketsBySum', false));
+	   if (this.values == "_all" && (this.data.labels.length/this.data.data.hits) != 0)
+		{ 
+			for(var i=1;i< (this.data.labels.length/this.data.data.hits); i++)
+			{
+				val.push(i);
+			}
+			this.values=val;
+			//this.values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		}
         this.ordered = this.data.get('ordered');
       } else {
         this.values = this._values.values;

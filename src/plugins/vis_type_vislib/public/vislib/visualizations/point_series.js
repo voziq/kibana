@@ -244,8 +244,13 @@ export class PointSeries extends Chart {
         self.series = [];
         _.each(self.chartConfig.series, (seriArgs, i) => {
           if (!seriArgs.show) return;
-          const SeriClass =
-            seriTypes[seriArgs.type || self.handler.visConfig.get('chart.type')] || seriTypes.line;
+		        if(self.handler.vis.visConfigArgs.type == 'poolcurve')
+			{
+				var SeriClass =seriTypes.poolcurve;
+			}else{
+			var SeriClass = seriTypes[seriArgs.type || self.handler.visConfig.get("chart.type")] || seriTypes.line;
+			}
+          //const SeriClass =seriTypes[seriArgs.type || self.handler.visConfig.get('chart.type')] || seriTypes.line;
           const series = new SeriClass(self.handler, svg, data.series[i], seriArgs, self.deps);
           series.events = self.events;
           svg.call(series.draw());

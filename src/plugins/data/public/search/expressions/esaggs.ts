@@ -115,6 +115,25 @@ vis_type,
   });
 
 
+if (visParams.type == "treemap" && visParams.setDocCount == true) {
+                var agg = requestSearchSource.getField("aggs")();				
+                 Object.keys(agg).forEach((function (prop) {
+                        if ("terms" in agg[prop]) {
+                            agg[prop].terms.min_doc_count = visParams.docMinCount
+                        }
+                        if (agg[prop].aggs != undefined) {
+                            Object.keys(agg[prop].aggs).forEach((function (keyProp) {
+                                    if ("terms" in agg[prop].aggs[keyProp]) {
+                                        agg[prop].aggs[keyProp].terms.min_doc_count = visParams.docMinCount
+                                    }
+                                }))
+                        }
+                    }));
+                requestSearchSource.setField("aggs", (function () {
+                        return agg
+                    }))
+            }
+
 if (visParams.typeName == 'table_doc') {
             	  requestSearchSource.setField('size', 500);
             	  var hlt = {
@@ -144,6 +163,27 @@ if (visParams.typeName == 'table_doc') {
             	      	  });
             	  	requestSearchSource.setField('sort', order);
             	  		}
+						
+						
+						
+						      if (visParams.type == "scatterbubble" && visParams.setDocCount == true) {
+                var agg = requestSearchSource.getField("aggs")();
+                Object.keys(agg).forEach((function (prop) {
+                        if ("terms" in agg[prop]) {
+                            agg[prop].terms.min_doc_count = visParams.docMinCount
+                        }
+                        if (agg[prop].aggs != undefined) {
+                            Object.keys(agg[prop].aggs).forEach((function (keyProp) {
+                                    if ("terms" in agg[prop].aggs[keyProp]) {
+                                        agg[prop].aggs[keyProp].terms.min_doc_count = visParams.docMinCount
+                                    }
+                                }))
+                        }
+                    }));
+                requestSearchSource.setField("aggs", (function () {
+                        return agg
+                    }))
+            }
 /**********************************ADDED***************************************************/
 
 					var mis = "__missing__";

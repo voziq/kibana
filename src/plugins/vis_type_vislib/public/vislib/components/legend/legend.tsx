@@ -112,7 +112,15 @@ export class VisLegend extends PureComponent<VisLegendProps, VisLegendState> {
     this.setState({ selectedLabel: this.state.selectedLabel === label ? null : label });
   };
 
+    indexOfNode = function (nodesArr, name) {
+			return nodesArr.indexOf(nodesArr.filter(function (obj) {
+					return obj.label == name;
+				})[0]);
+		}
+
+
   getSeriesLabels = (data: any[]) => {
+	
     const values = data.map((chart) => chart.series).reduce((a, b) => a.concat(b), []);
 
     return compact(uniqBy(values, 'label')).map((label: any) => ({
@@ -146,12 +154,27 @@ export class VisLegend extends PureComponent<VisLegendProps, VisLegendState> {
     } else {
       if (!data) return [];
       data = data.columns || data.rows || [data];
-
+if(type != "poolcurve"){
       labels = type === 'pie' ? getPieNames(data) : this.getSeriesLabels(data);
+}else{	
+		var a={label : ""};
+				var v=[];
+				for(var i=0;i<data[0].series.length;i++){										
+				a={};
+					a.label = data[0].series[i].label.split(":")[0];
+					if (this.indexOfNode(v, a.label) == -1) {
+						v.push(a);
+					}
+				}		
+
+				labels=v;	
+				
+				//return labels;
+}
     }
-
+if(type != "poolcurve"){
     this.setFilterableLabels(labels);
-
+}
     this.setState({
       labels,
     });

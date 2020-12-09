@@ -87,6 +87,7 @@ const vislibCharts: string[] = [
   'bubble',
   'treemap',
   'sankey',
+  'poolcurve',
   'heatmap_dn',
   'scatterbubble',
   'radar',

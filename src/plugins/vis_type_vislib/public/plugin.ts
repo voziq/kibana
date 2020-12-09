@@ -35,6 +35,7 @@ import { createPieVisFn } from './pie_fn';
 import {
   createHistogramVisTypeDefinition,
   createLineVisTypeDefinition,
+  createPoolcurveVisTypeDefinition,
   createPieVisTypeDefinition,
   createAreaVisTypeDefinition,
   createHeatmapVisTypeDefinition,
@@ -90,6 +91,7 @@ export class VisTypeVislibPlugin implements Plugin<void, void> {
     const vislibTypes = [
       createHistogramVisTypeDefinition,
       createLineVisTypeDefinition,
+      createPoolcurveVisTypeDefinition,
       createPieVisTypeDefinition,
       createAreaVisTypeDefinition,
       createHeatmapVisTypeDefinition,

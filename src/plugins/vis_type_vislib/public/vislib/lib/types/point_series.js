@@ -205,7 +205,7 @@ function create(opts) {
 
 export const vislibPointSeriesTypes = {
   line: create(),
-
+  poolcurve: create(),
   column: create({
     expandLastBucket: true,
   }),

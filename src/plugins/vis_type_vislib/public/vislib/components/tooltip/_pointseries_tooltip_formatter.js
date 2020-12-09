@@ -35,11 +35,24 @@ export function pointSeriesTooltipFormatter() {
         addDetail(metric.label, metric.value);
       });
     }
-
+ var poolcurvecon="false";
+ 
+  if(datum.seriesRaw!=undefined)
+      {
+    	  if (datum.seriesRaw.table.vis != undefined) {
+     	if(datum.seriesRaw.table.vis.type=="poolcurve")
+     	{
+     		poolcurvecon="true";
+     	}
+    	  }
+      }
+  if(poolcurvecon== "false")
+		{
+ 
     if (datum.x !== null && datum.x !== undefined) {
       addDetail(data.xAxisLabel, data.xAxisFormatter(datum.x));
     }
-
+		}
     if (datum.y !== null && datum.y !== undefined) {
       const value = datum.yScale ? datum.yScale * datum.y : datum.y;
       addDetail(currentSeries.label, currentSeries.yAxisFormatter(value));

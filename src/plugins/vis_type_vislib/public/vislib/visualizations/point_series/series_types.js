@@ -21,10 +21,12 @@ import { ColumnChart } from './column_chart';
 import { LineChart } from './line_chart';
 import { AreaChart } from './area_chart';
 import { HeatmapChart } from './heatmap_chart';
+import { PoolCurveChart } from './poolcurve_chart';
 
 export const seriesTypes = {
   histogram: ColumnChart,
   line: LineChart,
   area: AreaChart,
   heatmap: HeatmapChart,
+   poolcurve : PoolCurveChart
 };

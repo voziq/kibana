@@ -503,7 +503,14 @@ export class Data {
     const colors = defaultColors ? _.defaults({}, overwriteColors, defaultColors) : overwriteColors;
     //return this.createColorLookupFunction(this.getLabels(), colors);
     
-    if(this.type === "series" && this.typeValue == "network") {
+     if(this.typeValue == 'poolcurve'){
+		var arr=[];
+		this.getLabels().forEach(function(ele){				
+			ele = ele.split(':')[0];				
+			arr.push(ele);
+		});
+		return this.createColorLookupFunction(arr, colors);
+		}else if(this.type === "series" && this.typeValue == "network") {
 		var arr = [];			
 		this.data.series_data.forEach(function(ele){
 			arr.push(ele[0])											

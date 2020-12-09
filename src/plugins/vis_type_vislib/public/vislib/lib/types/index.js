@@ -35,6 +35,7 @@ export const vislibTypesConfig = {
   bubble: vislibCustomConfig,
   treemap: vislibCustomConfig,
   sankey: vislibCustomConfig,
+    poolcurve: pointSeries.poolcurve,
    heatmap_dn: vislibCustomConfig,
    scatterbubble: vislibCustomConfig,
     radar: vislibCustomConfig,

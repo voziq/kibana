@@ -19,6 +19,7 @@
 
 export { createHistogramVisTypeDefinition } from './histogram';
 export { createLineVisTypeDefinition } from './line';
+export { createPoolcurveVisTypeDefinition } from './poolcurve';
 export { createPieVisTypeDefinition } from './pie';
 export { createAreaVisTypeDefinition } from './area';
 export { createHeatmapVisTypeDefinition } from './heatmap';
