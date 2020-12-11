@@ -79,6 +79,8 @@ export const registerFindRoute = (router: IRouter) => {
         page: query.page,
         type: Array.isArray(query.type) ? query.type : [query.type],
         search: query.search,
+        accountId:query.accountId,
+        userId:query.userId,
         defaultSearchOperator: query.default_search_operator,
         searchFields:
           typeof query.search_fields === 'string' ? [query.search_fields] : query.search_fields,
@@ -89,12 +91,12 @@ export const registerFindRoute = (router: IRouter) => {
         namespaces,
 	  };
       
-      if (req.query.accountId) {
+      /*if (req.query.accountId) {
         dataObj.accountId = req.query.accountId;
       }
             if (req.query.userId) {
         dataObj.userId = req.query.userId;
-      }
+      }*/
 	  const result = await context.core.savedObjects.client.find(dataObj);
       return res.ok({ body: result });
     })

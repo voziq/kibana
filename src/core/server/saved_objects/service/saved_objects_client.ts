@@ -36,6 +36,8 @@ import { SavedObjectsErrorHelpers } from './lib/errors';
 export interface SavedObjectsCreateOptions extends SavedObjectsBaseOptions {
   /** (not recommended) Specify an id for the document */
   id?: string;
+  accountId?:string;
+  userId?:string;
   /** Overwrite existing documents (defaults to false) */
   overwrite?: boolean;
   /**
@@ -165,6 +167,8 @@ export interface SavedObjectsCheckConflictsResponse {
 export interface SavedObjectsUpdateOptions extends SavedObjectsBaseOptions {
   /** An opaque version number which changes on each successful write operation. Can be used for implementing optimistic concurrency control. */
   version?: string;
+   accountId?:string;
+  userId?:string;
   /** {@inheritdoc SavedObjectReference} */
   references?: SavedObjectReference[];
   /** The Elasticsearch Refresh setting for this operation */

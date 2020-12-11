@@ -75,6 +75,8 @@ export interface SavedObjectsFindOptions {
    * @example
    * SavedObjects.find({type: 'dashboard', fields: ['attributes.name', 'attributes.location']})
    */
+   accountId?:string;
+  userId?:string;
   fields?: string[];
   /** Search documents using the Elasticsearch Simple Query String syntax. See Elasticsearch Simple Query String `query` argument for more information */
   search?: string;
