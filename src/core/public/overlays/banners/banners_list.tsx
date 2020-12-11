@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Observable } from 'rxjs';
 
 import { OverlayBanner } from './banners_service';
@@ -44,8 +44,8 @@ export const BannersList: React.FunctionComponent<Props> = ({ banners$ }) => {
   if (banners.length === 0) {
     return null;
   }
-return "";
- /* return (
+return null;
+/* return (
     <div className="kbnGlobalBannerList">
       {banners.map((banner) => (
         <BannerItem key={banner.id} banner={banner} />
@@ -54,7 +54,7 @@ return "";
   );*/
 };
 
-const BannerItem: React.FunctionComponent<{ banner: OverlayBanner }> = ({ banner }) => {
+/*const BannerItem: React.FunctionComponent<{ banner: OverlayBanner }> = ({ banner }) => {
   const element = useRef(null);
   useEffect(() => banner.mount(element.current!), [banner]); // Only unmount / remount if banner object changed.
 
@@ -66,4 +66,4 @@ const BannerItem: React.FunctionComponent<{ banner: OverlayBanner }> = ({ banner
       data-test-subj="global-banner-item"
     />
   );
-};
+};*/

@@ -288,9 +288,9 @@ export class ChromeService {
       setBreadcrumbs: (newBreadcrumbs: ChromeBreadcrumb[]) => {
 	/*breadcrumbs$.next(newBreadcrumbs);*/
        if (newBreadcrumbs.length != 0) {
-					const arr = [];
-					arr.push(newBreadcrumbs.slice(-1).pop());
-					breadcrumbs$.next(arr);
+					const arr=[]
+					arr.push(newBreadcrumbs.slice(-1).pop());				
+					breadcrumbs$.next(arr as ChromeBreadcrumb[]);
 			}
 			else{
 				breadcrumbs$.next(newBreadcrumbs);
