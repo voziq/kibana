@@ -102,6 +102,8 @@ export interface GetFieldsOptions {
   params?: any;
   lookBack?: boolean;
   metaFields?: string[];
+  accountId?: string;
+  userId?: string;
 }
 
 export interface IIndexPatternsApiClient {

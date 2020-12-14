@@ -70,6 +70,8 @@ export const findAlertRoute = (router: IRouter, licenseState: LicenseState) => {
         fields: 'fields',
         has_reference: 'hasReference',
         page: 'page',
+        accountId:'accountId',
+        userId:'userId',
         per_page: 'perPage',
         search: 'search',
         sort_field: 'sortField',
@@ -77,12 +79,12 @@ export const findAlertRoute = (router: IRouter, licenseState: LicenseState) => {
         filter: 'filter',
       };
 
-		 if (req.query.accountId) {
+		 /*if (req.query.accountId) {
     	renameMap.accountId = req.query.accountId;
       }
             if (req.query.userId) {
             	renameMap.userId = req.query.userId;
-      }					 
+      }	*/			 
       const options = renameKeys<FindOptions, Record<string, unknown>>(renameMap, query);
 
       if (query.search_fields) {

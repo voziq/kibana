@@ -55,6 +55,8 @@ export class IndexPatternsFetcher {
   async getFieldsForWildcard(options: {
     pattern: string | string[];
     metaFields?: string[];
+    accountId?: string;
+    userId?: string;
     fieldCapsOptions?: { allowNoIndices: boolean };
   }): Promise<FieldDescriptor[]> {
     const { pattern, metaFields, fieldCapsOptions } = options;
@@ -75,6 +77,8 @@ export class IndexPatternsFetcher {
     pattern: string;
     metaFields: string[];
     lookBack: number;
+    accountId?: string;
+    userId?: string;
     interval: string;
   }) {
     const { pattern, lookBack, metaFields } = options;

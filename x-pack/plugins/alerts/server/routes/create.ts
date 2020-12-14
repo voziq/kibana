@@ -20,7 +20,7 @@ import { Alert, BASE_ALERT_API_PATH } from '../types';
 
 export const bodySchema = schema.object({
   name: schema.string(),
-  alertTypeId: schema.string(),
+  alertTypeId: schema.string(),  
   enabled: schema.boolean({ defaultValue: true }),
   consumer: schema.string(),
   tags: schema.arrayOf(schema.string(), { defaultValue: [] }),
@@ -40,22 +40,28 @@ export const bodySchema = schema.object({
   ),
 });
 
+ const querySchema = schema.object({
+  userId: schema.string(),
+  accountId: schema.string()
+  });
+
 export const createAlertRoute = (router: IRouter, licenseState: LicenseState) => {
   router.post(
     {
       path: `${BASE_ALERT_API_PATH}/alert`,
       validate: {
         body: bodySchema,
-		 query: schema.object({
+         query: querySchema,
+		 /*query: schema.object({
           userId: schema.string(),
           accountId: schema.string()
-        })				 
+        })*/				 
       },
     },
     handleDisabledApiKeysError(
       router.handleLegacyErrors(async function (
         context: RequestHandlerContext,
-        req: KibanaRequest<unknown, unknown, TypeOf<typeof bodySchema>>,
+        req: KibanaRequest<unknown, TypeOf<typeof querySchema>, TypeOf<typeof bodySchema>>,
         res: KibanaResponseFactory
       ): Promise<IKibanaResponse> {
         verifyApiAccess(licenseState);
@@ -63,9 +69,12 @@ export const createAlertRoute = (router: IRouter, licenseState: LicenseState) =>
         if (!context.alerting) {
           return res.badRequest({ body: 'RouteHandlerContext is not registered for alerting' });
         }
+
+
+        const { accountId, userId } = req.query;
 		const options1 = {     
-  	      accountId:req.query.accountId,
-  	      userId: req.query.userId
+  	      accountId,
+  	      userId,
   	    };							   
         const alertsClient = context.alerting.getAlertsClient();
         const alert = req.body;

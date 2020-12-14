@@ -330,6 +330,8 @@ export class SavedObjectsClient {
       search: 'search',
       searchFields: 'search_fields',
       sortField: 'sort_field',
+      accountId:'accountId',
+      userId:'userId',
       type: 'type',
       filter: 'filter',
       namespaces: 'namespaces',

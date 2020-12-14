@@ -85,6 +85,8 @@ export interface MuteOptions extends IndexType {
 export interface FindOptions extends IndexType {
   perPage?: number;
   page?: number;
+  accountId?: string;
+	userId?: string;			
   search?: string;
   defaultSearchOperator?: 'AND' | 'OR';
   searchFields?: string[];
@@ -125,6 +127,8 @@ export interface CreateOptions {
     | 'executionStatus'
   > & { actions: NormalizedAlertAction[] };
   options?: {
+    accountId: string;
+  userId: string;
     migrationVersion?: Record<string, string>;
   };
 }
@@ -139,6 +143,8 @@ interface UpdateOptions {
     params: Record<string, unknown>;
     throttle: string | null;
   };
+  options1:{ accountId: string;
+  userId: string;}
 }
 
 interface GetAlertInstanceSummaryParams {

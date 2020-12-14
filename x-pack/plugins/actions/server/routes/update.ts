@@ -41,15 +41,15 @@ export const updateActionRoute = (router: IRouter, licenseState: ILicenseState) 
     },
     router.handleLegacyErrors(async function (
       context: RequestHandlerContext,
-      req: KibanaRequest<TypeOf<typeof paramSchema>, unknown, TypeOf<typeof bodySchema>>,
+      req: KibanaRequest<TypeOf<typeof paramSchema>, TypeOf<typeof querySchema>, TypeOf<typeof bodySchema>>,
       res: KibanaResponseFactory
     ): Promise<IKibanaResponse> {
       verifyApiAccess(licenseState);
       if (!context.actions) {
         return res.badRequest({ body: 'RouteHandlerContext is not registered for actions' });
       }
-		const { accountId } = req.query;
-    const { userId } = req.query;							  
+		const { accountId, userId } = req.query;
+    //const { userId } = req.query;							  
       const actionsClient = context.actions.getActionsClient();
       const { id } = req.params;
       const { name, config, secrets } = req.body;

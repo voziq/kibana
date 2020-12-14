@@ -23,21 +23,23 @@ export const bodySchema = schema.object({
   secrets: schema.recordOf(schema.string(), schema.any(), { defaultValue: {} }),
 });
 
+const querySchema = schema.object({
+	  userId: schema.string(),
+	          accountId: schema.string()
+	});
+
 export const createActionRoute = (router: IRouter, licenseState: ILicenseState) => {
   router.post(
     {
       path: `${BASE_ACTION_API_PATH}/action`,
       validate: {
         body: bodySchema,
-			 query: schema.object({
-          userId: schema.string(),
-          accountId: schema.string()
-        })			   
+			 query: querySchema,	   
       },
     },
     router.handleLegacyErrors(async function (
       context: RequestHandlerContext,
-      req: KibanaRequest<unknown, unknown, TypeOf<typeof bodySchema>>,
+      req: KibanaRequest<unknown, TypeOf<typeof querySchema>, TypeOf<typeof bodySchema>>,
       res: KibanaResponseFactory
     ): Promise<IKibanaResponse> {
       verifyApiAccess(licenseState);
@@ -45,9 +47,12 @@ export const createActionRoute = (router: IRouter, licenseState: ILicenseState) 
       if (!context.actions) {
         return res.badRequest({ body: 'RouteHandlerContext is not registered for actions' });
       }
+
+
+      const { accountId, userId } = req.query;
 		 const options1 = {     
-    	      accountId:req.query.accountId,
-    	      userId: req.query.userId
+    	      accountId,
+    	      userId
     	    };				   
       const actionsClient = context.actions.getActionsClient();
       const action = req.body;

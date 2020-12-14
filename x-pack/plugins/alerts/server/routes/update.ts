@@ -57,7 +57,7 @@ export const updateAlertRoute = (router: IRouter, licenseState: LicenseState) =>
     handleDisabledApiKeysError(
       router.handleLegacyErrors(async function (
         context: RequestHandlerContext,
-        req: KibanaRequest<TypeOf<typeof paramSchema>, unknown, TypeOf<typeof bodySchema>>,
+        req: KibanaRequest<TypeOf<typeof paramSchema>, TypeOf<typeof querySchema>, TypeOf<typeof bodySchema>>,
         res: KibanaResponseFactory
       ): Promise<IKibanaResponse> {
         verifyApiAccess(licenseState);

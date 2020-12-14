@@ -53,6 +53,8 @@ interface Action extends ActionUpdate {
 
 interface CreateOptions {
   action: Action;
+  options1:{ accountId: string;
+  userId: string;}
 }
 
 interface ConstructorOptions {
@@ -70,6 +72,8 @@ interface ConstructorOptions {
 interface UpdateOptions {
   id: string;
   action: ActionUpdate;
+  options1:{accountId: string;
+  userId: string;}
 }
 
 export class ActionsClient {
@@ -176,14 +180,16 @@ export class ActionsClient {
         config: validatedActionTypeConfig as SavedObjectAttributes,
         secrets: validatedActionTypeSecrets as SavedObjectAttributes,
       },
-	  {...options1},
+	  //{...options1},
       omitBy(
         {
+          ...options1,
           id,
           overwrite: true,
           references,
           version,
         },
+        
         isUndefined
       )
     );

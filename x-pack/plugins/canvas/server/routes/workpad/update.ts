@@ -6,7 +6,7 @@
 
 import { schema, TypeOf } from '@kbn/config-schema';
 import { omit } from 'lodash';
-import { KibanaResponseFactory, SavedObjectsClientContract } from 'src/core/server';
+import { KibanaResponseFactory, SavedObjectsClientContract, KibanaRequest } from 'src/core/server';
 import { CanvasWorkpad } from '../../../types';
 import { RouteInitializerDeps } from '../';
 import {
@@ -15,7 +15,7 @@ import {
   API_ROUTE_WORKPAD_STRUCTURES,
   API_ROUTE_WORKPAD_ASSETS,
 } from '../../../common/lib/constants';
-import { WorkpadSchema, WorkpadAssetSchema } from './workpad_schema';
+import { WorkpadSchema, WorkpadAssetSchema, QuerySchema } from './workpad_schema';
 import { okResponse } from '../ok_response';
 import { catchErrorHandler } from '../catch_error_handler';
 
@@ -29,7 +29,7 @@ const workpadUpdateHandler = async (
   payload: TypeOf<typeof WorkpadSchema> | TypeOf<typeof AssetPayloadSchema>,
   id: string,
   savedObjectsClient: SavedObjectsClientContract,
-  request,	  
+  request:KibanaRequest<unknown, TypeOf<typeof QuerySchema>, unknown>,	  
   response: KibanaResponseFactory
 ) => {
   const now = new Date().toISOString();

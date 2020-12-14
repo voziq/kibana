@@ -72,3 +72,8 @@ export const WorkpadSchema = schema.object({
   pages: schema.arrayOf(WorkpadPageSchema),
   width: schema.number(),
 });
+
+export const QuerySchema = schema.object({
+userId: schema.string(),
+	          accountId: schema.string()
+});
