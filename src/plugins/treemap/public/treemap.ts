@@ -6,8 +6,9 @@ import { Schemas } from '../../vis_default_editor/public';
 import { AggGroupNames } from '../../data/public';
 //import { PieOptions } from './components/options';
 //import { ColorSchemas } from 'ui/vislib/components/color/colormaps';
-import { ColorSchemas } from '../../charts/public';
-import { getPositions, Positions, getHeatmapCollections, getGroupAlignment, TreemapSortOptions, GroupAlignment } from '../../vis_type_vislib/public/utils/collections';
+import { ColorSchemas, ColorSchemaParams } from '../../charts/public';
+//import { getPositions, Positions, getHeatmapCollections, getGroupAlignment, TreemapSortOptions, GroupAlignment } from '../../vis_type_vislib/public/utils/collections';
+import { getPositions, Positions, getHeatmapCollections,  TreemapSortOptions, GroupAlignment } from '../../vis_type_vislib/public/utils/collections';
 import { VisTypeVislibDependencies } from '../../vis_type_vislib/public/plugin';
 //import { vislibVisController } from 'plugins/kbn_vislib_vis_types/controller';
 import { createVislibVisController } from '../../vis_type_vislib/public/vis_controller';
@@ -15,7 +16,7 @@ import { createVislibVisController } from '../../vis_type_vislib/public/vis_cont
 import './treemap.scss';
 import treemapSvg from './treemap.svg';
 import { TreemapOptions } from '../../vis_type_vislib/public/components/options';
-
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 
 export interface TreemapVisParams extends CommonVislibParams, ColorSchemaParams {
 	type: "treemap",
@@ -32,7 +33,7 @@ export interface TreemapVisParams extends CommonVislibParams, ColorSchemaParams 
 			
 }
 
-	export const createTreemapVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+	export const createTreemapVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
   name: 'treemap',
   title: i18n.translate('visTypeVislib.heatmap.heatmapTitle', { defaultMessage: 'Treemap' }),
   icon: treemapSvg,

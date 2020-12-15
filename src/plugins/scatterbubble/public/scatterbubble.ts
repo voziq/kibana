@@ -9,6 +9,8 @@ import { createVislibVisController } from '../../vis_type_vislib/public/vis_cont
 import './scatterbubble.scss';
 import './tipsy.scss';
 //import scatterTemplate from 'plugins/scatterbubble/scatter.html';
+import { ColorSchemaParams } from '../../charts/public';
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 import { ScatterBubbleOptions } from '../../vis_type_vislib/public/components/options';
 
 export interface catterBubbleVisParams extends CommonVislibParams, ColorSchemaParams {
@@ -23,7 +25,7 @@ export interface catterBubbleVisParams extends CommonVislibParams, ColorSchemaPa
 }
 
 	
-	export const createScatterBubbleVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+	export const createScatterBubbleVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
 		name: 'scatterbubble', // The internal id of the visualization (must be unique)
         title: 'Scatter Bubble', // The title of the visualization, shown to the user
         description: '3D chart to investigate relationship between multiple variables.', // The description of this vis

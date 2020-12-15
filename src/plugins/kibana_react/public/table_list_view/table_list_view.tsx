@@ -23,7 +23,7 @@ import { i18n } from '@kbn/i18n';
 import { debounce, keyBy, sortBy, uniq } from 'lodash';
 import {
   EuiTitle,
-  EuiInMemoryTable,
+  //EuiInMemoryTable,
   EuiPage,
   EuiPageBody,
   EuiPageContent,
@@ -35,7 +35,7 @@ import {
   EuiOverlayMask,
   EuiConfirmModal,
   EuiCallOut,
-  EuiBasicTableColumn,
+  //EuiBasicTableColumn,
 } from '@elastic/eui';
 import { HttpFetchError, ToastsStart } from 'kibana/public';
 import { toMountPoint } from '../util';
@@ -91,17 +91,17 @@ export interface TableListViewState {
 // This component does not try to tackle these problems (yet) and is just feature matching the legacy component
 // TODO support server side sorting/paging once title and description are sortable on the server.
 class TableListView extends React.Component<TableListViewProps, TableListViewState> {
-  private pagination = {};
+ // private pagination = {};
   private _isMounted = false;
 
   constructor(props: TableListViewProps) {
     super(props);
 
-    this.pagination = {
+    /*this.pagination = {
       initialPageIndex: 0,
       initialPageSize: props.initialPageSize,
       pageSizeOptions: uniq([10, 20, 50, props.initialPageSize]).sort(),
-    };
+    };*/
     this.state = {
       items: [],
       totalItems: 0,
@@ -402,7 +402,7 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
   }
 
   renderTable() {
-    const selection = this.props.deleteItems
+    /*const selection = this.props.deleteItems
       ? {
           onSelectionChange: (obj: Item[]) => {
             this.setState({
@@ -412,7 +412,7 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
             });
           },
         }
-      : undefined;
+      : undefined;*/
 
     const actions = [
       {
@@ -431,14 +431,14 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
       },
     ];
 
-    const search = {
+    /*const search = {
       onChange: this.setFilter.bind(this),
       toolsLeft: this.renderToolsLeft(),
       defaultQuery: this.state.filter,
       box: {
         incremental: true,
       },
-    };
+    };*/
 
     const columns = this.props.tableColumns.slice();
     if (this.props.editItem) {
@@ -451,13 +451,13 @@ class TableListView extends React.Component<TableListViewProps, TableListViewSta
       });
     }
 
-    const noItemsMessage = (
+    /*const noItemsMessage = (
       <FormattedMessage
         id="kibana-react.tableListView.listing.noMatchedItemsMessage"
         defaultMessage="No {entityNamePlural} matched your search."
         values={{ entityNamePlural: this.props.entityNamePlural }}
       />
-    );
+    );*/
 return"";
   /*  return (
       <EuiInMemoryTable

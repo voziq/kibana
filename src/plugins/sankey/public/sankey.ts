@@ -8,6 +8,8 @@ import { getPositions, Positions } from '../../vis_type_vislib/public/utils/coll
 import { VisTypeVislibDependencies } from '../../vis_type_vislib/public/plugin';
 import { createVislibVisController } from '../../vis_type_vislib/public/vis_controller';
 import { SankeyOptions } from '../../vis_type_vislib/public/components/options';
+import { ColorSchemaParams } from '../../charts/public';
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 import './sankey.scss';
 import sankeySvg from './sankey.svg';
  
@@ -19,7 +21,7 @@ import sankeySvg from './sankey.svg';
 			
 }
  
-	export const createSankeyVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+	export const createSankeyVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
 	name: 'sankey', // The internal id of the visualization (must be unique)
 	title: 'Sankey', // The title of the visualization, shown to the user
 	description: 'Display data as directional flow chart.', // The description of this vis

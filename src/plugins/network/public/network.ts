@@ -8,7 +8,7 @@ import networkVisTemplate from './network_vis.html';
 import { AggGroupNames } from '../../data/public';
 //import { PieOptions } from './components/options';
 //import { ColorSchemas } from 'ui/vislib/components/color/colormaps';
-import { ColorSchemas } from '../../charts/public';
+import { ColorSchemas, ColorSchemaParams } from '../../charts/public';
 import { getPositions, Positions} from '../../vis_type_vislib/public/utils/collections';
 import { VisTypeVislibDependencies } from '../../vis_type_vislib/public/plugin';
 import networkVisParamsTemplate from './network_vis_params.html';
@@ -19,6 +19,7 @@ import { createVislibVisController } from '../../vis_type_vislib/public/vis_cont
 
 import { NetworkOptions } from '../../vis_type_vislib/public/components/options';
 
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 
 export interface NetworkVisParams extends CommonVislibParams, ColorSchemaParams {
 	type: 'network',
@@ -53,7 +54,7 @@ export interface NetworkVisParams extends CommonVislibParams, ColorSchemaParams 
 			
 }
 
-	export const createNetworkVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+	export const createNetworkVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
   name: 'network',
   title: i18n.translate('visTypeVislib.heatmap.heatmapTitle', { defaultMessage: 'Network' }),
   icon: image,

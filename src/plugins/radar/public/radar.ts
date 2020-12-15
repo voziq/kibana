@@ -6,7 +6,8 @@ import { AggGroupNames } from '../../data/public';
 import { VisTypeVislibDependencies } from '../../vis_type_vislib/public/plugin';
 import { createVislibVisController } from '../../vis_type_vislib/public/vis_controller';
 import { RadarOptions } from '../../vis_type_vislib/public/components/options';
-
+import { ColorSchemaParams } from '../../charts/public';
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 
 export interface RadarVisParams extends CommonVislibParams, ColorSchemaParams {
 	type: "radar",				
@@ -22,7 +23,7 @@ export interface RadarVisParams extends CommonVislibParams, ColorSchemaParams {
 
 
 	// Describe our visualization
-	 export const createRadarVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+	 export const createRadarVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
 		name: 'radar', // The internal id of the visualization (must be unique)
 		title: 'Radar', // The title of the visualization, shown to the user
 		description: 'Display and compare multiple quantitative variables represented on axes starting from the same point.', // The description of this vis

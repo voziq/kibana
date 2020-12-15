@@ -4,7 +4,8 @@ import heatMapDnSvg from './heatmapDn.svg';
 import { HeatMap_dnOptions } from '../../vis_type_vislib/public/components/options';
 import { VisTypeVislibDependencies } from '../../vis_type_vislib/public/plugin';
 import { createVislibVisController } from '../../vis_type_vislib/public/vis_controller';
-
+import { ColorSchemaParams } from '../../charts/public';
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 
 export interface HeatmapDnVisParams extends CommonVislibParams, ColorSchemaParams {
 	type: "heatmap_dn",
@@ -20,7 +21,7 @@ export interface HeatmapDnVisParams extends CommonVislibParams, ColorSchemaParam
 			
 }
 
-	  	export const createHeatmapDnVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+	  	export const createHeatmapDnVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
         name: 'heatmap_dn', // The internal id of the visualization (must be unique)
         title: 'HeatMap - 2 Metrics', //Dynamic Heatmap The title of the visualization, shown to the user
         description: 'A heat map is a 3D representation of data in which values are represented by a scale of colors from lighter to darker shades. '+

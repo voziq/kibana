@@ -8,6 +8,8 @@ import { AggGroupNames } from '../../data/public';
 import { VisTypeVislibDependencies } from '../../vis_type_vislib/public/plugin';
 import { createVislibVisController } from '../../vis_type_vislib/public/vis_controller';
 import { BubbleOptions } from '../../vis_type_vislib/public/components/options';
+import { ColorSchemaParams } from '../../charts/public';
+import { CommonVislibParams} from '../../vis_type_vislib/public/types';
 
 export interface BubbleVisParams extends CommonVislibParams, ColorSchemaParams {
 	type: "bubble",				
@@ -18,7 +20,7 @@ export interface BubbleVisParams extends CommonVislibParams, ColorSchemaParams {
 }
  
    
-    export const createBubbleVisTypeDefinition = (deps, VisTypeVislibDependencies) => ({
+    export const createBubbleVisTypeDefinition = (deps: VisTypeVislibDependencies) => ({
         name: 'bubble', // The internal id of the visualization (must be unique)
         title: 'Bubble', // The title of the visualization, shown to the user
         description: 'Display data as directional flow chart.', // The description of this vis
