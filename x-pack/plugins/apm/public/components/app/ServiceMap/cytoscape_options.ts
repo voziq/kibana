@@ -132,7 +132,7 @@ const getStyle = (theme: EuiTheme): cytoscape.Stylesheet[] => {
             : theme.eui.textColors.text,
         // theme.euiFontFamily doesn't work here for some reason, so we're just
         // specifying a subset of the fonts for the label text.
-        'font-family': 'Inter UI, Segoe UI, Helvetica, Arial, sans-serif',
+        'font-family': 'Poppins, Segoe UI, Helvetica, Arial, sans-serif',
         'font-size': theme.eui.euiFontSizeS,
         ghost: 'yes',
         'ghost-offset-x': 0,

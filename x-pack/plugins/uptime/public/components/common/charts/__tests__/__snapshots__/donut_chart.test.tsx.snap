@@ -241,7 +241,7 @@ exports[`DonutChart component passes correct props without errors for valid prop
             },
             "axisTitle": Object {
               "fill": "rgba(52, 55, 65, 1)",
-              "fontFamily": "'Inter UI', -apple-system, BlinkMacSystemFont,
+              "fontFamily": "'Poppins', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
               "fontSize": 12,
               "padding": Object {
@@ -273,7 +273,7 @@ exports[`DonutChart component passes correct props without errors for valid prop
             },
             "tickLabel": Object {
               "fill": "rgba(105, 112, 125, 1)",
-              "fontFamily": "'Inter UI', -apple-system, BlinkMacSystemFont,
+              "fontFamily": "'Poppins', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
               "fontSize": 10,
               "padding": Object {
@@ -293,7 +293,7 @@ exports[`DonutChart component passes correct props without errors for valid prop
           "barSeriesStyle": Object {
             "displayValue": Object {
               "fill": "rgba(105, 112, 125, 1)",
-              "fontFamily": "'Inter UI', -apple-system, BlinkMacSystemFont,
+              "fontFamily": "'Poppins', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
               "fontSize": 8,
             },

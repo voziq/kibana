@@ -40,150 +40,150 @@ interface FontFace {
 
 export const Fonts: FunctionComponent<Props> = ({ url }) => {
   const interUi: FontFace = {
-    family: 'Inter UI',
+    family: 'Poppins',
     variants: [
       {
         style: 'normal',
         weight: 100,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Thin-BETA.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Thin-BETA.woff`,
+          `${url}/fonts/poppins/Poppins-Thin.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 100,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-ThinItalic-BETA.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-ThinItalic-BETA.woff`,
+          `${url}/fonts/poppins/Poppins-ThinItalic.ttf`,         
         ],
       },
       {
         style: 'normal',
         weight: 200,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-ExtraLight-BETA.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-ExtraLight-BETA.woff`,
+          `${url}/fonts/poppins/Poppins-ExtraLight.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 200,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-ExtraLightItalic-BETA.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-ExtraLightItalic-BETA.woff`,
+          `${url}/fonts/poppins/Poppins-ExtraLightItalic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 300,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Light-BETA.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Light-BETA.woff`,
+          `${url}/fonts/poppins/Poppins-Light.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 300,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-LightItalic-BETA.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-LightItalic-BETA.woff`,
+          `${url}/fonts/poppins/Poppins-LightItalic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 400,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Regular.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Regular.woff`,
+          `${url}/fonts/poppins/Poppins-Regular.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 400,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Italic.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Italic.woff`,
+          `${url}/fonts/poppins/Poppins-Italic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 500,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Medium.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Medium.woff`,
+          `${url}/fonts/poppins/Poppins-Medium.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 500,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-MediumItalic.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-MediumItalic.woff`,
+          `${url}/fonts/poppins/Poppins-MediumItalic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 600,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-SemiBold.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-SemiBold.woff`,
+          `${url}/fonts/poppins/Poppins-SemiBold.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 600,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-SemiBoldItalic.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-SemiBoldItalic.woff`,
+          `${url}/fonts/poppins/Poppins-SemiBoldItalic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 700,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Bold.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Bold.woff`,
+          `${url}/fonts/poppins/Poppins-Bold.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 700,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-BoldItalic.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-BoldItalic.woff`,
+          `${url}/fonts/poppins/Poppins-BoldItalic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 800,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-ExtraBold.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-ExtraBold.woff`,
+          `${url}/fonts/poppins/Poppins-ExtraBold.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 800,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-ExtraBoldItalic.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-ExtraBoldItalic.woff`,
+          `${url}/fonts/poppins/Poppins-ExtraBoldItalic.ttf`,          
         ],
       },
       {
         style: 'normal',
         weight: 900,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-Black.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-Black.woff`,
+          `${url}/fonts/poppins/Poppins-Black.ttf`,          
         ],
       },
       {
         style: 'italic',
         weight: 900,
+        format: 'woff2',
         sources: [
-          `${url}/fonts/inter_ui/Inter-UI-BlackItalic.woff2`,
-          `${url}/fonts/inter_ui/Inter-UI-BlackItalic.woff`,
+          `${url}/fonts/poppins/Poppins-BlackItalic.ttf`,          
         ],
       },
     ],
@@ -277,22 +277,22 @@ export const Fonts: FunctionComponent<Props> = ({ url }) => {
         Note that you may want to do something like this to make sure you're serving
         constant fonts to older browsers:
         html {
-          font-family: 'Inter UI', sans-serif;
+          font-family: 'Poppins', sans-serif;
         }
         @supports (font-variation-settings: normal) {
           html {
-            font-family: 'Inter UI var', sans-serif;
+            font-family: 'Poppins var', sans-serif;
           }
         }
 
         BUGS:
         - Safari 12.0 will default to italic instead of regular when font-weight
           is provided in a @font-face declaration.
-          Workaround: Use 'Inter UI var alt' for Safari, or explicitly set
+          Workaround: Use 'Poppins var alt' for Safari, or explicitly set
           \`font-variation-settings: 'slnt' DEGREE\`.
 
         @font-face {
-          font-family: 'Inter UI var';
+          font-family: 'Poppins var';
           font-weight: 100 900;
           font-style: oblique 0deg 10deg;
           src:
@@ -300,16 +300,16 @@ export const Fonts: FunctionComponent<Props> = ({ url }) => {
             url('${url}/fonts/inter_ui/Inter-UI.var.woff2') format('woff2');
         }
 
-        'Inter UI var alt' is recommended for Safari and Edge, for reliable italics.
+        'Poppins var alt' is recommended for Safari and Edge, for reliable italics.
 
         @supports (font-variation-settings: normal) {
           html {
-            font-family: 'Inter UI var alt', sans-serif;
+            font-family: 'Poppins var alt', sans-serif;
           }
         }
 
         @font-face {
-          font-family: 'Inter UI var alt';
+          font-family: 'Poppins var alt';
           font-weight: 100 900;
           font-style: normal;
           font-named-instance: 'Regular';
@@ -319,7 +319,7 @@ export const Fonts: FunctionComponent<Props> = ({ url }) => {
             url('${url}/fonts/inter_ui/Inter-UI-upright.var.woff2') format('woff2');
         }
         @font-face {
-          font-family: 'Inter UI var alt';
+          font-family: 'Poppins var alt';
           font-weight: 100 900;
           font-style: italic;
           font-named-instance: 'Italic';
