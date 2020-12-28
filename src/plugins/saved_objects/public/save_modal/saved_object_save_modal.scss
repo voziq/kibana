@@ -1,3 +1,21 @@
 .kbnSavedObjectSaveModal {
   width: $euiSizeXXL * 10;
+      
 }
+
+.euiOverlayMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+          align-items: baseline;
+  -webkit-justify-content: center;
+          justify-content: center;
+  padding-bottom: 10vh;
+  -webkit-animation: euiAnimFadeIn 150ms ease-in;
+          animation: euiAnimFadeIn 150ms ease-in;
+  background: rgba(255, 255, 255, 0.8); }
