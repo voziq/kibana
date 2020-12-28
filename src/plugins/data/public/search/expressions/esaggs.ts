@@ -770,7 +770,8 @@ searchSource.lastQuery = queryHash;
 
   const parsedTimeRange = timeRange ? calculateBounds(timeRange) : null;
   const tabifyParams = {
-    metricsAtAllLevels,
+	metricsAtAllLevels,
+	reqBody,
     partialRows,
     timeRange: parsedTimeRange
       ? { from: parsedTimeRange.min, to: parsedTimeRange.max, timeFields: allTimeFields }
