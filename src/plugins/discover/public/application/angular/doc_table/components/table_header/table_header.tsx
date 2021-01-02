@@ -57,7 +57,7 @@ export function TableHeader({
             key={col.name}
             {...col}
             sortOrder={
-              sortOrder.length ? sortOrder : getDefaultSort(indexPattern, defaultSortOrder)
+              sortOrder ? sortOrder : getDefaultSort(indexPattern, defaultSortOrder)
             }
             onMoveColumn={onMoveColumn}
             onRemoveColumn={onRemoveColumn}

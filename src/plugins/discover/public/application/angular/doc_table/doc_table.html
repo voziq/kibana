@@ -2,6 +2,33 @@
   ng-if="hits.length"
   ng-class="{ loading: isLoading }"
 >
+
+<!--Start Rebranding changes 1-->
+<div style="margin-left:3em;">
+        <small>Export:</small>&nbsp;&nbsp;
+                <a class="small" ng-click="exportAsCsv()"> Raw <i aria-hidden="true" class="fa fa-download"></i>
+                </a>
+        </div>
+  
+   <table ng-hide="true" class="kbn-table table">
+    <thead
+      kbn-table-header
+      columns="columns"
+      index-pattern="indexPattern"
+      sorting="sorting" ng-model="confirmed" ng-change="reloadTable()">
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in hits track by row._index+row._type+row._id+row._score"
+        kbn-table-row="row"
+        columns="columns"
+        sorting="sorting"
+        index-pattern="indexPattern"
+        filter="filter"
+        class="discover-table-row"></tr>
+    </tbody>
+  </table>
+  <!--End Reranding Changes 1-->
+
   <div ng-if="!infiniteScroll">
     <div class="kuiBar kbnDocTable__bar">
       <div class="kuiBarSection">
@@ -100,6 +127,19 @@
       ></tr>
     </tbody>
   </table>
+
+  <!--Start Rebranding changes 1-->
+  <div class="visualize-show-spy">
+        <div ng-click="toggleDisplay1()" class="visualize-show-spy-tab">
+                <i class="fa fa-chevron-circle-down" ng-class="spymode ? 'fa-chevron-circle-down' : 'fa-chevron-circle-up'"></i>
+        </div>
+  </div>
+  <div ng-show="spymode" style="margin-left:3em;">
+        <small>Export:</small>&nbsp;&nbsp;
+                <a class="small" ng-click="exportAsCsv()"> Raw <i aria-hidden="true" class="fa fa-download"></i>
+                </a>
+  </div>
+  <!--end Rebranding changes 1-->
   <kbn-infinite-scroll ng-if="infiniteScroll" more="addRows"></kbn-infinite-scroll>
 </div>
 
