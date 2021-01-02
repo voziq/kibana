@@ -88,11 +88,17 @@ export function Header({
 	const toggleCollapsibleNavRef = createRef<HTMLButtonElement>();
 	const navId = htmlIdGenerator()();
 	const className = classnames('hide-for-sharing', 'headerGlobalNav');
-
+	let dataSubject = "";
+	if(application.history.location.pathname === "/app/visualize")
+	{
+		dataSubject = "visualizeNameButton";
+	}else if(application.history.location.pathname === "/app/dashboards"){
+		dataSubject = "screenTitleValue";
+	}
 	return (
 		<>
 			<header className={className} data-test-subj="headerGlobalNav">
-				<div id="globalHeaderBars">
+				<div id="globalHeaderBars" data-test-subj={dataSubject}>
 					<EuiHeader position="fixed">
 						<HeaderBreadcrumbs
 							appTitle$={observables.appTitle$}
