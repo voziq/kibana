@@ -24,6 +24,8 @@ import { DefaultEditorSize } from '../../vis_default_editor/public';
 import { HtmlVisWrapper } from './html_vis_controller';
 import { HtmlOptions } from './html_options';
 
+import './index.scss';
+
 export const htmlVisDefinition = {
   name: 'html',
   title: 'Html',

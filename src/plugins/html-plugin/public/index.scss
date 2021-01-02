@@ -1,0 +1,16 @@
+  
+  .htmlVis {
+  padding: $euiSizeS;
+  width: 100%;
+}
+
+.visEditor--html {
+  .visEditorSidebar__config > *,
+  .visEditor--html__textarea  {
+    flex-grow: 1;
+  }
+
+  .htmlEditor {
+    height: 100%;
+  }
+}
