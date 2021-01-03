@@ -115,7 +115,7 @@ export class AggConfig {
 
   constructor(aggConfigs: IAggConfigs, opts: AggConfigOptions) {
     this.aggConfigs = aggConfigs;
-    this.id = String(opts.id || AggConfig.nextId(aggConfigs.aggs.aggs as any));
+    this.id = String(opts.id || AggConfig.nextId(aggConfigs.aggs as any));
     this.enabled = typeof opts.enabled === 'boolean' ? opts.enabled : true;
 
     // start with empty params so that checks in type/schema setters don't freak
@@ -123,7 +123,7 @@ export class AggConfig {
     this.params = {};
 
 
-    if(opts.type==="bucket")
+   if(opts.type==="bucket")
 	{
 		opts.type="count";
 	}
