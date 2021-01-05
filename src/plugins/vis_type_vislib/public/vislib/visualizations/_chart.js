@@ -33,6 +33,7 @@ import {
   heatmapDnTooltipFormatter,
   scatterbubbleTooltipFormatter,
   radarTooltipFormatter,
+  calenderheatmapTooltipFormatter,
 } from '../components/tooltip';
 
 /**
@@ -73,6 +74,8 @@ export class Chart {
 			tooltipFormatterProvider = scatterbubbleTooltipFormatter;
 		}else if(this.handler.visConfig.get('type') === 'radar'){			
 			tooltipFormatterProvider = radarTooltipFormatter;
+		}else if(this.handler.visConfig.get('type') === 'calenderheatmap'){			
+			tooltipFormatterProvider = calenderheatmapTooltipFormatter;
 		}
 		
     const tooltipFormatter = tooltipFormatterProvider(fieldFormatter);

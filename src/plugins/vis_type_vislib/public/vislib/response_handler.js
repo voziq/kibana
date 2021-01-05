@@ -26,6 +26,7 @@ import { heatmap_dnDataFromTable } from '../../../heatmap_dn/public/response_han
 import { buildScatterBubbleData } from '../../../scatterbubble/public/response_handler/scatter_viz';
 import { radarDataFromTable } from '../../../radar/public/response_handler/radar_viz';
 import { buildNetworkData } from '../../../network/public/response_handler/network_response';
+import { calenderheatmapDataFromTable } from '../../../calenderheatmap/public/response_handler/cheatmap_viz';
 import AggConfigResult from './agg_config_result';
 function tableResponseHandler(table, dimensions) {
   const converted = { tables: [] };
@@ -181,3 +182,5 @@ export const vislibScatterBubbleResponseHandler = handlerFunction(buildScatterBu
 export const vislibRadarResponseHandler = handlerFunction(radarDataFromTable);
 
 export const vislibNetworkResponseHandler = handlerFunction(buildNetworkData);
+
+export const vislibCalenderheatmapResponseHandler = handlerFunction(calenderheatmapDataFromTable);

@@ -20,7 +20,7 @@
 import { i18n } from '@kbn/i18n';
 import { ExpressionFunctionDefinition, KibanaDatatable, Render } from '../../expressions/public';
 // @ts-ignore
-import { vislibSeriesResponseHandler, vislibBubbleResponseHandler, vislibTreemapResponseHandler, vislibSankeyResponseHandler, vislibHeatmapDnResponseHandler, vislibScatterBubbleResponseHandler, vislibRadarResponseHandler, vislibNetworkResponseHandler } from './vislib/response_handler';
+import { vislibSeriesResponseHandler, vislibBubbleResponseHandler, vislibTreemapResponseHandler, vislibSankeyResponseHandler, vislibHeatmapDnResponseHandler, vislibScatterBubbleResponseHandler, vislibRadarResponseHandler, vislibNetworkResponseHandler, vislibCalenderheatmapResponseHandler } from './vislib/response_handler';
 
 interface Arguments {
   type: string;
@@ -78,6 +78,8 @@ export const createVisTypeVislibVisFn = (): ExpressionFunctionDefinition<
 			 convertedData = vislibRadarResponseHandler(context, visConfigParams.dimensions);
 		}else if(args.type == 'network'){			
 			 convertedData = vislibNetworkResponseHandler(context, visConfigParams.dimensions);
+		}else if(args.type == 'calenderheatmap'){			
+			 convertedData = vislibCalenderheatmapResponseHandler(context, visConfigParams.dimensions);
 		}else{
 			convertedData = vislibSeriesResponseHandler(context, visConfigParams.dimensions);
 		}

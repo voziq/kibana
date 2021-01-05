@@ -92,6 +92,8 @@ const vislibCharts: string[] = [
   'scatterbubble',
   'radar',
   'network',
+  'calenderheatmap',
+ 
 ];
 
 export const getSchemas = <TVisParams>(

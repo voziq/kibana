@@ -33,3 +33,5 @@ export { createHeatmapDnVisTypeDefinition } from '../../heatmap_dn/public/heatma
 export { createScatterBubbleVisTypeDefinition } from '../../scatterbubble/public/scatterbubble';
 export { createRadarVisTypeDefinition } from '../../radar/public/radar';
 export { createNetworkVisTypeDefinition } from '../../network/public/network';
+export { createCalenderheatmapVisTypeDefinition } from '../../calenderheatmap/public/calenderheatmap';
+

@@ -49,6 +49,7 @@ import {
   createScatterBubbleVisTypeDefinition,
   createRadarVisTypeDefinition,
   createNetworkVisTypeDefinition,
+  createCalenderheatmapVisTypeDefinition,
 } from './vis_type_vislib_vis_types';
 import { ChartsPluginSetup } from '../../charts/public';
 import { DataPublicPluginStart } from '../../data/public';
@@ -104,7 +105,8 @@ export class VisTypeVislibPlugin implements Plugin<void, void> {
 	  createHeatmapDnVisTypeDefinition,
 	  createScatterBubbleVisTypeDefinition,
 	  createRadarVisTypeDefinition,
-	  createNetworkVisTypeDefinition,
+    createNetworkVisTypeDefinition,
+    createCalenderheatmapVisTypeDefinition,
     ];
     const vislibFns = [createVisTypeVislibVisFn(), createPieVisFn()];
 

@@ -27,6 +27,7 @@ import { HeatMap_dnChart } from '../../../../heatmap_dn/public/heatmap_dn_chart'
 import { ScatterBubbleChart } from '../../../../scatterbubble/public/scatterbubble_chart';
 import { RadarChart } from '../../../../radar/public/radar_chart';
 import { NetworkChart } from '../../../../network/public/network_chart';
+import { CalenderheatmapChart } from '../../../../calenderheatmap/public/calenderheatmap_chart';
 export const visTypes = {
   pie: PieChart,
   point_series: PointSeries,
@@ -40,4 +41,5 @@ export const visTypes = {
   scatterbubble: ScatterBubbleChart,
   radar: RadarChart,
   network: NetworkChart,
+  calenderheatmap: CalenderheatmapChart,
 };
