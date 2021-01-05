@@ -61,6 +61,11 @@ export function pointSeriesTooltipFormatter() {
     if (datum.z !== null && datum.z !== undefined) {
       addDetail(currentSeries.zLabel, currentSeries.zAxisFormatter(datum.z));
     }
+	      if (datum.d != undefined ) {			
+      addDetail(datum.dlable, currentSeries.yAxisFormatter(datum.d));
+    }else if (datum.d == null && datum.m !=null){
+								addDetail(datum.dlable, "-")
+							}
     if (datum.series && datum.parent) {
       const dimension = datum.parent;
       addDetail(dimension.title, datum.series);

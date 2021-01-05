@@ -30,13 +30,38 @@ export function getSeries(table: Table, chart: Chart) {
   const zAspect = aspects.z && aspects.z[0];
   const multiY = Array.isArray(aspects.y) && aspects.y.length > 1;
 
+     var len = null;
+    var lblMet = null;
+    var metlabel = null;
+	
+	if(table.raw != undefined){
+		len = table.raw.columns.length;
+    for (var i = 0; i < len; i++) {
+      //  if (table.raw.columns[i].aggConfig.__schema.name == "labelmetric") {
+			 if (table.raw.columns[i].aggConfig.schema == "labelmetric") {
+            lblMet = table.raw.columns[i].id;
+            metlabel = table.raw.columns[i].name
+        }
+    }
+	}else if(table.$parent != undefined){
+		len = table.$parent.table.resp.columns.length;
+    for (var i = 0; i < len; i++) {
+       // if (table.$parent.table.resp.columns[i].aggConfig.__schema.name == "labelmetric") {
+		    if (table.$parent.table.resp.columns[i].aggConfig.schema == "labelmetric") {
+            lblMet = table.$parent.table.resp.columns[i].id;
+            metlabel = table.$parent.table.resp.columns[i].name
+        }
+    }
+	}
+
+
   const partGetPoint = partial(getPoint, table, xAspect, aspects.series);
 
   const seriesMap = new Map<string, Serie>();
 
   table.rows.forEach((row, rowIndex) => {
     if (!multiY) {
-      const point = partGetPoint(row, rowIndex, yAspect, zAspect);
+      const point = partGetPoint(row, rowIndex, yAspect, zAspect, lblMet, metlabel);
       if (point) {
         const id = `${point.series}-${yAspect.accessor}`;
         point.seriesId = id;
@@ -54,7 +79,7 @@ export function getSeries(table: Table, chart: Chart) {
     }
 
     aspects.y.forEach(function (y) {
-      const point = partGetPoint(row, rowIndex, y, zAspect);
+      const point = partGetPoint(row, rowIndex, y, zAspect, lblMet, metlabel);
       if (!point) {
         return;
       }

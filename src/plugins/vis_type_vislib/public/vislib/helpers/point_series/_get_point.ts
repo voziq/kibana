@@ -55,16 +55,24 @@ export function getPoint(
   row: Row,
   rowIndex: number,
   y: Aspect,
-  z?: Aspect
+  z?: Aspect, 
+  lblMet, 
+  metlabel
 ): Point | undefined {
   const xRow = x.accessor === -1 ? '_all' : row[x.accessor];
   const yRow = row[y.accessor];
   const zRow = z && row[z.accessor];
-
+ var lbmet=row[lblMet];
+  var avblMet=lblMet;
+  var metlabel=metlabel;
+  
   const point: Point = {
     x: xRow,
     y: yRow,
     z: zRow,
+	d: lbmet,
+	m:avblMet,
+	dlable: metlabel,
     extraMetrics: [],
     seriesRaw: series && {
       table,
