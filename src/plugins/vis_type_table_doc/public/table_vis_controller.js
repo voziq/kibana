@@ -193,12 +193,22 @@ export function TableVisController($scope) {
 				
                 var filterable=false;
 				var field=iFields.find(x => x.name === key);					
-				var fld = "";
-fld =field.spec.type;
-var formatId1={'id':fld};				
+				var fldType = "";
+					if(field.spec.format){
+				formatId={'id':'url'};			
+				}else{
+                         fldType =field.spec.type;
+               formatId={'id':fldType};	
+				}
+			
 				if(field != null && field != undefined){
 					
-					fieldFormat=getFormatService().deserialize(formatId1);
+					fieldFormat=getFormatService().deserialize(formatId);
+				}
+
+				if(field.spec.format){
+					delete fieldFormat._params.parsedUrl;                 
+              fieldFormat._params = field.spec.format.params;
 				}
 				
 				if(labels[key] != undefined && labels[key].length >0){
@@ -233,12 +243,22 @@ var formatId1={'id':fld};
 				var formatId={'id':'string'};
 				var fieldFormat=getFormatService().deserialize(formatId);
 				var field=iFields.find(x => x.name === key);
-				var fld = "";
-fld =field.spec.type;
-var formatId1={'id':fld};					
+				var fldType = "";
+
+					if(field.spec.format){
+				formatId={'id':'url'};			
+				}else{
+                         fldType =field.spec.type;
+               formatId={'id':fldType};	
+				}
+					
 				if(field != null && field != undefined){
 					//fieldFormat=field.format;
-					fieldFormat=getFormatService().deserialize(formatId1);
+					fieldFormat=getFormatService().deserialize(formatId);
+				}
+				if(field.spec.format){
+					delete fieldFormat._params.parsedUrl;                   
+              fieldFormat._params = field.spec.format.params;
 				}
 			
 				if(labels[key] != undefined && labels[key].length >0){
