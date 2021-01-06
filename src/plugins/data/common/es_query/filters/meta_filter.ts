@@ -44,6 +44,7 @@ export type FilterMeta = {
   index?: string;
   type?: string;
   key?: string;
+  key1?: string;
   params?: any;
   value?: string;
 };

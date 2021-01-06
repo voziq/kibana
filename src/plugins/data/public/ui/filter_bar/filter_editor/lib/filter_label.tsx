@@ -49,7 +49,7 @@ export default function FilterLabel({ filter, valueLabel, filterLabelStatus }: F
   const getValue = (text?: string) => {
     return <span className="globalFilterLabel__value">{text}</span>;
   };
-
+	
   if (filter.meta.alias !== null) {
     return (
       <Fragment>
@@ -59,8 +59,7 @@ export default function FilterLabel({ filter, valueLabel, filterLabelStatus }: F
       </Fragment>
     );
   }
-
-  switch (filter.meta.type) {
+  switch (filter.meta.type) {	
     case FILTERS.EXISTS:
       return (
         <Fragment>
@@ -97,6 +96,14 @@ export default function FilterLabel({ filter, valueLabel, filterLabelStatus }: F
         </Fragment>
       );
     case FILTERS.PHRASE:
+if (filter.meta.alias === null) {	
+	return (
+        <Fragment>
+          {prefix}
+          {filter.meta.key1}: {getValue(valueLabel)}
+        </Fragment>
+      );
+	}
     case FILTERS.RANGE:
       return (
         <Fragment>
@@ -112,4 +119,5 @@ export default function FilterLabel({ filter, valueLabel, filterLabelStatus }: F
         </Fragment>
       );
   }
+
 }

@@ -90,7 +90,8 @@ export class IndexedFieldsTable extends Component<
     (fields, fieldFilter, indexedFieldTypeFilter) => {
       if (fieldFilter) {
         const normalizedFieldFilter = fieldFilter.toLowerCase();
-        fields = fields.filter((field) => field.name.toLowerCase().includes(normalizedFieldFilter));
+        //fields = fields.filter((field) => field.name.toLowerCase().includes(normalizedFieldFilter));
+		fields = fields.filter((field) => field.displayName.toLowerCase().includes(normalizedFieldFilter));
       }
 
       if (indexedFieldTypeFilter) {

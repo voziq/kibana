@@ -52,6 +52,7 @@ interface SavedObjectBody {
   fieldFormatMap?: string;
   typeMeta?: string;
   type?: string;
+fieldLabelMap?: string;
 }
 
 type FormatFieldFn = (hit: Record<string, any>, fieldName: string) => any;
@@ -65,6 +66,7 @@ export class IndexPattern implements IIndexPattern {
   public timeFieldName: string | undefined;
   public intervalName: string | undefined;
   public type: string | undefined;
+  public fieldLabelMap?: string = '';
   public formatHit: {
     (hit: Record<string, any>, type?: string): any;
     formatField: FormatFieldFn;
@@ -113,7 +115,7 @@ export class IndexPattern implements IIndexPattern {
     this.fields.replaceAll(Object.values(spec.fields || {}));
     this.type = spec.type;
     this.typeMeta = spec.typeMeta;
-
+	this.fieldLabelMap = spec.fieldLabelMap;
     this.fieldFormatMap = _.mapValues(fieldFormatMap, (mapping) => {
       return this.deserializeFieldFormatMap(mapping);
     });
@@ -240,7 +242,7 @@ export class IndexPattern implements IIndexPattern {
     }
 
     this.fields.add({
-      name,
+      name,	  
       script,
       type: fieldType,
       scripted: true,
@@ -341,6 +343,7 @@ export class IndexPattern implements IIndexPattern {
       sourceFilters: this.sourceFilters ? JSON.stringify(this.sourceFilters) : undefined,
       fields: this.fields ? JSON.stringify(this.fields) : undefined,
       fieldFormatMap,
+	  fieldLabelMap: this.fieldLabelMap,
       type: this.type,
       typeMeta: this.typeMeta ? JSON.stringify(this.typeMeta) : undefined,
     };

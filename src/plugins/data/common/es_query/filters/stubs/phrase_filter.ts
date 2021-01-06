@@ -25,6 +25,7 @@ export const phraseFilter: PhraseFilter = {
     index: 'logstash-*',
     type: 'phrase',
     key: 'machine.os',
+	key1: 'machine.os',
     value: 'ios',
     disabled: false,
     alias: null,

@@ -341,6 +341,7 @@ export class IndexPatternsService {
         fields,
         sourceFilters,
         fieldFormatMap,
+		fieldLabelMap,
         typeMeta,
         type,
       },
@@ -348,7 +349,7 @@ export class IndexPatternsService {
 
     const parsedSourceFilters = sourceFilters ? JSON.parse(sourceFilters) : undefined;
     const parsedTypeMeta = typeMeta ? JSON.parse(typeMeta) : undefined;
-    const parsedFieldFormatMap = fieldFormatMap ? JSON.parse(fieldFormatMap) : {};
+    const parsedFieldFormatMap = fieldFormatMap ? JSON.parse(fieldFormatMap) : {};	
     const parsedFields: FieldSpec[] = fields ? JSON.parse(fields) : [];
 
     this.addFormatsToFields(parsedFields, parsedFieldFormatMap);
@@ -385,7 +386,7 @@ export class IndexPatternsService {
       throw new SavedObjectNotFound(savedObjectType, id, 'management/kibana/indexPatterns');
     }
 
-    const spec = this.savedObjectToSpec(savedObject);
+    const spec = this.savedObjectToSpec(savedObject);	
     const { title, type, typeMeta } = spec;
     const parsedFieldFormats: FieldFormatMap = savedObject.attributes.fieldFormatMap
       ? JSON.parse(savedObject.attributes.fieldFormatMap)
@@ -556,8 +557,7 @@ export class IndexPatternsService {
 
     // get the list of attributes
     const body = indexPattern.getAsSavedObjectBody();
-    const originalBody = indexPattern.getOriginalSavedObjectBody();
-
+    const originalBody = indexPattern.getOriginalSavedObjectBody();	
     // get changed keys
     const originalChangedKeys: string[] = [];
     Object.entries(body).forEach(([key, value]) => {

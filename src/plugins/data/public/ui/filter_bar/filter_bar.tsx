@@ -129,7 +129,7 @@ function FilterBarUI(props: Props) {
 
   function onAdd(filter: Filter) {
     setIsAddFilterPopoverOpen(false);
-    const filters = [...props.filters, filter];
+    const filters = [...props.filters, filter];	
     onFiltersUpdated(filters);
   }
 

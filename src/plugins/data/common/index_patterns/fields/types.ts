@@ -36,7 +36,7 @@ export interface IFieldType {
   readFromDocValues?: boolean;
   scripted?: boolean;
   subType?: IFieldSubType;
-  displayName?: string;
+  displayName: string;
   format?: any;
   toSpec?: (options?: { getFormatterForField?: IndexPattern['getFormatterForField'] }) => FieldSpec;
 }

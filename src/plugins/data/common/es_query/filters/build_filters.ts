@@ -72,7 +72,7 @@ function buildBaseFilter(
   field: IFieldType,
   type: FILTERS,
   params: any
-): Filter {
+): Filter {	
   switch (type) {
     case 'phrase':
       return buildPhraseFilter(field, params, indexPattern);

@@ -80,9 +80,9 @@ export const buildPhraseFilter = (
       meta: { index: indexPattern.id, field: field.name } as PhraseFilterMeta,
       script: getPhraseScript(field, value),
     };
-  } else {
+  } else {	
     return {
-      meta: { index: indexPattern.id },
+      meta: { index: indexPattern.id, key1: field.displayName },
       query: {
         match_phrase: {
           [field.name]: convertedValue,

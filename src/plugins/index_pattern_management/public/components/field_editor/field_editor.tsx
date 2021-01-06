@@ -335,6 +335,23 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
     ) : null;
   }
 
+renderDisplayName() {
+	    const field = this.state.spec;
+	    const {indexPattern } = this.props;
+        /*if(indexPattern.fieldLabelMap && JSON.parse(indexPattern.fieldLabelMap)[field.name]){
+        	field.displayName=JSON.parse(indexPattern.fieldLabelMap)[field.name];
+        }*/
+	    return field.scripted ? null : (
+	      <EuiFormRow label={i18n.translate('common.ui.fieldEditor.displayNameLabel',{ defaultMessage: 'Display Name' })}>
+	        <EuiFieldText
+	          value={field.displayName}
+	          data-test-subj="editorFieldDisplayName"
+	          onChange={(e) => { this.onFieldChange('displayName', e.target.value ? e.target.value : '');}}
+	        />
+	      </EuiFormRow>
+	    );
+	  }
+
   renderLanguage() {
     const { spec, scriptingLangs, isDeprecatedLang } = this.state;
 
@@ -796,7 +813,15 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
         });
         return;
       }
-    }
+    }else{
+	if(!indexPattern.fieldLabelMap){
+		  indexPattern.fieldLabelMap='{}';
+	  }
+	  var d=JSON.parse(indexPattern.fieldLabelMap);
+		 delete d[field.name];
+		 d[field.name]=field.displayName;	
+	    indexPattern.fieldLabelMap=JSON.stringify(d);
+}
 
     const { redirectAway, saveIndexPattern } = this.props.services;
     const fieldExists = !!indexPattern.fields.getByName(field.name);
@@ -805,6 +830,7 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
 
     if (fieldExists) {
       oldField = indexPattern.fields.getByName(field.name)!.spec;
+	  //field.name = field.displayName;
       indexPattern.fields.update(field);
     } else {
       indexPattern.fields.add(field);
@@ -814,8 +840,7 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
       indexPattern.fieldFormatMap[field.name] = undefined;
     } else {
       indexPattern.fieldFormatMap[field.name] = field.format;
-    }
-
+    }	
     return saveIndexPattern(indexPattern)
       .then(() => {
         const message = i18n.translate('indexPatternManagement.deleteField.savedHeader', {
@@ -875,6 +900,7 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
         <EuiForm>
           {this.renderScriptingPanels()}
           {this.renderName()}
+		  {this.renderDisplayName()}
           {this.renderLanguage()}
           {this.renderType()}
           {this.renderTypeConflict()}

@@ -215,7 +215,12 @@ export class AggConfig {
       throw new TypeError(message);
     }
 
-    return createFilter(this, key, params);
+    //return createFilter(this, key, params);
+var cusFilter=createFilter(this, key, params);
+    cusFilter.meta.key1 = "";
+    cusFilter.meta.key1 = this.getFieldDisplayName();
+    return cusFilter;
+
   }
 
   /**

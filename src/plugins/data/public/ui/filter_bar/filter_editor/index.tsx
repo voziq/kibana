@@ -277,7 +277,7 @@ class FilterEditorUI extends Component<Props, State> {
           })}
           options={fields}
           selectedOptions={selectedField ? [selectedField] : []}
-          getLabel={(field) => field.name}
+          getLabel={(field) => field.displayName}
           onChange={this.onFieldChange}
           singleSelection={{ asPlainText: true }}
           isClearable={false}

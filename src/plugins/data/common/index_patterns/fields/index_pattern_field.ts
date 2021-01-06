@@ -25,12 +25,12 @@ import { FieldSpec, IndexPattern } from '../..';
 export class IndexPatternField implements IFieldType {
   readonly spec: FieldSpec;
   // not writable or serialized
-  readonly displayName: string;
+  //readonly displayName: string;
   private readonly kbnFieldType: KbnFieldType;
 
   constructor(spec: FieldSpec, displayName: string) {
     this.spec = { ...spec, type: spec.name === '_source' ? '_source' : spec.type };
-    this.displayName = displayName;
+    this.displayName = this.spec.displayName || this.name;
 
     this.kbnFieldType = getKbnFieldType(spec.type);
   }
@@ -53,6 +53,10 @@ export class IndexPatternField implements IFieldType {
   public get script() {
     return this.spec.script;
   }
+
+public set displayName(displayName){
+	this.spec.displayName = displayName;
+}
 
   public set script(script) {
     this.spec.script = script;
@@ -113,6 +117,9 @@ export class IndexPatternField implements IFieldType {
     return this.spec.subType;
   }
 
+public get displayName(){
+	return this.spec.displayName;
+}
   // not writable, not serialized
   public get sortable() {
     return (
@@ -149,6 +156,7 @@ export class IndexPatternField implements IFieldType {
       aggregatable: this.aggregatable,
       readFromDocValues: this.readFromDocValues,
       subType: this.subType,
+	  displayName : this.displayName,
     };
   }
 
@@ -170,6 +178,7 @@ export class IndexPatternField implements IFieldType {
       aggregatable: this.aggregatable,
       readFromDocValues: this.readFromDocValues,
       subType: this.subType,
+	  displayName : this.displayName,
       format: getFormatterForField ? getFormatterForField(this).toJSON() : undefined,
     };
   }
