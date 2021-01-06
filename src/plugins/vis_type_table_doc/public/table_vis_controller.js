@@ -192,13 +192,16 @@ export function TableVisController($scope) {
 				var fieldFormat=getFormatService().deserialize(formatId);
 				
                 var filterable=false;
-				var field=iFields.find(x => x.name === key);					
-				var fldType = "";
+				var field=iFields.find(x => x.name === key);			
 					if(field.spec.format){
-				formatId={'id':'url'};			
-				}else{
-                         fldType =field.spec.type;
-               formatId={'id':fldType};	
+						if(field.spec.format.id == 'url'){
+							formatId={'id':'url'};	
+						}else{
+							formatId={'id':field.spec.type};	
+						}					
+						
+				}else{                        
+               formatId={'id':field.spec.type};	
 				}
 			
 				if(field != null && field != undefined){
@@ -206,9 +209,10 @@ export function TableVisController($scope) {
 					fieldFormat=getFormatService().deserialize(formatId);
 				}
 
-				if(field.spec.format){
+				
+				if(field.spec.format){					
 					delete fieldFormat._params.parsedUrl;                 
-              fieldFormat._params = field.spec.format.params;
+              fieldFormat._params = field.spec.format.params;					
 				}
 				
 				if(labels[key] != undefined && labels[key].length >0){
@@ -243,17 +247,19 @@ export function TableVisController($scope) {
 				var formatId={'id':'string'};
 				var fieldFormat=getFormatService().deserialize(formatId);
 				var field=iFields.find(x => x.name === key);
-				var fldType = "";
-
-					if(field.spec.format){
-				formatId={'id':'url'};			
-				}else{
-                         fldType =field.spec.type;
-               formatId={'id':fldType};	
-				}
+				if(field.spec.format){
+					if(field.spec.format.id == 'url'){
+						formatId={'id':'url'};	
+					}else{
+						formatId={'id':field.spec.type};	
+					}					
+					
+			}else{                        
+           formatId={'id':field.spec.type};	
+			}
 					
 				if(field != null && field != undefined){
-					//fieldFormat=field.format;
+					
 					fieldFormat=getFormatService().deserialize(formatId);
 				}
 				if(field.spec.format){
