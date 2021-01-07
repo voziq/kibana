@@ -28,9 +28,9 @@ export class IndexPatternField implements IFieldType {
   //readonly displayName: string;
   private readonly kbnFieldType: KbnFieldType;
 
-  constructor(spec: FieldSpec, displayName: string) {
+  constructor(spec: FieldSpec, displayName: string) {		
     this.spec = { ...spec, type: spec.name === '_source' ? '_source' : spec.type };
-    this.displayName = this.spec.displayName || this.name;
+    this.displayName = JSON.parse(this.spec.fieldLabelMap)[this.spec.name] || this.displayName || this.name;
 
     this.kbnFieldType = getKbnFieldType(spec.type);
   }
@@ -156,7 +156,7 @@ public get displayName(){
       aggregatable: this.aggregatable,
       readFromDocValues: this.readFromDocValues,
       subType: this.subType,
-	  displayName : this.displayName,
+	  //displayName : this.displayName,
     };
   }
 

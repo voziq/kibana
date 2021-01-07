@@ -40,7 +40,7 @@ interface IndexPatternDeps {
   savedObjectsClient: SavedObjectsClientCommon;
   fieldFormats: FieldFormatsStartCommon;
   shortDotsEnable: boolean;
-  metaFields: string[];
+  metaFields: string[];  
 }
 
 interface SavedObjectBody {
@@ -66,7 +66,7 @@ export class IndexPattern implements IIndexPattern {
   public timeFieldName: string | undefined;
   public intervalName: string | undefined;
   public type: string | undefined;
-  public fieldLabelMap?: string = '';
+  public fieldLabelMap: string = '';
   public formatHit: {
     (hit: Record<string, any>, type?: string): any;
     formatField: FormatFieldFn;
@@ -87,14 +87,14 @@ export class IndexPattern implements IIndexPattern {
     shortDotsEnable = false,
     metaFields = [],
   }: IndexPatternDeps) {
+	
     // set dependencies
     this.fieldFormats = fieldFormats;
     // set config
     this.shortDotsEnable = shortDotsEnable;
     this.metaFields = metaFields;
     // initialize functionality
-    this.fields = fieldList([], this.shortDotsEnable);
-
+    this.fields = fieldList([], this.shortDotsEnable,spec.fieldLabelMap);
     this.flattenHit = flattenHitWrapper(this, metaFields);
     this.formatHit = formatHitProvider(
       this,
@@ -206,7 +206,7 @@ export class IndexPattern implements IIndexPattern {
     return {
       id: this.id,
       version: this.version,
-
+fieldLabelMap: this.fieldLabelMap,
       title: this.title,
       timeFieldName: this.timeFieldName,
       sourceFilters: this.sourceFilters,

@@ -45,7 +45,8 @@ export interface IIndexPatternFieldList extends Array<IndexPatternField> {
 // to be removed in the future
 export const fieldList = (
   specs: FieldSpec[] = [],
-  shortDotsEnable = false
+  shortDotsEnable = false,
+fieldLabelMap:string,
 ): IIndexPatternFieldList => {
   class FldList extends Array<IndexPatternField> implements IIndexPatternFieldList {
     private byName: FieldMap = new Map();
@@ -62,7 +63,7 @@ export const fieldList = (
       shortDotsEnable ? shortenDottedString(name) : name;
     constructor() {
       super();
-      specs.map((field) => this.add(field));
+      specs.map((field) => this.add(field));		
     }
 
     public readonly getAll = () => [...this.byName.values()];
@@ -71,6 +72,7 @@ export const fieldList = (
       ...(this.groups.get(type) || new Map()).values(),
     ];
     public readonly add = (field: FieldSpec) => {
+	field.fieldLabelMap = fieldLabelMap;	
       const newField = new IndexPatternField(field, this.calcDisplayName(field.name));
       this.push(newField);
       this.setByName(newField);
@@ -85,7 +87,7 @@ export const fieldList = (
       this.splice(fieldIndex, 1);
     };
 
-    public readonly update = (field: FieldSpec) => {
+    public readonly update = (field: FieldSpec) => {	
       const newField = new IndexPatternField(field, this.calcDisplayName(field.name));
       const index = this.findIndex((f) => f.name === newField.name);
       this.splice(index, 1, newField);

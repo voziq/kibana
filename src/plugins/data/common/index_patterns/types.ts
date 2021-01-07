@@ -174,6 +174,7 @@ export interface FieldSpec {
   subType?: IFieldSubType;
   indexed?: boolean;
   displayName: string;
+fieldLabelMap:string;
 }
 
 export type IndexPatternFieldMap = Record<string, FieldSpec>;
@@ -188,7 +189,7 @@ export interface IndexPatternSpec {
   fields?: IndexPatternFieldMap;
   typeMeta?: TypeMeta;
   type?: string;
-  fieldLabelMap?: string;
+  fieldLabelMap: string;
 }
 
 export interface SourceFilter {

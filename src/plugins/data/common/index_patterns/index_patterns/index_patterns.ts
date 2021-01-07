@@ -359,6 +359,7 @@ export class IndexPatternsService {
       title,
       intervalName,
       timeFieldName,
+	  fieldLabelMap,
       sourceFilters: parsedSourceFilters,
       fields: this.fieldArrayToMap(parsedFields),
       typeMeta: parsedTypeMeta,

@@ -146,7 +146,6 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
   deprecatedLangs: string[] = [];
   constructor(props: FieldEdiorProps, context: IndexPatternManagmentContextValue) {
     super(props, context);
-
     const { spec, indexPattern } = props;
 
     this.state = {
@@ -335,7 +334,7 @@ export class FieldEditor extends PureComponent<FieldEdiorProps, FieldEditorState
     ) : null;
   }
 
-renderDisplayName() {
+renderDisplayName() {	
 	    const field = this.state.spec;
 	    const {indexPattern } = this.props;
         /*if(indexPattern.fieldLabelMap && JSON.parse(indexPattern.fieldLabelMap)[field.name]){
@@ -831,6 +830,7 @@ renderDisplayName() {
     if (fieldExists) {
       oldField = indexPattern.fields.getByName(field.name)!.spec;
 	  //field.name = field.displayName;
+field.fieldLabelMap = JSON.stringify(indexPattern.fieldLabelMap);
       indexPattern.fields.update(field);
     } else {
       indexPattern.fields.add(field);
