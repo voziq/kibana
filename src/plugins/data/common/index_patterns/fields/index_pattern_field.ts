@@ -33,7 +33,7 @@ export class IndexPatternField implements IFieldType {
     if(this.spec.fieldLabelMap !== undefined){
     this.displayName = JSON.parse(this.spec.fieldLabelMap)[this.spec.name] || this.displayName || this.name;
     }else{
-    this.displayName = this.name;
+    this.displayName = this.displayName || this.name;
     }
 
     this.kbnFieldType = getKbnFieldType(spec.type);

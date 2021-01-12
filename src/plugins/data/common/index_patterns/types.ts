@@ -35,7 +35,7 @@ export interface IIndexPattern {
   intervalName?: string | null;
   getTimeField?(): IFieldType | undefined;
   fieldFormatMap?: Record<string, SerializedFieldFormat<unknown> | undefined>;
-  fieldLabelMap?: string;
+  fieldLabelMap: string;
   getFormatterForField?: (
     field: IndexPatternField | IndexPatternField['spec'] | IFieldType
   ) => FieldFormat;
@@ -50,7 +50,7 @@ export interface IndexPatternAttributes {
   intervalName?: string;
   sourceFilters?: string;
   fieldFormatMap?: string;
-  fieldLabelMap?: string;
+  fieldLabelMap: string;
 }
 
 export type OnNotification = (toastInputFields: ToastInputFields) => void;

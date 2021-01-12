@@ -20,6 +20,8 @@
 import { FieldSpec, IFieldSubType, IndexPattern } from '../..';
 
 export interface IFieldType {
+  spec: any;  
+  [x: string]: any;
   name: string;
   type: string;
   script?: string;

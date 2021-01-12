@@ -52,7 +52,7 @@ interface SavedObjectBody {
   fieldFormatMap?: string;
   typeMeta?: string;
   type?: string;
-fieldLabelMap?: string;
+fieldLabelMap: string;
 }
 
 type FormatFieldFn = (hit: Record<string, any>, fieldName: string) => any;

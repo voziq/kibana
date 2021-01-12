@@ -404,7 +404,7 @@ var cusFilter=createFilter(this, key, params);
   getFieldDisplayName() {
     const field = this.getField();
 
-    return field ? field.displayName || this.fieldName() : '';
+    return field ? JSON.parse(field.spec.fieldLabelMap)[field.spec.name] || field.displayName || this.fieldName() : '';
   }
 
   getField() {

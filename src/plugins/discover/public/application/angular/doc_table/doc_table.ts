@@ -81,7 +81,7 @@ export function createDocTableDirective(pagerFactory: any, $filter: any) {
         $scope.limit += 50;
       };
 
-      /*$scope.$watch('hits', (hits: any) => {
+      $scope.$watch('hits', (hits: any) => {
         if (!hits) return;
 
         // Reset infinite scroll limit
@@ -94,9 +94,11 @@ export function createDocTableDirective(pagerFactory: any, $filter: any) {
         if ($scope.infiniteScroll) return;
         $scope.pager = pagerFactory.create(hits.length, 50, 1);
         calculateItemsOnPage();
-      });*/
-      $scope.$watch('searchSource', function () {
-            if (!$scope.searchSource) return;
+      });
+      /*$scope.$watch('searchSource', function () {
+            if (!$scope.searchSource){ return}else{
+	console.dir($scope.searchSource);
+};
             $scope.indexPattern = $scope.searchSource.getField('index');
             $scope.searchSource.setField('size', config.get('discover:sampleSize'));
             $scope.searchSource.setField('sort', getSort($scope.sorting, $scope.indexPattern));
@@ -155,7 +157,7 @@ export function createDocTableDirective(pagerFactory: any, $filter: any) {
             }
             startSearching();
             courier.fetch();
-          });
+          });*/
       $scope.pageOfItems = [];
       $scope.onPageNext = () => {
         $scope.pager.nextPage();
