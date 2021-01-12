@@ -403,8 +403,11 @@ var cusFilter=createFilter(this, key, params);
 
   getFieldDisplayName() {
     const field = this.getField();
-
+	if(field.spec.fieldLabelMap !== undefined){
     return field ? JSON.parse(field.spec.fieldLabelMap)[field.spec.name] || field.displayName || this.fieldName() : '';
+    }else{
+    return field ? field.displayName || this.fieldName() : '';
+    }   
   }
 
   getField() {
