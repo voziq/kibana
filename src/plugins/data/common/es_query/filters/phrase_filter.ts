@@ -81,6 +81,7 @@ export const buildPhraseFilter = (
       script: getPhraseScript(field, value),
     };
   } else {
+	if(field.spec.fieldLabelMap !== undefined){
     return {
       meta: { index: indexPattern.id, key1: JSON.parse(field.spec.fieldLabelMap)[field.spec.name] },
       query: {
@@ -89,6 +90,16 @@ export const buildPhraseFilter = (
         },
       },
     } as PhraseFilter;
+}else{
+	return {
+      meta: { index: indexPattern.id, key1: field.displayName },
+      query: {
+        match_phrase: {
+          [field.name]: convertedValue,
+        },
+      },
+    } as PhraseFilter;
+}
   }
 };
 
