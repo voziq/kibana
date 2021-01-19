@@ -57,12 +57,16 @@ export function KbnAggTable(config, RecursionHelper) {
         self._saveAs(csv, self.csv.filename);
       };
  self.generateReportForTbl=function(){
-			var params={};
-			
+			var params={};			
 			$scope.table.query._source=$scope.table.columnsE.map(function(a) {return a.title+"::"+a.field.name;});
 			params.query=$scope.table.query;
 			params.query.indexName=$scope.table.indexName;
-			params.fileName=$scope.exportTitle;
+			if($scope.exportTitle != undefined){
+				params.fileName=$scope.exportTitle;
+			}else{
+				params.fileName="";
+			}
+			//params.fileName=$scope.exportTitle;			
 			window.parent.generateReportForTbl(params);
 	};
 	 self.isCustomExport=$scope.table.isCustomExport;
