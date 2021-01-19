@@ -217,9 +217,15 @@ export class AggConfig {
 
     //return createFilter(this, key, params);
 var cusFilter=createFilter(this, key, params);
+if(cusFilter.length === 1){
+	cusFilter[0].meta.key1 = "";
+    cusFilter[0].meta.key1 = this.getFieldDisplayName();
+    return cusFilter;
+}else{
     cusFilter.meta.key1 = "";
     cusFilter.meta.key1 = this.getFieldDisplayName();
     return cusFilter;
+}
 
   }
 
@@ -403,7 +409,7 @@ var cusFilter=createFilter(this, key, params);
 
   getFieldDisplayName() {
     const field = this.getField();
-	if(field.spec.fieldLabelMap !== undefined){
+	if(field !== undefined && field.spec.fieldLabelMap !== undefined){
     return field ? JSON.parse(field.spec.fieldLabelMap)[field.spec.name] || field.displayName || this.fieldName() : '';
     }else{
     return field ? field.displayName || this.fieldName() : '';

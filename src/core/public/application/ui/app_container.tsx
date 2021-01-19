@@ -120,7 +120,7 @@ export const AppContainer: FunctionComponent<Props> = ({
       {appNotFound && <AppNotFound />}
       {showSpinner && (
         <div className="appContainer__loading">
-          <EuiLoadingElastic aria-label="Loading application" size="xxl" />
+          {/*<EuiLoadingElastic aria-label="Loading application" size="xxl" />*/}
         </div>
       )}
       <div key={appId} ref={elementRef} />
