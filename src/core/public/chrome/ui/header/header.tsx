@@ -99,20 +99,35 @@ export function Header({
 		<>
 			<header className={className} data-test-subj="headerGlobalNav">
 				<div id="globalHeaderBars" data-test-subj={dataSubject}>
-					<EuiHeader position="fixed">
-						<HeaderBreadcrumbs
-							appTitle$={observables.appTitle$}
-							breadcrumbs$={observables.breadcrumbs$}
-						/>
-
-						<HeaderBadge badge$={observables.badge$} />
-
-						<EuiHeaderSection side="right">
-							<EuiHeaderSectionItem border="none">
-								<HeaderActionMenu actionMenu$={application.currentActionMenu$} />
-							</EuiHeaderSectionItem>
-						</EuiHeaderSection>
-					</EuiHeader>
+			<EuiHeader
+           
+            position="fixed"
+            sections={[
+              {
+                items: [
+                 <HeaderBreadcrumbs
+              appTitle$={observables.appTitle$}
+              breadcrumbs$={observables.breadcrumbs$}
+            />,
+                  <LoadingIndicator loadingCount$={observables.loadingCount$} />,
+                ],
+                borders: 'none',
+              },
+            
+              {
+                items: [
+                  
+                 <EuiHeaderSection side="right">
+              <EuiHeaderSectionItem border="none">
+                <HeaderActionMenu actionMenu$={application.currentActionMenu$} />
+              </EuiHeaderSectionItem>
+            </EuiHeaderSection>
+                 
+                ],
+                borders: 'none',
+              },
+            ]}
+          />
 				</div>
 
 				<CollapsibleNav
