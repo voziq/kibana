@@ -116,7 +116,7 @@ export const Toolbar: FC<Props> = ({
       <div className="canvasToolbar__container">
         <EuiFlexGroup alignItems="center" gutterSize="none" className="canvasToolbar__controls">
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty color="text" iconType="grid" onClick={() => openWorkpadManager()}>
+            <EuiButtonEmpty color="text"  >
               {workpadName}
             </EuiButtonEmpty>
           </EuiFlexItem>

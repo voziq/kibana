@@ -8,7 +8,7 @@ import React, { FunctionComponent } from 'react';
 import PropTypes from 'prop-types';
 // @ts-expect-error no @types definition
 import { Shortcuts } from 'react-shortcuts';
-import { EuiFlexItem, EuiFlexGroup, EuiButtonIcon, EuiToolTip } from '@elastic/eui';
+import { EuiFlexItem, EuiFlexGroup, EuiButtonIcon, EuiToolTip , EuiFormRow, EuiButtonEmpty} from '@elastic/eui';
 import { ComponentStrings } from '../../../i18n';
 import { ToolTipShortcut } from '../tool_tip_shortcut/';
 import { RefreshControl } from './refresh_control';
@@ -20,6 +20,12 @@ import { ShareMenu } from './share_menu';
 import { ViewMenu } from './view_menu';
 import { CommitFn } from '../../../types';
 
+import {
+  MAX_ZOOM_LEVEL,
+  MIN_ZOOM_LEVEL,
+  CONTEXT_MENU_TOP_BORDER_CLASSNAME,
+} from '../../../../common/lib/constants';
+
 const { WorkpadHeader: strings } = ComponentStrings;
 
 export interface Props {
@@ -27,6 +33,16 @@ export interface Props {
   canUserWrite: boolean;
   commit: CommitFn;
   onSetWriteable?: (writeable: boolean) => void;
+   /**
+   * zooms to fit entire workpad into view
+   */
+  fitToWindow: () => void;
+  /**
+   * current workpad zoom level
+   */
+  zoomScale: number;
+  
+  setZoomScale: (scale: number) => void;
 }
 
 export const WorkpadHeader: FunctionComponent<Props> = ({
@@ -34,6 +50,9 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
   canUserWrite,
   commit,
   onSetWriteable = () => {},
+  fitToWindow,
+  zoomScale,
+  setZoomScale,
 }) => {
   const toggleWriteable = () => onSetWriteable(!isWriteable);
 
@@ -105,35 +124,24 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
             <ViewMenu />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EditMenu commit={commit} />
+            <EditMenu  commit={commit} />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <ShareMenu />
+          </EuiFlexItem>
+          
+                   <EuiFlexItem grow={false}>
+   
+              <EuiButtonEmpty size="xs"  onClick={fitToWindow}>
+              {strings.getFitWindow()}
+            </EuiButtonEmpty>
+        
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s">
-          <EuiFlexItem grow={false}>
-            {canUserWrite && (
-              <Shortcuts
-                name="EDITOR"
-                handler={keyHandler}
-                targetNodeSelector="body"
-                global
-                isolate
-              />
-            )}
-            <EuiToolTip position="bottom" content={getEditToggleToolTip()}>
-              <EuiButtonIcon
-                iconType={isWriteable ? 'eyeClosed' : 'eye'}
-                onClick={toggleWriteable}
-                size="s"
-                aria-label={getEditToggleToolTipText()}
-                isDisabled={!canUserWrite}
-              />
-            </EuiToolTip>
-          </EuiFlexItem>
+      
           <EuiFlexItem grow={false}>
             <RefreshControl />
           </EuiFlexItem>
@@ -148,7 +156,11 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
 
 WorkpadHeader.propTypes = {
   isWriteable: PropTypes.bool,
-  commit: PropTypes.func.isRequired,
+  commit: PropTypes.func,
   onSetWriteable: PropTypes.func,
   canUserWrite: PropTypes.bool,
+  zoomScale: PropTypes.number,
+  fitToWindow: PropTypes.func,
+   setZoomScale: PropTypes.func,
+  
 };

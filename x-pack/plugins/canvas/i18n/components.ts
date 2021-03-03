@@ -1148,7 +1148,11 @@ export const ComponentStrings = {
       i18n.translate('xpack.canvas.workpadHeader.fullscreenButtonAriaLabel', {
         defaultMessage: 'View fullscreen',
       }),
-    getFullScreenTooltip: () =>
+    getFitWindow: () =>
+      i18n.translate('xpack.canvas.workpadHeader.fitwindow', {
+        defaultMessage: 'Fit to window',
+      }),
+        getFullScreenTooltip: () =>
       i18n.translate('xpack.canvas.workpadHeader.fullscreenTooltip', {
         defaultMessage: 'Enter fullscreen mode',
       }),

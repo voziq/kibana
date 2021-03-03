@@ -219,18 +219,12 @@ export const ViewMenu: FunctionComponent<Props> = ({
           ),
         },
       },
-      {
-        name: isWriteable ? strings.getHideEditModeLabel() : strings.getShowEditModeLabel(),
-        icon: <EuiIcon type={isWriteable ? 'eyeClosed' : 'eye'} size="m" />,
-        className: CONTEXT_MENU_TOP_BORDER_CLASSNAME,
-        onClick: () => {
-          toggleWriteable();
-          closePopover();
-        },
-      },
+      
       {
         name: strings.getZoomMenuItemLabel(),
-        icon: 'magnifyWithPlus',
+      
+        icon: <EuiIcon type="magnifyWithPlus" size="m" />,
+          className: CONTEXT_MENU_TOP_BORDER_CLASSNAME,
         panel: {
           id: 3,
           title: strings.getZoomMenuItemLabel(),
