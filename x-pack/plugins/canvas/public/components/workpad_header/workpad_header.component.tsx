@@ -19,6 +19,7 @@ import { ElementMenu } from './element_menu';
 import { ShareMenu } from './share_menu';
 import { ViewMenu } from './view_menu';
 import { CommitFn } from '../../../types';
+import { StoryboardRole } from './storyboard_role';
 
 import {
   MAX_ZOOM_LEVEL,
@@ -56,7 +57,9 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
 }) => {
   const toggleWriteable = () => onSetWriteable(!isWriteable);
 
+
   const keyHandler = (action: string) => {
+  
     if (action === 'EDITING') {
       toggleWriteable();
     }
@@ -105,6 +108,35 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
       </span>
     );
   };
+  
+  
+    const getRole = () => {
+
+    if (StoryboardRole.ADD || StoryboardRole.EDIT) {
+      return true;
+    }
+
+  
+  };
+  
+  
+     const getRole1 = () => {
+
+    if (!StoryboardRole.ADD && !StoryboardRole.EDIT && StoryboardRole.DELETE) {
+      return true;
+    }
+
+  
+  };
+  
+  
+  
+
+  
+  
+  
+
+  
 
   return (
     <EuiFlexGroup
@@ -117,17 +149,17 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
         <EuiFlexGroup alignItems="center" gutterSize="none">
           {isWriteable && (
             <EuiFlexItem grow={false}>
-              <ElementMenu />
+             { getRole() && <ElementMenu />}
             </EuiFlexItem>
           )}
           <EuiFlexItem grow={false}>
-            <ViewMenu />
+          { getRole() && <ViewMenu />}
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EditMenu  commit={commit} />
+            {getRole() && <EditMenu  commit={commit} />}
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <ShareMenu />
+            {getRole1() && <ShareMenu />}
           </EuiFlexItem>
           
                    <EuiFlexItem grow={false}>
@@ -141,7 +173,27 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiFlexGroup alignItems="center" gutterSize="s">
-      
+            <EuiFlexItem grow={false}>
+         {canUserWrite && (
+              <Shortcuts
+                name="EDITOR"
+                handler={keyHandler}
+                targetNodeSelector="body"
+                global
+                isolate
+              />
+            )}
+             { getRole() && <EuiToolTip position="bottom" content={getEditToggleToolTip()}>
+            
+              <EuiButtonIcon
+                iconType={isWriteable ? 'eyeClosed' : 'eye'}
+                onClick={toggleWriteable}
+                size="s"
+                aria-label={getEditToggleToolTipText()}
+                isDisabled={!canUserWrite}
+              />
+            </EuiToolTip>}
+          </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <RefreshControl />
           </EuiFlexItem>
