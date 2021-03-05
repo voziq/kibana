@@ -69,6 +69,7 @@ export const routes = [
               const fetchedWorkpad = await workpadService.get(params.id);
 
               const { assets, ...workpad } = fetchedWorkpad;
+              workpad.isWriteable=false;
               dispatch(setWorkpad(workpad));
               dispatch(setAssets(assets));
 
