@@ -57,7 +57,6 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
 }) => {
   const toggleWriteable = () => onSetWriteable(!isWriteable);
 
-
   const keyHandler = (action: string) => {
   
     if (action === 'EDITING') {
@@ -149,14 +148,14 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
         <EuiFlexGroup alignItems="center" gutterSize="none">
           {isWriteable && (
             <EuiFlexItem grow={false}>
-             { getRole() && <ElementMenu />}
+             { StoryboardRole.ADD && <ElementMenu />}
             </EuiFlexItem>
           )}
           <EuiFlexItem grow={false}>
           { getRole() && <ViewMenu />}
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            {getRole() && <EditMenu  commit={commit} />}
+            { StoryboardRole.EDIT && <EditMenu  commit={commit} />}
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             {getRole1() && <ShareMenu />}
@@ -183,7 +182,7 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
                 isolate
               />
             )}
-             { getRole() && <EuiToolTip position="bottom" content={getEditToggleToolTip()}>
+            {getRole() && <EuiToolTip position="bottom" content={getEditToggleToolTip()}>
             
               <EuiButtonIcon
                 iconType={isWriteable ? 'eyeClosed' : 'eye'}

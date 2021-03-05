@@ -39,7 +39,7 @@ export const getDefaultPage = () => {
   };
 };
 
-export const getDefaultWorkpad = () => {
+export const getDefaultWorkpad = () => {	
   const page = getDefaultPage();
   return {
     name: 'My Canvas Workpad',
@@ -82,6 +82,6 @@ export const getDefaultWorkpad = () => {
       'rgba(255,255,255,0)', // 'transparent'
     ],
     variables: [],
-    isWriteable: true,
+    isWriteable: false,
   };
 };
