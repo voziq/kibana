@@ -174,6 +174,7 @@ export const ViewMenu: FunctionComponent<Props> = ({
       {
         name: strings.getRefreshSettingsMenuItemLabel(),
         icon: 'empty',
+        
         panel: {
           id: 1,
           title: strings.getRefreshSettingsMenuItemLabel(),
@@ -186,20 +187,13 @@ export const ViewMenu: FunctionComponent<Props> = ({
           ),
         },
       },
-      {
-        name: strings.getFullscreenMenuItemLabel(),
-        icon: <EuiIcon type="fullScreen" size="m" />,
-        className: CONTEXT_MENU_TOP_BORDER_CLASSNAME,
-        onClick: () => {
-          enterFullscreen();
-          closePopover();
-        },
-      },
+      
       {
         name: autoplayEnabled
           ? strings.getAutoplayOffMenuItemLabel()
           : strings.getAutoplayOnMenuItemLabel(),
         icon: autoplayEnabled ? 'stop' : 'play',
+          className: CONTEXT_MENU_TOP_BORDER_CLASSNAME,
         onClick: () => {
           enableAutoplay(!autoplayEnabled);
           closePopover();

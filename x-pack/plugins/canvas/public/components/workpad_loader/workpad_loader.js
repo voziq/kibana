@@ -29,6 +29,8 @@ import { WorkpadCreate } from './workpad_create';
 import { WorkpadSearch } from './workpad_search';
 import { uploadWorkpad } from './upload_workpad';
 
+import { StoryboardRole } from '../workpad_header/storyboard_role';
+
 const { WorkpadLoader: strings } = ComponentStrings;
 
 const getDisplayName = (name, workpad, loadedWorkpad) => {
@@ -382,7 +384,7 @@ export class WorkpadLoader extends React.PureComponent {
                   {selectedWorkpads.length > 0 && (
                     <Fragment>
                       <EuiFlexItem grow={false}>{downloadButton}</EuiFlexItem>
-                      <EuiFlexItem grow={false}>{deleteButton}</EuiFlexItem>
+                      <EuiFlexItem grow={false}>{StoryboardRole.DELETE && deleteButton}</EuiFlexItem>
                     </Fragment>
                   )}
                   <EuiFlexItem grow={1}>
@@ -397,8 +399,8 @@ export class WorkpadLoader extends React.PureComponent {
               </EuiFlexItem>
               <EuiFlexItem grow={2}>
                 <EuiFlexGroup gutterSize="s" justifyContent="flexEnd" wrap>
-                  <EuiFlexItem grow={false}>{uploadButton}</EuiFlexItem>
-                  <EuiFlexItem grow={false}>{createButton}</EuiFlexItem>
+                  <EuiFlexItem grow={false}>{StoryboardRole.ADD && uploadButton}</EuiFlexItem>
+                  <EuiFlexItem grow={false}>{StoryboardRole.ADD && createButton}</EuiFlexItem>
                 </EuiFlexGroup>
               </EuiFlexItem>
             </EuiFlexGroup>

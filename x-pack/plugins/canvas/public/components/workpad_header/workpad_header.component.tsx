@@ -152,7 +152,7 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
             </EuiFlexItem>
           )}
           <EuiFlexItem grow={false}>
-          { getRole() && <ViewMenu />}
+          <ViewMenu />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             { StoryboardRole.EDIT && <EditMenu  commit={commit} />}
@@ -196,9 +196,7 @@ export const WorkpadHeader: FunctionComponent<Props> = ({
           <EuiFlexItem grow={false}>
             <RefreshControl />
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <FullscreenControl>{fullscreenButton}</FullscreenControl>
-          </EuiFlexItem>
+       
         </EuiFlexGroup>
       </EuiFlexItem>
     </EuiFlexGroup>

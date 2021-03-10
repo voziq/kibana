@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EuiButton } from '@elastic/eui';
 import { ComponentStrings } from '../../../i18n';
+import { StoryboardRole } from '../workpad_header/storyboard_role';
 
 const { WorkpadCreate: strings } = ComponentStrings;
 
@@ -19,6 +20,7 @@ export const WorkpadCreate = ({ createPending, onCreate, ...rest }) => (
     onClick={onCreate}
     isLoading={createPending}
     data-test-subj="create-workpad-button"
+    isDisabled={!StoryboardRole.ADD}
   >
     {strings.getWorkpadCreateButtonLabel()}
   </EuiButton>
